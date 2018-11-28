@@ -308,7 +308,7 @@ function updateMaxAcorn(){
 //Current player eggs
 function updatePlayerEgg(){
 	playereggdoc = document.getElementById('playeregg');
-	ComputeMyEggs(m_account, function(req) {
+	ComputeMyEgg(m_account, function(req) {
 		a_playerEgg = formatEthValue(req);
 		playereggdoc.textContent = a_playerEgg;
 	});
