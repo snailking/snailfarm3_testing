@@ -161,8 +161,8 @@ function controlLoopFast(){
 //Refreshes game data
 function refreshData(){
 	updateEthAccount();
-
 	updatePlayerSnail();
+	updateContractBalance();
 	/*
 	
 	updateGodRound();
@@ -172,7 +172,7 @@ function refreshData(){
 	updateGodTimer();
 	updatePharaohReq();
 	updateMaxSnail();
-	updateContractBalance();
+
 	updateFrogPot();
 	updateSnailPot();
 
@@ -217,6 +217,11 @@ function updatePlayerSnail(){
 		a_playerSnail = req;
 		playersnaildoc.textContent = a_playerSnail;
 	});
+}
+
+function updateContractBalance(){
+	var contractbalancedoc = document.getElementById('contractbalance');
+	contractbalancedoc.textContent = web3.eth.getBalance(contractAddress);
 }
 
 /*
