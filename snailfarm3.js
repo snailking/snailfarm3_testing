@@ -227,7 +227,8 @@ function updateContractBalance(){
 			console.log(result);
 		} else {
 			console.log("didn't work");
-		});
+		}
+	});
 }
 
 /*
@@ -509,18 +510,14 @@ function updateMaxDiv(){
 }
 
 /* LOCAL FIELD INPUT */
-/*
+
 //Player input on buy
 function updateFieldBuy2(){
-	//var fieldbuydoc = document.getElementById('fieldBuy');
 	f_buy = document.getElementById('fieldBuy').value;
-	if(f_buy > 4){ 
-		f_buy = 4; //max 4 ETH per buy
-	}
 	var fieldbuy2doc = document.getElementById('fieldBuy2');
 	fieldbuy2doc.textContent = f_buy;
 }
-
+/*
 //Buy estimate
 function updateBuyEstimate(){
 	var buyEstimatedoc = document.getElementById('buyestimate');
@@ -554,7 +551,7 @@ function updateFieldSacrifice2(){
 /* WEB3 TRANSACTIONS */
 
 //Buy starting snails
-function webBuyStarter(){
+function webGetStarter(){
     var weitospend = web3.toWei(0.004,'ether');
 	BuyStartingSnail(weitospend, function(){
 	});
@@ -566,15 +563,15 @@ function webHatchEgg(){
 	HatchEgg(weitospend, function(){
 	});
 }
-	
-/*
-//Buy snail tokens
-function webBuySnail(){
-	var ref = getQueryVariable('ref');
+
+//Buy eggs
+function webBuyEgg(){
     var weitospend = web3.toWei(f_buy,'ether');
-    BuySnail(ref, weitospend,function(){
+    BuySnail(weitospend, function(){
     });
-}
+}	
+/*
+
 
 //Sacrifice snail tokens
 function webSacrificeSnail(){
