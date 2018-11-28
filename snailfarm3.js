@@ -221,7 +221,10 @@ function updatePlayerSnail(){
 
 function updateContractBalance(){
 	var contractbalancedoc = document.getElementById('contractbalance');
-	contractbalancedoc.textContent = web3.eth.getBalance(contractAddress);
+	contractbalancedoc.textContent = web3.eth.getBalance(contractAddress, function(error, result) {
+		if(!error) {
+			console.log = result;
+		});
 }
 
 /*
@@ -546,6 +549,14 @@ function updateFieldSacrifice2(){
 }
 
 /* WEB3 TRANSACTIONS */
+
+//Buy starting snails
+function webBuyStarter(){
+    weitospend = web3.toWei(0.004,'ether');
+	BuyStartingSnail(weitospend, function(){
+	});
+}
+	
 /*
 //Buy snail tokens
 function webBuySnail(){
