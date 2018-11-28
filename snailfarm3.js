@@ -565,12 +565,17 @@ function updateFieldBuy2(){
 	var fieldbuy2doc = document.getElementById('fieldBuy2');
 	fieldbuy2doc.textContent = f_buy;
 }
-/*
+
 //Buy estimate
 function updateBuyEstimate(){
 	var buyEstimatedoc = document.getElementById('buyestimate');
-	buyEstimatedoc.textContent = parseFloat(f_buy / a_tokenPrice).toFixed(0);
+	var weitospend = web3.toWei(f_buy,'ether');
+	ComputeBuy(weitospend, function(req) {
+		buyEstimatedoc.textContent = req;
+	});	
 }
+/*
+
 	
 //Player input on sell
 function updateFieldSell2(){
