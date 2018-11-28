@@ -221,6 +221,7 @@ function refreshData(){
 //Refreshes some game data faster
 function refreshDataFast(){
 	updateFieldBuy2();
+	updateBuyEstimate();
 	
 	/*
 	fastupdateGodTimer();
@@ -229,7 +230,7 @@ function refreshDataFast(){
 	updateFieldSacrifice2();
 	updateFieldSell2();
 	updateSellEstimate();
-	updateBuyEstimate();*/
+	*/
 }
 
 //Current ETH address in use
