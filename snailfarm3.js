@@ -1,3 +1,5 @@
+var contractAddress="0x0888E6ec5b053Bc7FA3244ED58af25883f742C70" // ROPSTEN 1
+
 /* WEB3 DETECTION */
 
 //var modal2 = document.getElementById("modal2");
@@ -115,13 +117,15 @@ var god_roundover = false;
 var godtimerdoc;
 var playereggdoc;
 
+var a_marketEgg = 0; //y
 var a_pharaoh = "";
 var a_tokenPrice = 0;
 var a_tokenSellPrice = 0;
-var a_maxSnail = 0;
-var a_godPot = 0;
-var a_frogPot = 0;
-var a_snailPot = 0;
+var a_maxAcorn = 0;
+var a_roundPot = 0; //y
+var a_eggPot = 0; //y
+var a_snailPot = 0; //y
+var a_thronePot = 0;
 var a_playerSnail = 0; //y
 var a_playerEgg = 0;
 var a_playerProd = 0;
@@ -161,27 +165,32 @@ function controlLoopFast(){
 //Refreshes game data
 function refreshData(){
 	updateEthAccount();
-	updatePlayerSnail();
 	updateContractBalance();
+	updateRound();
+	
+	updateEggPot();
+	updateRoundPot();
+	updateSnailPot();
+	updateThronePot();
+	
+	updatePlayerSnail();
+	updatePlayerEgg();
+	updatePlayerProd();
+	
+	
 	/*
 	
-	updateGodRound();
-	updateGodPot();
-	updateRoundPot();
-	updatePharaoh();
 	updateGodTimer();
 	updatePharaohReq();
 	updateMaxSnail();
 
-	updateFrogPot();
-	updateSnailPot();
 
 	updateTokenPrice();
 	updatePlayerSnailValue();
 	updateTokenSellPrice();
 	updateMaxSnailSell();
-	updatePlayerEgg();
-	updatePlayerProd();
+
+
 	updateHatchPrice();
 	updateFullHatchCost();
 	updateFeedReward();
@@ -195,10 +204,12 @@ function refreshData(){
 
 //Refreshes some game data faster
 function refreshDataFast(){
+	updateFieldBuy2();
+	
 	/*
 	fastupdateGodTimer();
 	//fastupdatePlayerEgg();
-	updateFieldBuy2();
+
 	updateFieldSacrifice2();
 	updateFieldSell2();
 	updateSellEstimate();
@@ -224,7 +235,7 @@ function updateContractBalance(){
 	var contractbalancedoc = document.getElementById('contractbalance');
 	web3.eth.getBalance(contractAddress, function(error, result) {
 		if(!error) {
-			console.log(result);
+			//console.log(result);
 			contractbalancedoc.textContent = formatEthValue(web3.fromWei(result, 'ether')); 
 		} else {
 			console.log("didn't work");
@@ -232,40 +243,98 @@ function updateContractBalance(){
 	});
 }
 
-/*
-//Current ETH balance in contract
-function updateContractBalance(){
-	var contractbalancedoc = document.getElementById('contractbalance');
-	GetContractBalance(function(req) {
-		contractbalancedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
-	});
-}
-*/
-
-
-/*
 //Current round
-function updateGodRound(){
-	var godrounddoc = document.getElementById('godround');
-	godRound(function(req) {
-		godrounddoc.textContent = req;
+function updateRound(){
+	var rounddoc = document.getElementById('round');
+	round(function(req) {
+		rounddoc.textContent = req;
 	});
 }
 
-//Full godpot
-function updateGodPot(){
-	var godpotdoc = document.getElementById('godpot');
-	godPot(function(req) {
-		a_godPot = formatEthValue(web3.fromWei(req,'ether'));
-		godpotdoc.textContent = a_godPot;
+//Current snail pot
+function updateSnailPot(){
+	var snailpotdoc = document.getElementById('snailpot');
+	snailPot(function(req) {
+		a_snailPot = formatEthValue(web3.fromWei(req,'ether'));
+		snailpotdoc.textContent = a_snailPot;
 	});
 }
 
-//Current round pot (50% of godpot)
+//Current round pot (10% of snailpot at start of round)
 function updateRoundPot(){
 	var roundpotdoc = document.getElementById('roundpot');
-	roundpotdoc.textContent = a_godPot / 2;
+	roundPot(function(req) {
+		a_roundPot = formatEthValue(web3.fromWei(req,'ether'));
+		roundpotdoc.textContent = a_roundPot;
+	});
 }
+
+//Current eggpot
+function updateEggPot(){
+	var eggpotdoc = document.getElementById('eggpot');
+	eggPot(function(req) {
+		a_eggPot = formatEthValue(web3.fromWei(req,'ether'));
+		eggpotdoc.textContent = a_eggPot;
+	});
+}
+
+//Current throne pot
+function updateThronePot(){
+	var thronepotdoc = document.getElementById('thronepot');
+	thronePot(function(req) {
+		a_thronePot = formatEthValue(web3.fromWei(req,'ether'));
+		thronepotdoc.textContent = a_thronePot;
+	});
+}
+
+//Current number of eggs on the market
+function updateMarketEgg(){
+	var marketeggdoc = document.getElementById('marketegg');
+	marketEgg(function(req) {
+		a_marketEgg = req;
+		marketeggdoc.textContent = a_marketEgg;
+	});
+}
+
+//Current number of acorns
+function updateMaxAcorn(){
+	var maxacorndoc = document.getElementById('maxacorn');
+	maxAcorn(function(req) {
+		a_maxAcorn = req;
+		maxacorndoc.textContent = a_maxAcorn;
+	});
+}
+
+//Current player eggs
+function updatePlayerEgg(){
+	playereggdoc = document.getElementById('playeregg');
+	ComputeMyEggs(m_account, function(req) {
+		a_playerEgg = formatEthValue(req);
+		playereggdoc.textContent = a_playerEgg;
+	});
+}
+
+//Current player prod
+function updatePlayerProd(){
+	var playerproddoc = document.getElementById('playerprod');
+	a_playerProd = parseFloat(a_playerSnail / 24).toFixed(4); //100% per day, divided by 24 hours
+	playerproddoc.textContent = a_playerProd;
+}
+
+//Current balance for player
+function updatePlayerBalance(){
+	var playerbalancedoc = document.getElementById('playerbalance');
+	GetMyBalance(function(req) {
+		playerbalancedoc.textContent = formatEthValue(web3.fromWei(req,'ether'));
+	});
+}	
+
+/*
+
+
+
+
+
 	
 //Current pharaoh
 function updatePharaoh(){
@@ -363,34 +432,13 @@ function updatePharaohReq(){
 	pharaohreq2doc.textContent = a_pharaohReq2;
 }
 
-//Current max supply of snails
-function updateMaxSnail(){
-	var maxsnaildoc = document.getElementById('maxsnail');
-	maxSnail(function(req) {
-		a_maxSnail = req;
-		maxsnaildoc.textContent = a_maxSnail;
-	});
-}
 
 
 
-//Current frog pot
-function updateFrogPot(){
-	var frogpotdoc = document.getElementById('frogpot');
-	frogPot(function(req) {
-		a_frogPot = formatEthValue(web3.fromWei(req,'ether'));
-		frogpotdoc.textContent = a_frogPot;
-	});
-}
 
-//Current snail pot
-function updateSnailPot(){
-	var snailpotdoc = document.getElementById('snailpot');
-	snailPot(function(req) {
-		a_snailPot = formatEthValue(web3.fromWei(req,'ether'));
-		snailpotdoc.textContent = a_snailPot;
-	});
-}
+
+
+
 	
 
 
@@ -423,15 +471,7 @@ function updatePlayerSnailValue(){
 	playersnailvaluedoc.textContent = parseFloat(a_playerSnail * a_tokenSellPrice).toFixed(4);
 }
 
-//Current player eggs
-function updatePlayerEgg(){
-	playereggdoc = document.getElementById('playeregg');
-	ComputeMyEggs(m_account, function(req) {
-		a_playerEgg = formatEthValue(req);
-		//a_playerEgg = parseFloat(a_playerEgg / 1080000).toFixed(0); //TIME_TO_HATCH_1SNAIL
-		playereggdoc.textContent = a_playerEgg;
-	});
-}
+
 
 //Fast local update for player eggs
 /*function fastupdatePlayerEgg(){
@@ -441,12 +481,7 @@ function updatePlayerEgg(){
 	playereggdoc.textContent = a_playerEgg;
 }*/
 /*
-//Current player prod
-function updatePlayerProd(){
-	var playerproddoc = document.getElementById('playerprod');
-	a_playerProd = parseFloat(a_playerSnail * 0.08 / 24).toFixed(4); //8% per day, divided by 24 hours
-	playerproddoc.textContent = a_playerProd;
-}
+
 
 //Current hatch price per egg
 function updateHatchPrice(){
@@ -485,13 +520,7 @@ function updateUnclaimedDiv(){
 	});
 }
 	
-//Current balance for player
-function updatePlayerEarning(){
-	var playerearningdoc = document.getElementById('playerearning');
-	GetMyEarnings(function(req) {
-		playerearningdoc.textContent = formatEthValue(web3.fromWei(req,'ether'));
-	});
-}	
+
 
 //Status of referral link for player
 function updatePlayerRef(){
@@ -571,6 +600,19 @@ function webBuyEgg(){
     BuySnail(weitospend, function(){
     });
 }	
+
+//Sell eggs
+function webSellEgg(){
+	SellEgg(function(){
+	});
+}
+
+//Withdraw balance
+function webWithdrawBalance(){
+	WithdrawBalance(function(){
+	});
+}
+
 /*
 
 
@@ -580,19 +622,11 @@ function webSacrificeSnail(){
 	});
 }
 
-//Sell snail tokens
-function webSellSnail(){
-	SellSnail(f_sell, function(){
-	});
-}
 
 
 
-//Feed eggs
-function webFeedFrog(){
-	FeedEgg(function(){
-	});
-}
+
+
 
 //Claim divs
 function webClaimDiv(){
@@ -600,11 +634,7 @@ function webClaimDiv(){
 	});
 }
 
-//Withdraw earnings
-function webWithdrawEarning(){
-	WithdrawEarnings(function(){
-	});
-}
+
 
 //Start a new round
 function webAscendGod(){
@@ -616,7 +646,6 @@ function webAscendGod(){
 
 abiDefinition=[{"constant": true,"inputs": [],"name": "ACORN_PRICE","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "LETTUCE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SPIDER_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "gotCarrot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeHarvest","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "round","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimAcornShare","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "JoinRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BuyStartingSnail","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "GetMySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimRedHarvest","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hatcherySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasSlug","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "divPerAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "_redAmount","type": "uint256"}],"name": "UseRedEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_MIN_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasStartingSnail","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "base","type": "uint256"}],"name": "ComputeSquare","outputs": [{"name": "squareRoot","type": "uint256"}],"payable": false,"stateMutability": "pure","type": "function"},{"constant": false,"inputs": [],"name": "FundTree","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "_ether","type": "uint256"}],"name": "ComputeAcornBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "redEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeAcornCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TADPOLE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "roundPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "eggspent","type": "uint256"}],"name": "ComputeSell","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "lastHatch","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SNAILTHRONE","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "PayThrone","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ACORN_MULT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "ComputeMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "acorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindLettuce","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "SellEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSpiderQueen","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "snailPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BuyEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "SQUIRREL_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ROUND_DOWNTIME","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HATCHING_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "snailmasterReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartTime","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSpiderOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SLUG_MIN_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "eggPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "HatchEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "FROGKING_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BeginRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "marketEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeTadpolePrince","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "SNAILMASTER_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "prodBoost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindCarrot","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "WithdrawBalance","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "StartGame","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeMyShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSnailmaster","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_COUNT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "tadpoleReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "thronePot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "ethspent","type": "uint256"}],"name": "ComputeBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "maxAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "spiderReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TIME_TO_HATCH_1SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "CARROT_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSquirrelDuke","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasLettuce","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "nextRoundStart","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DURATION","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSnailmaster","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DUR_ROOT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "lettuceReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindSlug","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "squirrelReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyProd","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "gameActive","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSquirrelOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "gameOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentTadpoleOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"inputs": [],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"payable": true,"stateMutability": "payable","type": "fallback"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "acorns","type": "uint256"}],"name": "FundedTree","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "share","type": "uint256"}],"name": "ClaimedShare","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newmaster","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameMaster","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "WithdrewBalance","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "Hatched","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "seller","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "SoldEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "buyer","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playereggs","type": "uint256"}],"name": "BoughtEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "StartedSnailing","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newqueen","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "spiderreq","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "BecameQueen","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newduke","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "squirrelreq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameDuke","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newprince","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "tadpolereq","type": "uint256"}],"name": "BecamePrince","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "roundwinner","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "WonRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "round","type": "uint256"}],"name": "BeganRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "JoinedRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "ClaimedHarvest","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "UsedRed","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundSlug","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "lettucereq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "FoundLettuce","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundCarrot","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "PaidThrone","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "BoostedPot","type": "event"}]
 
-var contractAddress="0x0888E6ec5b053Bc7FA3244ED58af25883f742C70" // ROPSTEN 1
 var contractAbi = web3.eth.contract(abiDefinition);
 var myContract = contractAbi.at(contractAddress);
 
