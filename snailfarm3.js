@@ -222,9 +222,10 @@ function updatePlayerSnail(){
 //Current ETH balance in contract
 function updateContractBalance(){
 	var contractbalancedoc = document.getElementById('contractbalance');
-	contractbalancedoc.textContent = web3.eth.getBalance(contractAddress, function(error, result) {
+	web3.eth.getBalance(contractAddress, function(error, result) {
 		if(!error) {
 			console.log(result);
+			contractbalancedoc.textContent = formatEthValue(web3.fromWei(result, 'ether')); 
 		} else {
 			console.log("didn't work");
 		}
