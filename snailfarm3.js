@@ -161,7 +161,7 @@ function controlLoopFast(){
 //Refreshes game data
 function refreshData(){
 	updateEthAccount();
-	updateContractBalance();
+
 	updatePlayerSnail();
 	/*
 	
@@ -172,7 +172,7 @@ function refreshData(){
 	updateGodTimer();
 	updatePharaohReq();
 	updateMaxSnail();
-
+	updateContractBalance();
 	updateFrogPot();
 	updateSnailPot();
 
@@ -210,14 +210,6 @@ function updateEthAccount(){
 	m_account = web3.eth.accounts[0];
 }
 
-//Current ETH balance in contract
-function updateContractBalance(){
-	var contractbalancedoc = document.getElementById('contractbalance');
-	GetContractBalance(function(req) {
-		contractbalancedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
-	});
-}
-
 //Current player snail count
 function updatePlayerSnail(){
 	var playersnaildoc = document.getElementById('playersnail');
@@ -226,6 +218,17 @@ function updatePlayerSnail(){
 		playersnaildoc.textContent = a_playerSnail;
 	});
 }
+
+/*
+//Current ETH balance in contract
+function updateContractBalance(){
+	var contractbalancedoc = document.getElementById('contractbalance');
+	GetContractBalance(function(req) {
+		contractbalancedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
+	});
+}
+*/
+
 
 /*
 //Current round
