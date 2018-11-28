@@ -225,6 +225,8 @@ function updateContractBalance(){
 	contractbalancedoc.textContent = web3.eth.getBalance(contractAddress, function(error, result) {
 		if(!error) {
 			console.log(result);
+		} else {
+			console.log("didn't work");
 		});
 }
 
