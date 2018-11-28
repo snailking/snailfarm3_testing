@@ -219,11 +219,12 @@ function updatePlayerSnail(){
 	});
 }
 
+//Current ETH balance in contract
 function updateContractBalance(){
 	var contractbalancedoc = document.getElementById('contractbalance');
 	contractbalancedoc.textContent = web3.eth.getBalance(contractAddress, function(error, result) {
 		if(!error) {
-			console.log = result;
+			console.log(result);
 		});
 }
 
@@ -552,8 +553,15 @@ function updateFieldSacrifice2(){
 
 //Buy starting snails
 function webBuyStarter(){
-    weitospend = web3.toWei(0.004,'ether');
+    var weitospend = web3.toWei(0.004,'ether');
 	BuyStartingSnail(weitospend, function(){
+	});
+}
+
+//Hatch eggs
+function webHatchEgg(){
+	var weitospend = web3.toWei(0.0008,'ether');
+	HatchEgg(weitospend, function(){
 	});
 }
 	
@@ -578,12 +586,7 @@ function webSellSnail(){
 	});
 }
 
-//Hatch eggs
-function webHatchEgg(){
-	var weitospend = web3.toWei(a_playerHatchCost,'ether');
-	HatchEgg(weitospend, function(){
-	});
-}
+
 
 //Feed eggs
 function webFeedFrog(){
