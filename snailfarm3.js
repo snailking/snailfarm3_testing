@@ -117,6 +117,8 @@ var god_roundover = false;
 var godtimerdoc;
 var playereggdoc;
 
+var c_spiderowner = "";
+
 var a_marketEgg = 0; //y
 var a_pharaoh = "";
 var a_tokenPrice = 0;
@@ -141,11 +143,13 @@ var m_account = "waiting for web3";
 
 /* GLOBAL LOOP */
 
-//Started once, to trigger the main loop and the egg loop
+//Initiates loops and runs owner checks once (adjust those with events)
 function main(){
     console.log('Main loop started.');
     controlLoop();
 	controlLoopFast();
+	
+	checkSpiderOwner();
 }
 
 //Main loop
@@ -158,6 +162,17 @@ function controlLoop(){
 function controlLoopFast(){
 	refreshDataFast();
 	setTimeout(controlLoopFast,200);
+}
+
+/* INITIAL CHECKS */
+
+//Check SpiderQueen owner
+function checkSpiderOwner(){
+	var spiderownerdoc = document.getElementById('spiderowner');
+	currentSpiderOwner(function(req) {
+		c_spiderowner = "0x" + req.substring(26, 66);
+		spiderownerdoc.textContent = c_spiderowner;
+	});
 }
 
 /* STATE UPDATES */
@@ -176,7 +191,10 @@ function refreshData(){
 	updatePlayerSnail();
 	updatePlayerEgg();
 	updatePlayerProd();
+	updatePlayerBalance();
 	
+	updateMarketEgg();
+	updateMaxAcorn();
 	
 	/*
 	
@@ -196,8 +214,6 @@ function refreshData(){
 	updateFeedReward();
 	updateFullFeedReward();
 	updateUnclaimedDiv();
-	updatePlayerEarning();
-	updatePlayerRef();
 	updateButton();
 	*/
 }
@@ -328,6 +344,8 @@ function updatePlayerBalance(){
 		playerbalancedoc.textContent = formatEthValue(web3.fromWei(req,'ether'));
 	});
 }	
+
+
 
 /*
 
@@ -597,7 +615,7 @@ function webHatchEgg(){
 //Buy eggs
 function webBuyEgg(){
     var weitospend = web3.toWei(f_buy,'ether');
-    BuySnail(weitospend, function(){
+    BuyEgg(weitospend, function(){
     });
 }	
 
