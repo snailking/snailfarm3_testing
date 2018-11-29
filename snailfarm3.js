@@ -179,6 +179,7 @@ function controlLoopFast(){
 function refreshData(){
 	updateEthAccount();
 	updateContractBalance();
+	updateGameActive();
 	updateRound();
 	
 	updateEggPot();
@@ -262,6 +263,23 @@ function refreshDataFast(){
 	
 	*/
 }
+
+//Current state of the game
+function updateGameActive(){
+	var gameactivedoc = document.getElementById('gameactive');
+	gameActive(function(result) {
+		if(result) {
+			gameactive.innerHTML = "The game is active!";
+		} else {
+			nextRoundStart(function(result2) {
+				var blocktime = Math.round((new Date()).getTime() / 1000); //current blocktime should be Unix timestamp
+				downtime = parseFloat(result2) - parseFloat(blocktime);
+				gameactive.innerHTML = "The game is paused. Next round in " + downtime + " seconds.";
+			});
+		}
+	});
+}
+	
 
 //Check Snailmaster
 function checkSnailmaster(){
@@ -356,7 +374,9 @@ function checkOwnsLettuce(){
 	var haslettucedoc = document.getElementById('haslettuce');
 	GetMyLettuce(function(req) {
 		if(req > 0) {
-			haslettuce.innerHTML = " Lettuce";
+			haslettuce.innerHTML = " Lettuce,";
+		} else {
+			haslettuce.innerHTML = "";
 		}
 	});
 }
@@ -366,7 +386,9 @@ function checkOwnsCarrot(){
 	var hascarrotdoc = document.getElementById('hascarrot');
 	GetMyCarrot(function(req) {
 		if(req > 0) {
-			hascarrot.innerHTML = " Carrot";
+			hascarrot.innerHTML = " Carrot,";
+		} else {
+			hascarrot.innerHTML = "";
 		}
 	});
 }
@@ -376,7 +398,9 @@ function checkOwnsSlug(){
 	var hasslugdoc = document.getElementById('hasslug');
 	GetMySlug(function(req) {
 		if(req > 0) {
-			haslettuce.innerHTML = " Slug";
+			hasslug.innerHTML = " Slug.";
+		} else {
+			hasslug.innerHTML = "";
 		}
 	});
 }
@@ -1445,7 +1469,7 @@ function ComputeBuy(ethspent,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('ComputeBuy ',web3.toDecimal(result));
+            //console.log('ComputeBuy ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
@@ -1513,7 +1537,7 @@ function ComputeSell(eggspent,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('ComputeSell ',web3.toDecimal(result));
+            //console.log('ComputeSell ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
