@@ -1,4 +1,5 @@
-var contractAddress="0x0888E6ec5b053Bc7FA3244ED58af25883f742C70" // ROPSTEN 1
+//var contractAddress="0x0888E6ec5b053Bc7FA3244ED58af25883f742C70" // ROPSTEN 1
+var contractAddress="0xea2826dcAE637DF3df27463a6e9ea6c88EC81A8E" // ROPSTEN 2
 
 /* WEB3 DETECTION */
 
@@ -192,6 +193,7 @@ function refreshData(){
 	updatePlayerBoost();
 	
 	updateMarketEgg();
+	updateMaxEggBuy();
 	updateMaxAcorn();
 	
 	checkSnailmaster();
@@ -310,7 +312,7 @@ function checkTadpoleOwner(){
 function updateTadpoleReq(){
 	var tadpolereqdoc = document.getElementById('tadpolereq');
 	tadpoleReq(function(req) {
-		tadpolereqdoc.textContent = req;
+		tadpolereqdoc.textContent = formatEthValue(web3.fromWei(req, 'ether'));
 	});
 }
 
@@ -409,6 +411,12 @@ function updateMarketEgg(){
 		a_marketEgg = req;
 		marketeggdoc.textContent = a_marketEgg;
 	});
+}
+
+//Maximum eggs that can be bought
+function updateMaxEggBuy(){
+	var maxeggbuydoc = document.getElementById('maxeggbuy');
+	maxeggbuydoc.innerHTML = a_marketEgg / 5;
 }
 
 //Current number of acorns
@@ -788,6 +796,13 @@ function webBecomeTadpolePrince(){
 	});
 }
 
+//Claim Red Harvest
+function webClaimRedHarvest(){
+	var weitospend = web3.toWei(a_harvestCost,'ether');
+	ClaimRedHarvest(weitospend, function(){
+	});
+}
+
 //Find Lettuce
 function webFindLettuce(){
 	FindLettuce(function(){
@@ -838,12 +853,12 @@ function webAscendGod(){
 
 /* CONTRACT ABI */ 
 
-abiDefinition=[{"constant": true,"inputs": [],"name": "ACORN_PRICE","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "LETTUCE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SPIDER_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "gotCarrot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeHarvest","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "round","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimAcornShare","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "JoinRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BuyStartingSnail","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "GetMySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimRedHarvest","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hatcherySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasSlug","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "divPerAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "_redAmount","type": "uint256"}],"name": "UseRedEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_MIN_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasStartingSnail","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "base","type": "uint256"}],"name": "ComputeSquare","outputs": [{"name": "squareRoot","type": "uint256"}],"payable": false,"stateMutability": "pure","type": "function"},{"constant": false,"inputs": [],"name": "FundTree","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "_ether","type": "uint256"}],"name": "ComputeAcornBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "redEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeAcornCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TADPOLE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "roundPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "eggspent","type": "uint256"}],"name": "ComputeSell","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "lastHatch","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SNAILTHRONE","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "PayThrone","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ACORN_MULT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "ComputeMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "acorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindLettuce","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "SellEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSpiderQueen","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "snailPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BuyEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "SQUIRREL_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ROUND_DOWNTIME","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HATCHING_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "snailmasterReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartTime","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSpiderOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SLUG_MIN_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "eggPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "HatchEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "FROGKING_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BeginRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "marketEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeTadpolePrince","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "SNAILMASTER_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "prodBoost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindCarrot","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "WithdrawBalance","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "StartGame","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeMyShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSnailmaster","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_COUNT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "tadpoleReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "thronePot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "ethspent","type": "uint256"}],"name": "ComputeBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "maxAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "spiderReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TIME_TO_HATCH_1SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "CARROT_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSquirrelDuke","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasLettuce","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "nextRoundStart","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DURATION","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSnailmaster","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DUR_ROOT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "lettuceReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindSlug","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "squirrelReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyProd","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "gameActive","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSquirrelOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "gameOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentTadpoleOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"inputs": [],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"payable": true,"stateMutability": "payable","type": "fallback"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "acorns","type": "uint256"}],"name": "FundedTree","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "share","type": "uint256"}],"name": "ClaimedShare","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newmaster","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameMaster","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "WithdrewBalance","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "Hatched","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "seller","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "SoldEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "buyer","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playereggs","type": "uint256"}],"name": "BoughtEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "StartedSnailing","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newqueen","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "spiderreq","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "BecameQueen","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newduke","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "squirrelreq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameDuke","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newprince","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "tadpolereq","type": "uint256"}],"name": "BecamePrince","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "roundwinner","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "WonRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "round","type": "uint256"}],"name": "BeganRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "JoinedRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "ClaimedHarvest","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "UsedRed","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundSlug","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "lettucereq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "FoundLettuce","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundCarrot","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "PaidThrone","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "BoostedPot","type": "event"}]
+abiDefinition = [{"constant": true,"inputs": [],"name": "ACORN_PRICE","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "LETTUCE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SPIDER_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "gotCarrot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeHarvest","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyRed","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "round","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimAcornShare","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "JoinRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BuyStartingSnail","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "GetMySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimRedHarvest","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hatcherySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasSlug","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "divPerAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "_redAmount","type": "uint256"}],"name": "UseRedEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_MIN_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasStartingSnail","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "base","type": "uint256"}],"name": "ComputeSquare","outputs": [{"name": "squareRoot","type": "uint256"}],"payable": false,"stateMutability": "pure","type": "function"},{"constant": false,"inputs": [],"name": "FundTree","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "_ether","type": "uint256"}],"name": "ComputeAcornBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "redEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeAcornCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TADPOLE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "roundPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "eggspent","type": "uint256"}],"name": "ComputeSell","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "lastHatch","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SNAILTHRONE","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "PayThrone","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ACORN_MULT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyCarrot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "ComputeMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "acorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindLettuce","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "GetMySlug","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "SellEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSpiderQueen","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "snailPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BuyEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "SQUIRREL_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ROUND_DOWNTIME","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HATCHING_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "snailmasterReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartTime","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSpiderOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SLUG_MIN_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "eggPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "HatchEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "FROGKING_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BeginRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "marketEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeTadpolePrince","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "SNAILMASTER_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "dev","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "prodBoost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindCarrot","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyLettuce","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "WithdrawBalance","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeMyShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSnailmaster","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_COUNT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "tadpoleReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "thronePot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "ethspent","type": "uint256"}],"name": "ComputeBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "maxAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "spiderReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TIME_TO_HATCH_1SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "CARROT_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSquirrelDuke","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasLettuce","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "nextRoundStart","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DURATION","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSnailmaster","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "GetMyRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DUR_ROOT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "lettuceReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindSlug","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "squirrelReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyProd","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "gameActive","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSquirrelOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentTadpoleOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"inputs": [{"name": "_hoursToLaunch","type": "uint256"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"payable": true,"stateMutability": "payable","type": "fallback"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "acorns","type": "uint256"}],"name": "FundedTree","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "share","type": "uint256"}],"name": "ClaimedShare","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newmaster","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameMaster","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "WithdrewBalance","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "Hatched","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "seller","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "SoldEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "buyer","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playereggs","type": "uint256"}],"name": "BoughtEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "StartedSnailing","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newqueen","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "spiderreq","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "BecameQueen","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newduke","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "squirrelreq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameDuke","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newprince","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "tadpolereq","type": "uint256"}],"name": "BecamePrince","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "roundwinner","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "WonRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "round","type": "uint256"}],"name": "BeganRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "JoinedRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "ClaimedHarvest","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "UsedRed","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundSlug","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "lettucereq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "FoundLettuce","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundCarrot","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "PaidThrone","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "BoostedPot","type": "event"}]
 
-var contractAbi = web3.eth.contract(abiDefinition);
-var myContract = contractAbi.at(contractAddress);
 
-function ACORN_PRICE(callback){   
+function ACORN_PRICE(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ACORN_PRICE.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -859,6 +874,8 @@ function ACORN_PRICE(callback){
 
 
 function GetMyBalance(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.GetMyBalance.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -874,6 +891,8 @@ function GetMyBalance(callback){
 
 
 function LETTUCE_BASE_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.LETTUCE_BASE_REQ.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -889,6 +908,8 @@ function LETTUCE_BASE_REQ(callback){
 
 
 function SPIDER_BASE_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.SPIDER_BASE_REQ.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -904,6 +925,8 @@ function SPIDER_BASE_REQ(callback){
 
 
 function gotCarrot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.gotCarrot.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -919,6 +942,8 @@ function gotCarrot(callback){
 
 
 function ComputeHarvest(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ComputeHarvest.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -933,7 +958,26 @@ function ComputeHarvest(callback){
 }
 
 
+function GetMyRed(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyRed.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyRed ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
 function playerRound(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.playerRound.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -949,6 +993,8 @@ function playerRound(callback){
 
 
 function round(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.round.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -964,6 +1010,8 @@ function round(callback){
 
 
 function ClaimAcornShare(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ClaimAcornShare.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -979,6 +1027,8 @@ function ClaimAcornShare(callback){
 
 
 function JoinRound(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.JoinRound.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -994,6 +1044,8 @@ function JoinRound(callback){
 
 
 function BuyStartingSnail(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.BuyStartingSnail.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
@@ -1009,6 +1061,8 @@ function BuyStartingSnail(eth,callback){
 
 
 function GetMySnail(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.GetMySnail.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1024,6 +1078,8 @@ function GetMySnail(callback){
 
 
 function ClaimRedHarvest(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ClaimRedHarvest.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
@@ -1039,6 +1095,8 @@ function ClaimRedHarvest(eth,callback){
 
 
 function hatcherySnail(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.hatcherySnail.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1054,6 +1112,8 @@ function hatcherySnail(callback){
 
 
 function hasSlug(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.hasSlug.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1069,6 +1129,8 @@ function hasSlug(callback){
 
 
 function divPerAcorn(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.divPerAcorn.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1084,6 +1146,8 @@ function divPerAcorn(callback){
 
 
 function UseRedEgg(_redAmount,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.UseRedEgg.getData(_redAmount);
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1099,6 +1163,8 @@ function UseRedEgg(_redAmount,callback){
 
 
 function HARVEST_MIN_COST(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.HARVEST_MIN_COST.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1114,6 +1180,8 @@ function HARVEST_MIN_COST(callback){
 
 
 function hasStartingSnail(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.hasStartingSnail.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1129,6 +1197,8 @@ function hasStartingSnail(callback){
 
 
 function ComputeSquare(base,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ComputeSquare.getData(base);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1144,6 +1214,8 @@ function ComputeSquare(base,callback){
 
 
 function FundTree(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.FundTree.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
@@ -1159,6 +1231,8 @@ function FundTree(eth,callback){
 
 
 function ComputeAcornBuy(_ether,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ComputeAcornBuy.getData(_ether);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1174,6 +1248,8 @@ function ComputeAcornBuy(_ether,callback){
 
 
 function redEgg(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.redEgg.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1189,6 +1265,8 @@ function redEgg(callback){
 
 
 function ComputeAcornCost(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ComputeAcornCost.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1204,6 +1282,8 @@ function ComputeAcornCost(callback){
 
 
 function TADPOLE_BASE_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.TADPOLE_BASE_REQ.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1219,6 +1299,8 @@ function TADPOLE_BASE_REQ(callback){
 
 
 function roundPot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.roundPot.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1234,6 +1316,8 @@ function roundPot(callback){
 
 
 function ComputeSell(eggspent,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ComputeSell.getData(eggspent);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1249,6 +1333,8 @@ function ComputeSell(eggspent,callback){
 
 
 function lastHatch(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.lastHatch.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1264,6 +1350,8 @@ function lastHatch(callback){
 
 
 function SNAILTHRONE(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.SNAILTHRONE.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1279,6 +1367,8 @@ function SNAILTHRONE(callback){
 
 
 function PayThrone(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.PayThrone.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1294,6 +1384,8 @@ function PayThrone(callback){
 
 
 function playerBalance(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.playerBalance.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1309,6 +1401,8 @@ function playerBalance(callback){
 
 
 function ACORN_MULT(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ACORN_MULT.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1323,7 +1417,26 @@ function ACORN_MULT(callback){
 }
 
 
+function GetMyCarrot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyCarrot.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyCarrot ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
 function ComputeMyEgg(adr,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ComputeMyEgg.getData(adr);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1339,6 +1452,8 @@ function ComputeMyEgg(adr,callback){
 
 
 function acorn(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.acorn.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1354,6 +1469,8 @@ function acorn(callback){
 
 
 function FindLettuce(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.FindLettuce.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1368,7 +1485,26 @@ function FindLettuce(callback){
 }
 
 
+function GetMySlug(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMySlug.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMySlug ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
 function SellEgg(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.SellEgg.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1384,6 +1520,8 @@ function SellEgg(callback){
 
 
 function BecomeSpiderQueen(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.BecomeSpiderQueen.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1399,6 +1537,8 @@ function BecomeSpiderQueen(callback){
 
 
 function snailPot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.snailPot.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1414,6 +1554,8 @@ function snailPot(callback){
 
 
 function BuyEgg(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.BuyEgg.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
@@ -1429,6 +1571,8 @@ function BuyEgg(eth,callback){
 
 
 function SQUIRREL_BASE_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.SQUIRREL_BASE_REQ.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1444,6 +1588,8 @@ function SQUIRREL_BASE_REQ(callback){
 
 
 function GetMyEgg(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.GetMyEgg.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1459,6 +1605,8 @@ function GetMyEgg(callback){
 
 
 function ROUND_DOWNTIME(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ROUND_DOWNTIME.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1474,6 +1622,8 @@ function ROUND_DOWNTIME(callback){
 
 
 function HATCHING_COST(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.HATCHING_COST.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1489,6 +1639,8 @@ function HATCHING_COST(callback){
 
 
 function snailmasterReq(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.snailmasterReq.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1504,6 +1656,8 @@ function snailmasterReq(callback){
 
 
 function STARTING_SNAIL_COST(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.STARTING_SNAIL_COST.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1519,6 +1673,8 @@ function STARTING_SNAIL_COST(callback){
 
 
 function harvestStartTime(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.harvestStartTime.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1534,6 +1690,8 @@ function harvestStartTime(callback){
 
 
 function currentSpiderOwner(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.currentSpiderOwner.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1549,6 +1707,8 @@ function currentSpiderOwner(callback){
 
 
 function SLUG_MIN_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.SLUG_MIN_REQ.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1564,6 +1724,8 @@ function SLUG_MIN_REQ(callback){
 
 
 function eggPot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.eggPot.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1579,6 +1741,8 @@ function eggPot(callback){
 
 
 function HatchEgg(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.HatchEgg.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
@@ -1594,8 +1758,8 @@ function HatchEgg(eth,callback){
 
 
 function FROGKING_REQ(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.FROGKING_REQ.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1611,8 +1775,8 @@ function FROGKING_REQ(callback){
 
 
 function BeginRound(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.BeginRound.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1628,8 +1792,8 @@ function BeginRound(callback){
 
 
 function marketEgg(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.marketEgg.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1645,8 +1809,8 @@ function marketEgg(callback){
 
 
 function BecomeTadpolePrince(eth,callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.BecomeTadpolePrince.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
@@ -1662,8 +1826,8 @@ function BecomeTadpolePrince(eth,callback){
 
 
 function SNAILMASTER_REQ(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.SNAILMASTER_REQ.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1678,9 +1842,26 @@ function SNAILMASTER_REQ(callback){
 }
 
 
+function dev(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.dev.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('dev ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
 function prodBoost(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.prodBoost.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1696,8 +1877,8 @@ function prodBoost(callback){
 
 
 function FindCarrot(eth,callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.FindCarrot.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
@@ -1713,8 +1894,8 @@ function FindCarrot(eth,callback){
 
 
 function harvestStartCost(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.harvestStartCost.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1729,9 +1910,26 @@ function harvestStartCost(callback){
 }
 
 
+function GetMyLettuce(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyLettuce.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyLettuce ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
 function WithdrawBalance(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.WithdrawBalance.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1746,26 +1944,9 @@ function WithdrawBalance(callback){
 }
 
 
-function StartGame(callback){
-    
-    
-    var outputData = myContract.StartGame.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('StartGame ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
 function STARTING_SNAIL(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.STARTING_SNAIL.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1781,8 +1962,8 @@ function STARTING_SNAIL(callback){
 
 
 function ComputeMyShare(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ComputeMyShare.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1798,8 +1979,8 @@ function ComputeMyShare(callback){
 
 
 function currentSnailmaster(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.currentSnailmaster.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1815,8 +1996,8 @@ function currentSnailmaster(callback){
 
 
 function HARVEST_COUNT(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.HARVEST_COUNT.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1832,8 +2013,8 @@ function HARVEST_COUNT(callback){
 
 
 function tadpoleReq(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.tadpoleReq.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1849,8 +2030,8 @@ function tadpoleReq(callback){
 
 
 function claimedShare(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.claimedShare.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1866,8 +2047,8 @@ function claimedShare(callback){
 
 
 function thronePot(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.thronePot.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1883,8 +2064,8 @@ function thronePot(callback){
 
 
 function ComputeBuy(ethspent,callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.ComputeBuy.getData(ethspent);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1900,8 +2081,8 @@ function ComputeBuy(ethspent,callback){
 
 
 function maxAcorn(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.maxAcorn.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1917,8 +2098,8 @@ function maxAcorn(callback){
 
 
 function spiderReq(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.spiderReq.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1934,8 +2115,8 @@ function spiderReq(callback){
 
 
 function TIME_TO_HATCH_1SNAIL(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.TIME_TO_HATCH_1SNAIL.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1951,8 +2132,8 @@ function TIME_TO_HATCH_1SNAIL(callback){
 
 
 function CARROT_COST(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.CARROT_COST.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1968,8 +2149,8 @@ function CARROT_COST(callback){
 
 
 function BecomeSquirrelDuke(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.BecomeSquirrelDuke.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -1985,8 +2166,8 @@ function BecomeSquirrelDuke(callback){
 
 
 function hasLettuce(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.hasLettuce.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2002,8 +2183,8 @@ function hasLettuce(callback){
 
 
 function nextRoundStart(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.nextRoundStart.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2019,8 +2200,8 @@ function nextRoundStart(callback){
 
 
 function HARVEST_DURATION(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.HARVEST_DURATION.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2036,8 +2217,8 @@ function HARVEST_DURATION(callback){
 
 
 function BecomeSnailmaster(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.BecomeSnailmaster.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2052,9 +2233,26 @@ function BecomeSnailmaster(callback){
 }
 
 
+function GetMyRound(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyRound.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyRound ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
 function claimedEgg(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.claimedEgg.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2070,8 +2268,8 @@ function claimedEgg(callback){
 
 
 function HARVEST_DUR_ROOT(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.HARVEST_DUR_ROOT.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2087,8 +2285,8 @@ function HARVEST_DUR_ROOT(callback){
 
 
 function lettuceReq(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.lettuceReq.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2104,8 +2302,8 @@ function lettuceReq(callback){
 
 
 function FindSlug(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.FindSlug.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2121,8 +2319,8 @@ function FindSlug(callback){
 
 
 function squirrelReq(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.squirrelReq.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2138,8 +2336,8 @@ function squirrelReq(callback){
 
 
 function GetMyProd(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.GetMyProd.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2155,8 +2353,8 @@ function GetMyProd(callback){
 
 
 function gameActive(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.gameActive.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2172,8 +2370,8 @@ function gameActive(callback){
 
 
 function currentSquirrelOwner(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.currentSquirrelOwner.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
@@ -2188,26 +2386,9 @@ function currentSquirrelOwner(callback){
 }
 
 
-function gameOwner(callback){
-    
-    
-    var outputData = myContract.gameOwner.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('gameOwner ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
 function currentTadpoleOwner(callback){
-    
-    
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
     var outputData = myContract.currentTadpoleOwner.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
