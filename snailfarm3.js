@@ -842,7 +842,7 @@ function updateHatchEstimate(){
 //Red estimate
 function updateRedEstimate(){
 	var redEstimatedoc = document.getElementById('redestimate');
-	redEstimatedoc.innerHTML = a_playerRed * a_playerBoost;
+	redEstimatedoc.innerHTML = f_redhatch * a_playerBoost;
 }
 
 /* WEB3 TRANSACTIONS */
