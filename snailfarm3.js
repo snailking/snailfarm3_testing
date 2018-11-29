@@ -998,663 +998,17 @@ function webAscendGod(){
 /* CONTRACT ABI */ 
 
 
-abiDefinition=[{"constant": true,"inputs": [],"name": "ACORN_PRICE","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "LETTUCE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SPIDER_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "gotCarrot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeHarvest","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyRed","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "round","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimAcornShare","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "JoinRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BuyStartingSnail","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "GetMySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "ClaimRedHarvest","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hatcherySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasSlug","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "divPerAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [{"name": "_redAmount","type": "uint256"}],"name": "UseRedEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_MIN_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasStartingSnail","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "base","type": "uint256"}],"name": "ComputeSquare","outputs": [{"name": "squareRoot","type": "uint256"}],"payable": false,"stateMutability": "pure","type": "function"},{"constant": false,"inputs": [],"name": "FundTree","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [{"name": "_ether","type": "uint256"}],"name": "ComputeAcornBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "redEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeAcornCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TADPOLE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "roundPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "eggspent","type": "uint256"}],"name": "ComputeSell","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "lastHatch","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SNAILTHRONE","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "PayThrone","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ACORN_MULT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyCarrot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "ComputeMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "acorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindLettuce","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "GetMySlug","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "SellEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSpiderQueen","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "snailPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BuyEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "SQUIRREL_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ROUND_DOWNTIME","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HATCHING_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "snailmasterReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartTime","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSpiderOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SLUG_MIN_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "eggPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "HatchEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "FROGKING_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BeginRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "marketEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeTadpolePrince","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "SNAILMASTER_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "dev","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "prodBoost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindCarrot","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyLettuce","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "WithdrawBalance","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeMyShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSnailmaster","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_COUNT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "tadpoleReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "thronePot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "ethspent","type": "uint256"}],"name": "ComputeBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "maxAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "spiderReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TIME_TO_HATCH_1SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "CARROT_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSquirrelDuke","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasLettuce","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "nextRoundStart","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DURATION","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSnailmaster","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "GetMyRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DUR_ROOT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "lettuceReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": false,"inputs": [],"name": "FindSlug","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": true,"inputs": [],"name": "squirrelReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyProd","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "gameActive","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSquirrelOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentTadpoleOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"inputs": [{"name": "_hoursToLaunch","type": "uint256"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"payable": true,"stateMutability": "payable","type": "fallback"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "acorns","type": "uint256"}],"name": "FundedTree","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "share","type": "uint256"}],"name": "ClaimedShare","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newmaster","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameMaster","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "WithdrewBalance","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "Hatched","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "seller","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "SoldEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "buyer","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playereggs","type": "uint256"}],"name": "BoughtEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "StartedSnailing","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newqueen","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "spiderreq","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "BecameQueen","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newduke","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "squirrelreq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameDuke","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newprince","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "tadpolereq","type": "uint256"}],"name": "BecamePrince","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "roundwinner","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "WonRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "round","type": "uint256"}],"name": "BeganRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "JoinedRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "ClaimedHarvest","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "UsedRed","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundSlug","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "lettucereq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "FoundLettuce","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundCarrot","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "PaidThrone","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "BoostedPot","type": "event"}]
+abiDefinition=[{"anonymous": false,"inputs": [{"indexed": true,"name": "newmaster","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameMaster","type": "event"},{"constant": false,"inputs": [],"name": "BecomeSnailmaster","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSpiderQueen","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BecomeSquirrelDuke","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "BecomeTadpolePrince","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": false,"inputs": [],"name": "BeginRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"anonymous": false,"inputs": [{"indexed": true,"name": "buyer","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playereggs","type": "uint256"}],"name": "BoughtEgg","type": "event"},{"constant": false,"inputs": [],"name": "BuyEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": false,"inputs": [],"name": "BuyStartingSnail","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": false,"inputs": [],"name": "ClaimAcornShare","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "share","type": "uint256"}],"name": "ClaimedShare","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "ClaimedHarvest","type": "event"},{"constant": false,"inputs": [],"name": "ClaimRedHarvest","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": false,"inputs": [],"name": "FindCarrot","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"constant": false,"inputs": [],"name": "FindLettuce","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "FindSlug","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "acorns","type": "uint256"}],"name": "FundedTree","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "BoostedPot","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newduke","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "squirrelreq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "BecameDuke","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newprince","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "tadpolereq","type": "uint256"}],"name": "BecamePrince","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "lettucereq","type": "uint256"},{"indexed": false,"name": "playerreds","type": "uint256"}],"name": "FoundLettuce","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundCarrot","type": "event"},{"constant": false,"inputs": [],"name": "FundTree","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "Hatched","type": "event"},{"constant": false,"inputs": [],"name": "HatchEgg","outputs": [],"payable": true,"stateMutability": "payable","type": "function"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "JoinedRound","type": "event"},{"constant": false,"inputs": [],"name": "JoinRound","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "PaidThrone","type": "event"},{"constant": false,"inputs": [],"name": "PayThrone","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"constant": false,"inputs": [],"name": "SellEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"anonymous": false,"inputs": [{"indexed": true,"name": "seller","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "SoldEgg","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "StartedSnailing","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "newqueen","type": "address"},{"indexed": true,"name": "round","type": "uint256"},{"indexed": false,"name": "spiderreq","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "BecameQueen","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eggs","type": "uint256"},{"indexed": false,"name": "snails","type": "uint256"},{"indexed": false,"name": "hatchery","type": "uint256"}],"name": "UsedRed","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "FoundSlug","type": "event"},{"constant": false,"inputs": [{"name": "_redAmount","type": "uint256"}],"name": "UseRedEgg","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"anonymous": false,"inputs": [{"indexed": true,"name": "player","type": "address"},{"indexed": false,"name": "eth","type": "uint256"}],"name": "WithdrewBalance","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "roundwinner","type": "address"},{"indexed": true,"name": "round","type": "uint256"}],"name": "WonRound","type": "event"},{"anonymous": false,"inputs": [{"indexed": true,"name": "round","type": "uint256"}],"name": "BeganRound","type": "event"},{"constant": false,"inputs": [],"name": "WithdrawBalance","outputs": [],"payable": false,"stateMutability": "nonpayable","type": "function"},{"inputs": [{"name": "_hoursToLaunch","type": "uint256"}],"payable": false,"stateMutability": "nonpayable","type": "constructor"},{"payable": true,"stateMutability": "payable","type": "fallback"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "acorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ACORN_MULT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ACORN_PRICE","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "CARROT_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "claimedShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "_ether","type": "uint256"}],"name": "ComputeAcornBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeAcornCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "ethspent","type": "uint256"}],"name": "ComputeBuy","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeHarvest","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "adr","type": "address"}],"name": "ComputeMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ComputeMyShare","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "eggspent","type": "uint256"}],"name": "ComputeSell","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "base","type": "uint256"}],"name": "ComputeSquare","outputs": [{"name": "squareRoot","type": "uint256"}],"payable": false,"stateMutability": "pure","type": "function"},{"constant": true,"inputs": [],"name": "currentSnailmaster","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSpiderOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentSquirrelOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "currentTadpoleOwner","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "dev","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "divPerAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "eggPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "FROGKING_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "gameActive","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyCarrot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyLettuce","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyProd","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyRed","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMySlug","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "GetMyStart","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "gotCarrot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_COUNT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DUR_ROOT","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_DURATION","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HARVEST_MIN_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartCost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "harvestStartTime","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasLettuce","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasSlug","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hasStartingSnail","outputs": [{"name": "","type": "bool"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "hatcherySnail","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "HATCHING_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "lastHatch","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "LETTUCE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "lettuceReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "marketEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "maxAcorn","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "nextRoundStart","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerBalance","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "playerRound","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "prodBoost","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [{"name": "","type": "address"}],"name": "redEgg","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "round","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "ROUND_DOWNTIME","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "roundPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SLUG_MIN_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SNAILMASTER_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "snailmasterReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "snailPot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SNAILTHRONE","outputs": [{"name": "","type": "address"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SPIDER_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "spiderReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "SQUIRREL_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "squirrelReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "STARTING_SNAIL_COST","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TADPOLE_BASE_REQ","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "tadpoleReq","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "thronePot","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"},{"constant": true,"inputs": [],"name": "TIME_TO_HATCH_1SNAIL","outputs": [{"name": "","type": "uint256"}],"payable": false,"stateMutability": "view","type": "function"}]
 
 
-function ACORN_PRICE(callback){
+function BecomeSnailmaster(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ACORN_PRICE.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ACORN_PRICE ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMyBalance(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMyBalance.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('GetMyBalance ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function LETTUCE_BASE_REQ(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.LETTUCE_BASE_REQ.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('LETTUCE_BASE_REQ ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function SPIDER_BASE_REQ(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.SPIDER_BASE_REQ.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('SPIDER_BASE_REQ ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function gotCarrot(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.gotCarrot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('gotCarrot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeHarvest(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ComputeHarvest.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ComputeHarvest ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMyRed(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMyRed.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('GetMyRed ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function playerRound(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.playerRound.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('playerRound ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function round(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.round.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('round ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ClaimAcornShare(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ClaimAcornShare.getData();
+    var outputData = myContract.BecomeSnailmaster.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('ClaimAcornShare ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function JoinRound(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.JoinRound.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('JoinRound ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function BuyStartingSnail(eth,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.BuyStartingSnail.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
-    function(error,result){
-        if(!error){
-            console.log('BuyStartingSnail ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMySnail(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMySnail.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('GetMySnail ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ClaimRedHarvest(eth,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ClaimRedHarvest.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
-    function(error,result){
-        if(!error){
-            console.log('ClaimRedHarvest ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function hatcherySnail(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.hatcherySnail.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('hatcherySnail ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function hasSlug(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.hasSlug.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('hasSlug ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function divPerAcorn(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.divPerAcorn.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('divPerAcorn ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function UseRedEgg(_redAmount,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.UseRedEgg.getData(_redAmount);
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('UseRedEgg ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function HARVEST_MIN_COST(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.HARVEST_MIN_COST.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('HARVEST_MIN_COST ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function hasStartingSnail(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.hasStartingSnail.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('hasStartingSnail ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeSquare(base,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ComputeSquare.getData(base);
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ComputeSquare ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function FundTree(eth,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.FundTree.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
-    function(error,result){
-        if(!error){
-            console.log('FundTree ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeAcornBuy(_ether,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ComputeAcornBuy.getData(_ether);
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ComputeAcornBuy ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function redEgg(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.redEgg.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('redEgg ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeAcornCost(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ComputeAcornCost.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ComputeAcornCost ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function TADPOLE_BASE_REQ(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.TADPOLE_BASE_REQ.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('TADPOLE_BASE_REQ ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function roundPot(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.roundPot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('roundPot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeSell(eggspent,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ComputeSell.getData(eggspent);
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ComputeSell ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function lastHatch(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.lastHatch.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('lastHatch ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function SNAILTHRONE(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.SNAILTHRONE.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('SNAILTHRONE ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function PayThrone(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.PayThrone.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('PayThrone ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function playerBalance(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.playerBalance.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('playerBalance ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ACORN_MULT(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ACORN_MULT.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ACORN_MULT ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMyCarrot(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMyCarrot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('GetMyCarrot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeMyEgg(adr,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ComputeMyEgg.getData(adr);
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ComputeMyEgg ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function acorn(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.acorn.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('acorn ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function FindLettuce(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.FindLettuce.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('FindLettuce ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMySlug(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMySlug.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('GetMySlug ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function SellEgg(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.SellEgg.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('SellEgg ',result);
+            console.log('BecomeSnailmaster ',result);
             callback(result)
         }
         else{
@@ -1681,270 +1035,15 @@ function BecomeSpiderQueen(callback){
 }
 
 
-function snailPot(callback){
+function BecomeSquirrelDuke(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.snailPot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('snailPot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function BuyEgg(eth,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.BuyEgg.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
-    function(error,result){
-        if(!error){
-            console.log('BuyEgg ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function SQUIRREL_BASE_REQ(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.SQUIRREL_BASE_REQ.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('SQUIRREL_BASE_REQ ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMyEgg(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMyEgg.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('GetMyEgg ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ROUND_DOWNTIME(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ROUND_DOWNTIME.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ROUND_DOWNTIME ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function HATCHING_COST(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.HATCHING_COST.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('HATCHING_COST ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function snailmasterReq(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.snailmasterReq.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('snailmasterReq ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function STARTING_SNAIL_COST(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.STARTING_SNAIL_COST.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('STARTING_SNAIL_COST ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function harvestStartTime(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.harvestStartTime.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('harvestStartTime ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function currentSpiderOwner(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.currentSpiderOwner.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('currentSpiderOwner ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function SLUG_MIN_REQ(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.SLUG_MIN_REQ.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('SLUG_MIN_REQ ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function eggPot(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.eggPot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('eggPot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function HatchEgg(eth,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.HatchEgg.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
-    function(error,result){
-        if(!error){
-            console.log('HatchEgg ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function FROGKING_REQ(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.FROGKING_REQ.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('FROGKING_REQ ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function BeginRound(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.BeginRound.getData();
+    var outputData = myContract.BecomeSquirrelDuke.getData();
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('BeginRound ',result);
+            console.log('BecomeSquirrelDuke ',result);
             callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function marketEgg(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.marketEgg.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('marketEgg ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
         }
         else{
             console.log('transaction failed with ',error.message)
@@ -1970,31 +1069,14 @@ function BecomeTadpolePrince(eth,callback){
 }
 
 
-function SNAILMASTER_REQ(callback){
+function BeginRound(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.SNAILMASTER_REQ.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    var outputData = myContract.BeginRound.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('SNAILMASTER_REQ ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function dev(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.dev.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('dev ',result);
+            console.log('BeginRound ',result);
             callback(result)
         }
         else{
@@ -2004,15 +1086,66 @@ function dev(callback){
 }
 
 
-function prodBoost(callback){
+function BuyEgg(eth,callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.prodBoost.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    var outputData = myContract.BuyEgg.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            console.log('prodBoost ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
+            console.log('BuyEgg ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function BuyStartingSnail(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.BuyStartingSnail.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
+    function(error,result){
+        if(!error){
+            console.log('BuyStartingSnail ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ClaimAcornShare(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ClaimAcornShare.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ClaimAcornShare ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ClaimRedHarvest(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ClaimRedHarvest.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
+    function(error,result){
+        if(!error){
+            console.log('ClaimRedHarvest ',result);
+            callback(result)
         }
         else{
             console.log('transaction failed with ',error.message)
@@ -2038,15 +1171,15 @@ function FindCarrot(eth,callback){
 }
 
 
-function harvestStartCost(callback){
+function FindLettuce(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.harvestStartCost.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    var outputData = myContract.FindLettuce.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('harvestStartCost ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
+            console.log('FindLettuce ',result);
+            callback(result)
         }
         else{
             console.log('transaction failed with ',error.message)
@@ -2055,14 +1188,116 @@ function harvestStartCost(callback){
 }
 
 
-function GetMyLettuce(callback){
+function FindSlug(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMyLettuce.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    var outputData = myContract.FindSlug.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('GetMyLettuce ',result);
+            console.log('FindSlug ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function FundTree(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.FundTree.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
+    function(error,result){
+        if(!error){
+            console.log('FundTree ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function HatchEgg(eth,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.HatchEgg.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
+    function(error,result){
+        if(!error){
+            console.log('HatchEgg ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function JoinRound(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.JoinRound.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('JoinRound ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function PayThrone(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.PayThrone.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('PayThrone ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function SellEgg(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.SellEgg.getData();
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('SellEgg ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function UseRedEgg(_redAmount,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.UseRedEgg.getData(_redAmount);
+    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('UseRedEgg ',result);
             callback(result)
         }
         else{
@@ -2089,14 +1324,14 @@ function WithdrawBalance(callback){
 }
 
 
-function STARTING_SNAIL(callback){
+function acorn(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.STARTING_SNAIL.getData();
+    var outputData = myContract.acorn.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('STARTING_SNAIL ',web3.toDecimal(result));
+            console.log('acorn ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
@@ -2106,14 +1341,14 @@ function STARTING_SNAIL(callback){
 }
 
 
-function ComputeMyShare(callback){
+function ACORN_MULT(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ComputeMyShare.getData();
+    var outputData = myContract.ACORN_MULT.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('ComputeMyShare ',web3.toDecimal(result));
+            console.log('ACORN_MULT ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
@@ -2123,150 +1358,14 @@ function ComputeMyShare(callback){
 }
 
 
-function currentSnailmaster(callback){
+function ACORN_PRICE(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.currentSnailmaster.getData();
+    var outputData = myContract.ACORN_PRICE.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('currentSnailmaster ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function HARVEST_COUNT(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.HARVEST_COUNT.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('HARVEST_COUNT ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function tadpoleReq(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.tadpoleReq.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('tadpoleReq ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function claimedShare(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.claimedShare.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('claimedShare ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function thronePot(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.thronePot.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('thronePot ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function ComputeBuy(ethspent,callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.ComputeBuy.getData(ethspent);
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('ComputeBuy ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function maxAcorn(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.maxAcorn.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('maxAcorn ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function spiderReq(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.spiderReq.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('spiderReq ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function TIME_TO_HATCH_1SNAIL(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.TIME_TO_HATCH_1SNAIL.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('TIME_TO_HATCH_1SNAIL ',web3.toDecimal(result));
+            console.log('ACORN_PRICE ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
@@ -2293,108 +1392,6 @@ function CARROT_COST(callback){
 }
 
 
-function BecomeSquirrelDuke(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.BecomeSquirrelDuke.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('BecomeSquirrelDuke ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function hasLettuce(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.hasLettuce.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('hasLettuce ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function nextRoundStart(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.nextRoundStart.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('nextRoundStart ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function HARVEST_DURATION(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.HARVEST_DURATION.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('HARVEST_DURATION ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function BecomeSnailmaster(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.BecomeSnailmaster.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('BecomeSnailmaster ',result);
-            callback(result)
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMyRound(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMyRound.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('GetMyRound ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
 function claimedEgg(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
@@ -2412,14 +1409,14 @@ function claimedEgg(callback){
 }
 
 
-function HARVEST_DUR_ROOT(callback){
+function claimedShare(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.HARVEST_DUR_ROOT.getData();
+    var outputData = myContract.claimedShare.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('HARVEST_DUR_ROOT ',web3.toDecimal(result));
+            console.log('claimedShare ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
@@ -2429,14 +1426,14 @@ function HARVEST_DUR_ROOT(callback){
 }
 
 
-function lettuceReq(callback){
+function ComputeAcornBuy(_ether,callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.lettuceReq.getData();
+    var outputData = myContract.ComputeAcornBuy.getData(_ether);
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('lettuceReq ',web3.toDecimal(result));
+            console.log('ComputeAcornBuy ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
@@ -2446,14 +1443,133 @@ function lettuceReq(callback){
 }
 
 
-function FindSlug(callback){
+function ComputeAcornCost(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.FindSlug.getData();
-    var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
+    var outputData = myContract.ComputeAcornCost.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('FindSlug ',result);
+            console.log('ComputeAcornCost ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ComputeBuy(ethspent,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ComputeBuy.getData(ethspent);
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ComputeBuy ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ComputeHarvest(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ComputeHarvest.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ComputeHarvest ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ComputeMyEgg(adr,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ComputeMyEgg.getData(adr);
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ComputeMyEgg ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ComputeMyShare(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ComputeMyShare.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ComputeMyShare ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ComputeSell(eggspent,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ComputeSell.getData(eggspent);
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ComputeSell ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ComputeSquare(base,callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ComputeSquare.getData(base);
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ComputeSquare ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function currentSnailmaster(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.currentSnailmaster.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('currentSnailmaster ',result);
             callback(result)
         }
         else{
@@ -2463,48 +1579,14 @@ function FindSlug(callback){
 }
 
 
-function squirrelReq(callback){
+function currentSpiderOwner(callback){
     var contractAbi = web3.eth.contract(abiDefinition);
     var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.squirrelReq.getData();
+    var outputData = myContract.currentSpiderOwner.getData();
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            console.log('squirrelReq ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function GetMyProd(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.GetMyProd.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('GetMyProd ',web3.toDecimal(result));
-            callback(web3.toDecimal(result))
-        }
-        else{
-            console.log('transaction failed with ',error.message)
-        }
-    });
-}
-
-
-function gameActive(callback){
-    var contractAbi = web3.eth.contract(abiDefinition);
-    var myContract = contractAbi.at(contractAddress);
-    var outputData = myContract.gameActive.getData();
-    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
-    function(error,result){
-        if(!error){
-            console.log('gameActive ',result);
+            console.log('currentSpiderOwner ',result);
             callback(result)
         }
         else{
@@ -2546,5 +1628,958 @@ function currentTadpoleOwner(callback){
         }
     });
 }
+
+
+function dev(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.dev.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('dev ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function divPerAcorn(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.divPerAcorn.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('divPerAcorn ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function eggPot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.eggPot.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('eggPot ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function FROGKING_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.FROGKING_REQ.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('FROGKING_REQ ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function gameActive(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.gameActive.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('gameActive ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyAcorn(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyAcorn.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyAcorn ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyBalance(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyBalance.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyBalance ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyCarrot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyCarrot.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyCarrot ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyEgg(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyEgg.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyEgg ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyLettuce(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyLettuce.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyLettuce ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyProd(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyProd.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyProd ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyRed(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyRed.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyRed ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyRound(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyRound.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyRound ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMySlug(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMySlug.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMySlug ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMySnail(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMySnail.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMySnail ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function GetMyStart(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.GetMyStart.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('GetMyStart ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function gotCarrot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.gotCarrot.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('gotCarrot ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function HARVEST_COUNT(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.HARVEST_COUNT.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('HARVEST_COUNT ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function HARVEST_DUR_ROOT(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.HARVEST_DUR_ROOT.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('HARVEST_DUR_ROOT ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function HARVEST_DURATION(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.HARVEST_DURATION.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('HARVEST_DURATION ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function HARVEST_MIN_COST(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.HARVEST_MIN_COST.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('HARVEST_MIN_COST ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function harvestStartCost(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.harvestStartCost.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('harvestStartCost ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function harvestStartTime(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.harvestStartTime.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('harvestStartTime ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function hasLettuce(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.hasLettuce.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('hasLettuce ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function hasSlug(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.hasSlug.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('hasSlug ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function hasStartingSnail(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.hasStartingSnail.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('hasStartingSnail ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function hatcherySnail(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.hatcherySnail.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('hatcherySnail ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function HATCHING_COST(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.HATCHING_COST.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('HATCHING_COST ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function lastHatch(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.lastHatch.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('lastHatch ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function LETTUCE_BASE_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.LETTUCE_BASE_REQ.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('LETTUCE_BASE_REQ ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function lettuceReq(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.lettuceReq.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('lettuceReq ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function marketEgg(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.marketEgg.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('marketEgg ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function maxAcorn(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.maxAcorn.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('maxAcorn ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function nextRoundStart(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.nextRoundStart.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('nextRoundStart ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function playerBalance(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.playerBalance.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('playerBalance ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function playerRound(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.playerRound.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('playerRound ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function prodBoost(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.prodBoost.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('prodBoost ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function redEgg(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.redEgg.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('redEgg ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function round(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.round.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('round ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function ROUND_DOWNTIME(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.ROUND_DOWNTIME.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('ROUND_DOWNTIME ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function roundPot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.roundPot.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('roundPot ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function SLUG_MIN_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.SLUG_MIN_REQ.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('SLUG_MIN_REQ ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function SNAILMASTER_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.SNAILMASTER_REQ.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('SNAILMASTER_REQ ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function snailmasterReq(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.snailmasterReq.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('snailmasterReq ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function snailPot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.snailPot.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('snailPot ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function SNAILTHRONE(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.SNAILTHRONE.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('SNAILTHRONE ',result);
+            callback(result)
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function SPIDER_BASE_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.SPIDER_BASE_REQ.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('SPIDER_BASE_REQ ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function spiderReq(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.spiderReq.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('spiderReq ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function SQUIRREL_BASE_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.SQUIRREL_BASE_REQ.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('SQUIRREL_BASE_REQ ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function squirrelReq(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.squirrelReq.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('squirrelReq ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function STARTING_SNAIL(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.STARTING_SNAIL.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('STARTING_SNAIL ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function STARTING_SNAIL_COST(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.STARTING_SNAIL_COST.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('STARTING_SNAIL_COST ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function TADPOLE_BASE_REQ(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.TADPOLE_BASE_REQ.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('TADPOLE_BASE_REQ ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function tadpoleReq(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.tadpoleReq.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('tadpoleReq ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function thronePot(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.thronePot.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('thronePot ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
+
+function TIME_TO_HATCH_1SNAIL(callback){
+    var contractAbi = web3.eth.contract(abiDefinition);
+    var myContract = contractAbi.at(contractAddress);
+    var outputData = myContract.TIME_TO_HATCH_1SNAIL.getData();
+    var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
+    function(error,result){
+        if(!error){
+            console.log('TIME_TO_HATCH_1SNAIL ',web3.toDecimal(result));
+            callback(web3.toDecimal(result))
+        }
+        else{
+            console.log('transaction failed with ',error.message)
+        }
+    });
+}
+
 
 
