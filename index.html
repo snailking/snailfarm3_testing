@@ -21,11 +21,12 @@
 			<p>Contract balance: <span id="contractbalance">[undefined]</span></p><br>
 			<p>Round: <span id="round">[undefined]</span></p><br>
 			<p>Roundpot: <span id="roundpot">[undefined]</span></p>
-			<p>Snailpot: <span id="snailpot">[undefined]</span></p>
-			<p>Thronepot: <span id="thronepot">[undefined]</span></p>
-			<p>Eggpot: <span id="eggpot">[undefined]</span></p><br>
-			<p>Eggs on the market: <span id="marketegg">[undefined]</span></p>
-			<p>Total number of acorns: <span id="maxacorn">[undefined]</span></p><br>
+			<p>Snailpot: <span id="snailpot">[undefined]</span></p><br>
+			<p>Thronepot: <span id="thronepot">[undefined]</span></p><br>
+			<p>Eggpot: <span id="eggpot">[undefined]</span></p>
+			<p>Eggs on the market: <span id="marketegg">[undefined]</span></p><br>
+			<p>Total number of acorns: <span id="maxacorn">[undefined]</span></p>
+			<p>Acorn cost: <span id="acorncost">[undefined]</span></p><br>
 
 			<p>Red Harvest: <span id="harvestcost">[undefined]</span></p><br>
 			
@@ -37,18 +38,22 @@
 			<p>My Snails: <span id="playersnail">[undefined]</span></p>
 			<p>Producing <span id="playerprod">[undefined]</span> eggs per hour</p>
 			<p>My Eggs: <span id="playeregg">[undefined]</span></p>
-			<p>My Red Eggs: [ADD GETTER IN SMART CONTRACT]<!--<span id="playerred">[undefined]</span></p>-->
+			<p>My Red Eggs: <span id="playerred">[undefined]</span></p>
 			<p>My Hatch Boost: <span id="hatchboost">[undefined]</span></p><br>
 			
-			<p>My Boosts: [ADD GETTER IN SMART CONTRACT]</p>
+			<p>My Boosts: [ADD GETTER IN SMART CONTRACT]</p><br>
 			
-			<p>My Balance: <span id="playerbalance">[undefined]</span> ETH</p><br>
+			<p>My Balance: <span id="playerbalance">[undefined]</span> ETH</p>
+			<p>My Acorns: <span id="playeracorn">[undefined]</span></p>
+			<p>My Share: <span id="playershare">[undefined]</span></p>
 
+			<button onclick="webBeginRound()">Begin New Round!</button> (will only work if game isn't active and downtime is over)<br>
 			<button onclick="webGetStarter()">Get Starting Snails!</button><br>
+			<button onclick="webJoinRound()">Join New Round!</button> (not required if you bought starting snails this round)<br>
 			<button onclick="webHatchEgg()">Hatch your eggs into <span id="hatchestimate">[undefined]</span> snails!</button><br>
-			<button onclick="webBuyEgg()">Buy <span id="buyestimate">?</span> Eggs for <span id="fieldBuy2">?</span> ETH!</button><input type="text" id="fieldBuy" value="0.1" size="4">
-			(Maximum buy: <span id="maxeggbuy">[undefined]</span><br>
-			<button onclick="webSellEgg()">Sell your eggs!</button><br>
+			<button onclick="webBuyEgg()">Buy <span id="buyestimate">?</span> Eggs for <span id="fieldBuy2">?</span> ETH!</button><input type="text" id="fieldBuy" value="0.01" size="4">
+			(Maximum buy: <span id="maxeggbuy">[undefined]</span>. Extra ETH will be refunded to your balance)<br>
+			<button onclick="webSellEgg()">Sell your eggs!</button> You will get <span id="sellestimate">?</span> ETH<br>
 			<button onclick="webWithdrawBalance()">Withdraw Balance!</button><br>
 			<button onclick="webBecomeSnailmaster()">Become Snailmaster!</button> Requirement: <span id="snailmasterreq">[undefined]</span> red eggs<br>
 			<button onclick="webBecomeSpiderQueen()">Become SpiderQueen!</button> Requirement: <span id="spiderreq">[undefined]</span> snails<br>
@@ -56,9 +61,14 @@
 			<button onclick="webBecomeTadpolePrince()">Become TadpolePrince! <span id="fieldPrince2">?</span></button>
 			<input type="text" id="fieldPrince" value="0.02" size="4">Requirement: <span id="tadpolereq">[undefined]</span> ETH<br>
 			<button onclick="webClaimRedHarvest()">Claim Red Harvest!</button><br>
+			<button onclick="webHatchRed()">Hatch <span id="fieldRed2">?</span> Red Eggs and get <span id="redestimate">?</span> snails!</button>
+			<input type="text" id="fieldRed" value="1" size="4"> Red Eggs can be hatched at no cost.<br>
 			<button onclick="webFindLettuce()">Find Lettuce!</button> Requirement: <span id="lettucereq">[undefined]</span> red eggs<br>
 			<button onclick="webFindCarrot()">Find Carrot!</button> Requirement: 0.02 ETH<br>
-			<button onclick="webFindSlug()">Find Slug!</button> Requires a sacrifice of at least 100 000 snails. Sacrifices all your snails.<br><br><br>
+			<button onclick="webFindSlug()">Find Slug!</button> Requires a sacrifice of at least 100 000 snails. Sacrifices all your snails.<br>
+			<button onclick="webFundTree()">Buy <span id="treeestimate">?</span> Acorns for <span id="fieldTree2">?</span> ETH!</button><input type="text" id="fieldTree" value="0.01" size="4"> 
+			Acorns give dividends<br>
+			<button onclick="webClaimShare()">Claim Acorn Share!</button> Moves unclaimed divs to balance<br>
 	
 			
 			<a name="info">QUICK START</a><br><br>

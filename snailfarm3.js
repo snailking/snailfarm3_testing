@@ -1,5 +1,5 @@
 //var contractAddress="0x0888E6ec5b053Bc7FA3244ED58af25883f742C70" // ROPSTEN 1
-var contractAddress="0xea2826dcAE637DF3df27463a6e9ea6c88EC81A8E" // ROPSTEN 2
+var contractAddress="0x0b4f4F98457e6A9431EdDD8f8c4fD731Ef2fA5f6" // ROPSTEN 2
 
 /* WEB3 DETECTION */
 
@@ -126,14 +126,16 @@ var c_tadpoleowner = "";
 var a_marketEgg = 0; 
 var a_tokenPrice = 0;
 var a_tokenSellPrice = 0;
-var a_maxAcorn = 0; 
+var a_maxAcorn = 0;
+var a_acornCost = 0; 
 
 var a_roundPot = 0; 
 var a_eggPot = 0; 
 var a_snailPot = 0; 
 var a_thronePot = 0; 
 
-var a_harvestCost = 0; 
+var a_harvestCost = 0;
+var a_tadpoleReq = 0; 
 
 var a_playerSnail = 0; 
 var a_playerEgg = 0; 
@@ -184,22 +186,29 @@ function refreshData(){
 	updateSnailPot();
 	updateThronePot();
 	
-	updateHarvestCost();
-	
-	updatePlayerSnail();
-	updatePlayerEgg();
-	updatePlayerProd();
-	updatePlayerBalance();
-	updatePlayerBoost();
-	
 	updateMarketEgg();
 	updateMaxEggBuy();
 	updateMaxAcorn();
 	
+	updateHarvestCost();
+	
+	updatePlayerSnail();
+	updatePlayerEgg();
+	updatePlayerRed();
+	updatePlayerProd();
+	updatePlayerBoost();
+	
+	updatePlayerBalance();
+	updatePlayerAcorn();
+	updatePlayerShare();
+
 	checkSnailmaster();
 	checkSpiderOwner();
 	checkSquirrelOwner();
 	checkTadpoleOwner();
+	checkOwnsLettuce();
+	checkOwnsCarrot();
+	checkOwnsSlug();
 	
 	updateSnailmasterReq();
 	updateSpiderReq();
@@ -238,13 +247,18 @@ function refreshDataFast(){
 	updateFieldBuy2();
 	updateBuyEstimate();
 	updateFieldPrince2();
+	updateSellEstimate();
+	updateFieldTree2();
+	updateTreeEstimate();
+	updateRedHatch2();
+	updateRedEstimate();
 	/*
 	fastupdateGodTimer();
 	//fastupdatePlayerEgg();
 
 	updateFieldSacrifice2();
 	updateFieldSell2();
-	updateSellEstimate();
+	
 	*/
 }
 
@@ -312,7 +326,9 @@ function checkTadpoleOwner(){
 function updateTadpoleReq(){
 	var tadpolereqdoc = document.getElementById('tadpolereq');
 	tadpoleReq(function(req) {
-		tadpolereqdoc.textContent = formatEthValue(web3.fromWei(req, 'ether'));
+		a_tadpoleReq = formatEthValue2(web3.fromWei(req, 'ether'));
+		a_tadpoleReq = parseFloat(a_tadpoleReq) + parseFloat(0.0001);
+		tadpolereqdoc.textContent = a_tadpoleReq;
 	});
 }
 
@@ -320,7 +336,8 @@ function updateTadpoleReq(){
 function updateHarvestCost(){
 	var harvestcostdoc = document.getElementById('harvestcost');
 	ComputeHarvest(function(req) {
-		a_harvestCost = formatEthValue(web3.fromWei(req,'ether'));
+		a_harvestCost = formatEthValue2(web3.fromWei(req,'ether'));
+		a_harvestCost = parseFloat(a_harvestCost) + parseFloat(0.0001);
 		harvestcostdoc.textContent = a_harvestCost;
 	});
 }
@@ -330,6 +347,36 @@ function updateLettuceReq(){
 	var lettucereqdoc = document.getElementById('lettucereq');
 	lettuceReq(function(req) {
 		lettucereqdoc.textContent = req;
+	});
+}
+
+//Check if player owns lettuce
+function checkOwnsLettuce(){
+	var haslettucedoc = document.getElementById('haslettuce');
+	GetMyLettuce(function(req) {
+		if(req > 0) {
+			haslettuce.innerHTML = " Lettuce";
+		}
+	});
+}
+
+//Check if player owns carrot
+function checkOwnsCarrot(){
+	var hascarrotdoc = document.getElementById('hascarrot');
+	GetMyCarrot(function(req) {
+		if(req > 0) {
+			hascarrot.innerHTML = " Carrot";
+		}
+	});
+}
+
+//Check if player owns slug
+function checkOwnsSlug(){
+	var hasslugdoc = document.getElementById('hasslug');
+	GetMySlug(function(req) {
+		if(req > 0) {
+			haslettuce.innerHTML = " Slug";
+		}
 	});
 }
 
@@ -428,12 +475,30 @@ function updateMaxAcorn(){
 	});
 }
 
+//Current acorn cost
+function updateAcornCost(){
+	var acorncostdoc = document.getElementById('acorncost');
+	ComputeAcornCost(function(req) {
+		a_acornCost = formatEthValue2(web3.fromWei(req,'ether'));
+		acorncostdoc.textContent = a_acornCost;
+	});
+}
+
 //Current player eggs
 function updatePlayerEgg(){
 	playereggdoc = document.getElementById('playeregg');
 	ComputeMyEgg(m_account, function(req) {
 		a_playerEgg = formatEthValue(req);
 		playereggdoc.textContent = a_playerEgg;
+	});
+}
+
+//Current player red eggs
+function updatePlayerRed(){
+	var playerreddoc = document.getElementById('playerred');
+	GetMyRed(function(req) {
+		a_playerRed = req;
+		playerreddoc.textContent = a_playerRed;
 	});
 }
 
@@ -461,7 +526,21 @@ function updatePlayerBalance(){
 	});
 }	
 
+//Current acorns for player
+function updatePlayerAcorn(){
+	var playeracorndoc = document.getElementById('playeracorn');
+	GetMyAcorn(function(req) {
+		playeracorndoc.textContent = req;
+	});
+}
 
+//Current unclaimed share for player
+function updatePlayerShare(){
+	var playersharedoc = document.getElementById('playershare');
+	ComputeMyShare(function(req) {
+		playersharedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
+	});
+}
 
 /*
 
@@ -682,6 +761,30 @@ function updateFieldBuy2(){
 	fieldbuy2doc.textContent = f_buy;
 }
 
+//Player input on TadpolePrince
+function updateFieldPrince2(){
+	f_prince = document.getElementById('fieldPrince').value;
+	var fieldprince2doc = document.getElementById('fieldPrince2');
+	fieldprince2doc.textContent = f_buy;
+}
+
+//Player input on Acorn buy
+function updateFieldTree2(){
+	f_tree = document.getElementById('fieldTree').value;
+	var fieldtree2doc = document.getElementById('fieldTree2');
+	fieldacorn2doc.textContent = f_tree;
+}
+
+//Player input on Red Egg Hatch
+function updateRedHatch2(){
+	f_redhatch = document.getElementById('fieldRed').value;
+	if(f_redhatch > a_playerRed) {
+		f_redhatch = a_playerRed;
+	}
+	var fieldred2doc = document.getElementById('fieldRed2');
+	fieldred2doc.textContent = f_redhatch;
+}
+
 //Buy estimate
 function updateBuyEstimate(){
 	var buyEstimatedoc = document.getElementById('buyestimate');
@@ -691,18 +794,37 @@ function updateBuyEstimate(){
 	});	
 }
 
+//Sell estimate
+function updateSellEstimate(){
+	var sellEstimatedoc = document.getElementById('sellEstimate');
+	ComputeSell(function(req) {
+		sellEstimatedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
+	});
+}
+
+//Acorn estimate
+function updateTreeEstimate(){
+	var treeEstimatedoc = document.getElementById('treeestimate');
+	treeEstimatedoc.innerHTML = f_tree / a_acornCost;
+}
+
 //Hatch estimate
 function updateHatchEstimate(){
 	var hatchEstimatedoc = document.getElementById('hatchestimate');
 	hatchEstimatedoc.innerHTML = a_playerEgg * a_playerBoost;
 }
 
-//Player input on TadpolePrince
-function updateFieldPrince2(){
-	f_prince = document.getElementById('fieldPrince').value;
-	var fieldprince2doc = document.getElementById('fieldPrince2');
-	fieldprince2doc.textContent = f_buy;
-}	
+//Red estimate
+function updateRedEstimate(){
+	var redEstimatedoc = document.getElementById('redestimate');
+	redEstimatedoc.innerHTML = a_playerRed * a_playerBoost;
+}
+
+
+
+
+
+
 /*
 
 	
@@ -715,10 +837,7 @@ function updateFieldSell2(){
 }
 
 //Sell estimate
-function updateSellEstimate(){
-	var sellEstimatedoc = document.getElementById('sellEstimate');
-	sellEstimatedoc.textContent = parseFloat(f_sell * a_tokenSellPrice).toFixed(6);
-}
+
 
 //Player input on sacrifice
 function updateFieldSacrifice2(){
@@ -731,6 +850,31 @@ function updateFieldSacrifice2(){
 }
 
 /* WEB3 TRANSACTIONS */
+
+//Begin round
+function webBeginRound(){
+	BeginRound(function(){
+	});
+}
+
+//Join round
+function webJoinRound(){
+	JoinRound(function(){
+	});
+}
+
+//Fund tree
+function webFundTree(){
+    var weitospend = web3.toWei(f_tree,'ether');
+    FundTree(weitospend, function(){
+    });
+}
+
+//Claim share
+function webClaimShare(){
+	ClaimAcornShare(function(){
+	});
+}
 
 //Buy starting snails
 function webGetStarter(){
