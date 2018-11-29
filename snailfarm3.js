@@ -797,7 +797,7 @@ function updateBuyEstimate(){
 //Sell estimate
 function updateSellEstimate(){
 	var sellEstimatedoc = document.getElementById('sellEstimate');
-	ComputeSell(function(req) {
+	ComputeSell(a_playerEgg, function(req) {
 		sellEstimatedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
 	});
 }
