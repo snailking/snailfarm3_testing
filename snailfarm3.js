@@ -248,7 +248,7 @@ function refreshDataFast(){
 	updateFieldBuy2();
 	updateBuyEstimate();
 	updateFieldPrince2();
-	updateSellEstimate();
+	//updateSellEstimate();
 	updateFieldTree2();
 	updateTreeEstimate();
 	updateRedHatch2();
