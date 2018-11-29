@@ -138,7 +138,7 @@ var a_harvestCost = 0;
 var a_tadpoleReq = 0; 
 
 var a_playerSnail = 0; 
-var a_playerEgg = 0; 
+var a_playerEgg = 1; 
 var a_playerBoost = 0; 
 var a_playerProd = 0;
 var a_playerRed = 0; 
