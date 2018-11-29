@@ -140,13 +140,13 @@ var a_tadpoleReq = 0;
 var a_playerSnail = 0; 
 var a_playerEgg = 0; 
 var a_playerBoost = 0; 
-var a_playerProd = 0; 
-
-var a_feedReward = 0;
+var a_playerProd = 0;
+var a_playerRed = 0; 
 
 var f_buy = 0;
-var f_sell = 0;
 var f_prince = 0;
+var f_tree = 0;
+var f_redhatch = 0;
 
 var m_account = "waiting for web3";
 
@@ -818,35 +818,6 @@ function updateHatchEstimate(){
 function updateRedEstimate(){
 	var redEstimatedoc = document.getElementById('redestimate');
 	redEstimatedoc.innerHTML = a_playerRed * a_playerBoost;
-}
-
-
-
-
-
-
-/*
-
-	
-//Player input on sell
-function updateFieldSell2(){
-	//var fieldbuydoc = document.getElementById('fieldBuy');
-	f_sell = document.getElementById('fieldSell').value;
-	var fieldsell2doc = document.getElementById('fieldSell2');
-	fieldsell2doc.textContent = f_sell;
-}
-
-//Sell estimate
-
-
-//Player input on sacrifice
-function updateFieldSacrifice2(){
-	f_sacrifice = document.getElementById('fieldSacrifice').value;
-	if(f_sacrifice < a_pharaohReq2){
-		f_sacrifice = a_pharaohReq2;
-	}
-	var fieldsacrifice2doc = document.getElementById('fieldSacrifice2');
-	fieldsacrifice2doc.textContent = f_sacrifice;
 }
 
 /* WEB3 TRANSACTIONS */
