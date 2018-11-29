@@ -189,6 +189,7 @@ function refreshData(){
 	updateMarketEgg();
 	updateMaxEggBuy();
 	updateMaxAcorn();
+	updateAcornCost();
 	
 	updateHarvestCost();
 	
