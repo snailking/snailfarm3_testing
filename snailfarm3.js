@@ -191,7 +191,7 @@ function refreshData(){
 	updateMaxAcorn();
 	updateAcornCost();
 	
-	updateHarvestCost();
+	//updateHarvestCost();
 	
 	updatePlayerSnail();
 	updatePlayerEgg();
