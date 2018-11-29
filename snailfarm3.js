@@ -772,7 +772,7 @@ function updateFieldPrince2(){
 function updateFieldTree2(){
 	f_tree = document.getElementById('fieldTree').value;
 	var fieldtree2doc = document.getElementById('fieldTree2');
-	fieldacorn2doc.textContent = f_tree;
+	fieldtree2doc.textContent = f_tree;
 }
 
 //Player input on Red Egg Hatch
