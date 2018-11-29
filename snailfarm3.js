@@ -138,7 +138,7 @@ var a_harvestCost = 0;
 var a_tadpoleReq = 0; 
 
 var a_playerSnail = 0; 
-var a_playerEgg = 1; 
+var a_playerEgg = 0; 
 var a_playerBoost = 0; 
 var a_playerProd = 0;
 var a_playerRed = 0; 
@@ -191,7 +191,7 @@ function refreshData(){
 	updateMaxAcorn();
 	updateAcornCost();
 	
-	//updateHarvestCost();
+	updateHarvestCost();
 	
 	updatePlayerSnail();
 	updatePlayerEgg();
@@ -248,7 +248,7 @@ function refreshDataFast(){
 	updateFieldBuy2();
 	updateBuyEstimate();
 	updateFieldPrince2();
-	//updateSellEstimate();
+	updateSellEstimate();
 	updateFieldTree2();
 	updateTreeEstimate();
 	updateRedHatch2();
@@ -766,7 +766,7 @@ function updateFieldBuy2(){
 function updateFieldPrince2(){
 	f_prince = document.getElementById('fieldPrince').value;
 	var fieldprince2doc = document.getElementById('fieldPrince2');
-	fieldprince2doc.textContent = f_buy;
+	fieldprince2doc.textContent = f_prince;
 }
 
 //Player input on Acorn buy
@@ -806,7 +806,7 @@ function updateSellEstimate(){
 //Acorn estimate
 function updateTreeEstimate(){
 	var treeEstimatedoc = document.getElementById('treeestimate');
-	treeEstimatedoc.innerHTML = f_tree / a_acornCost;
+	treeEstimatedoc.innerHTML = (f_tree / a_acornCost).toFixed(0);
 }
 
 //Hatch estimate
@@ -919,6 +919,12 @@ function webClaimRedHarvest(){
 	});
 }
 
+//Hatch Red Eggs
+function webHatchRed(){
+	UseRedEgg(f_redhatch, function(){
+	});
+}
+	
 //Find Lettuce
 function webFindLettuce(){
 	FindLettuce(function(){
