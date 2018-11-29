@@ -117,39 +117,45 @@ var god_roundover = false;
 var godtimerdoc;
 var playereggdoc;
 
+var c_snailmaster = "";
 var c_spiderowner = "";
+var c_squirrelowner = "";
+var c_tadpoleowner = "";
 
-var a_marketEgg = 0; //y
-var a_pharaoh = "";
+var a_marketEgg = 0; 
 var a_tokenPrice = 0;
 var a_tokenSellPrice = 0;
-var a_maxAcorn = 0;
-var a_roundPot = 0; //y
-var a_eggPot = 0; //y
-var a_snailPot = 0; //y
-var a_thronePot = 0;
-var a_playerSnail = 0; //y
-var a_playerEgg = 0;
-var a_playerProd = 0;
-var a_playerHatchCost = 0;
+var a_maxAcorn = 0; 
+
+var a_roundPot = 0; 
+var a_eggPot = 0; 
+var a_snailPot = 0; 
+var a_thronePot = 0; 
+
+var a_harvestCost = 0; 
+
+var a_playerSnail = 0; 
+var a_playerEgg = 0; 
+var a_playerBoost = 0; 
+var a_playerProd = 0; 
+
 var a_feedReward = 0;
-var a_pharaohReq = 0;
-var a_pharaohReq2 = 0;
-var a_removeSnailReq = 0;
+
 var f_buy = 0;
 var f_sell = 0;
-var f_sacrifice = 40;
+var f_prince = 0;
+
 var m_account = "waiting for web3";
 
 /* GLOBAL LOOP */
 
-//Initiates loops and runs owner checks once (adjust those with events)
+//Initiates loops
 function main(){
     console.log('Main loop started.');
     controlLoop();
 	controlLoopFast();
 	
-	checkSpiderOwner();
+
 }
 
 //Main loop
@@ -162,17 +168,6 @@ function controlLoop(){
 function controlLoopFast(){
 	refreshDataFast();
 	setTimeout(controlLoopFast,200);
-}
-
-/* INITIAL CHECKS */
-
-//Check SpiderQueen owner
-function checkSpiderOwner(){
-	var spiderownerdoc = document.getElementById('spiderowner');
-	currentSpiderOwner(function(req) {
-		c_spiderowner = "0x" + req.substring(26, 66);
-		spiderownerdoc.textContent = c_spiderowner;
-	});
 }
 
 /* STATE UPDATES */
@@ -188,13 +183,31 @@ function refreshData(){
 	updateSnailPot();
 	updateThronePot();
 	
+	updateHarvestCost();
+	
 	updatePlayerSnail();
 	updatePlayerEgg();
 	updatePlayerProd();
 	updatePlayerBalance();
+	updatePlayerBoost();
 	
 	updateMarketEgg();
 	updateMaxAcorn();
+	
+	checkSnailmaster();
+	checkSpiderOwner();
+	checkSquirrelOwner();
+	checkTadpoleOwner();
+	
+	updateSnailmasterReq();
+	updateSpiderReq();
+	updateSquirrelReq();
+	updateTadpoleReq();
+	updateLettuceReq();
+	
+	updateHatchEstimate();
+	
+	
 	
 	/*
 	
@@ -222,7 +235,7 @@ function refreshData(){
 function refreshDataFast(){
 	updateFieldBuy2();
 	updateBuyEstimate();
-	
+	updateFieldPrince2();
 	/*
 	fastupdateGodTimer();
 	//fastupdatePlayerEgg();
@@ -231,6 +244,91 @@ function refreshDataFast(){
 	updateFieldSell2();
 	updateSellEstimate();
 	*/
+}
+
+//Check Snailmaster
+function checkSnailmaster(){
+	var snailmasterdoc = document.getElementById('snailmaster');
+	currentSnailmaster(function(req) {
+		c_snailmaster = "0x" + req.substring(26, 66);
+		snailmasterdoc.textContent = c_snailmaster;
+	});
+}
+
+//Current Snailmaster req
+function updateSnailmasterReq(){
+	var snailmasterreqdoc = document.getElementById('snailmasterreq');
+	snailmasterReq(function(req) {
+		snailmasterreqdoc.textContent = req;
+	});
+}
+	
+//Check SpiderQueen owner
+function checkSpiderOwner(){
+	var spiderownerdoc = document.getElementById('spiderowner');
+	currentSpiderOwner(function(req) {
+		c_spiderowner = "0x" + req.substring(26, 66);
+		spiderownerdoc.textContent = c_spiderowner;
+	});
+}
+
+//Current SpiderQueen req
+function updateSpiderReq(){
+	var spiderreqdoc = document.getElementById('spiderreq');
+	spiderReq(function(req) {
+		spiderreqdoc.textContent = req;
+	});
+}
+
+//Check SquirrelDuke owner
+function checkSquirrelOwner(){
+	var squirrelownerdoc = document.getElementById('squirrelowner');
+	currentSquirrelOwner(function(req) {
+		c_squirrelowner = "0x" + req.substring(26, 66);
+		squirrelownerdoc.textContent = c_squirrelowner;
+	});
+}
+
+//Current SquirrelDuke req
+function updateSquirrelReq(){
+	var squirrelreqdoc = document.getElementById('squirrelreq');
+	squirrelReq(function(req) {
+		squirrelreqdoc.textContent = req;
+	});
+}
+
+//Check TadpolePrince owner
+function checkTadpoleOwner(){
+	var tadpoleownerdoc = document.getElementById('tadpoleowner');
+	currentTadpoleOwner(function(req) {
+		c_tadpoleowner = "0x" + req.substring(26, 66);
+		tadpoleownerdoc.textContent = c_tadpoleowner;
+	});
+}
+
+//Current TadpolePrince req
+function updateTadpoleReq(){
+	var tadpolereqdoc = document.getElementById('tadpolereq');
+	tadpoleReq(function(req) {
+		tadpolereqdoc.textContent = req;
+	});
+}
+
+//Current harvest cost
+function updateHarvestCost(){
+	var harvestcostdoc = document.getElementById('harvestcost');
+	ComputeHarvest(function(req) {
+		a_harvestCost = formatEthValue(web3.fromWei(req,'ether'));
+		harvestcostdoc.textContent = a_harvestCost;
+	});
+}
+
+//Current lettuce req
+function updateLettuceReq(){
+	var lettucereqdoc = document.getElementById('lettucereq');
+	lettuceReq(function(req) {
+		lettucereqdoc.textContent = req;
+	});
 }
 
 //Current ETH address in use
@@ -328,6 +426,15 @@ function updatePlayerEgg(){
 	ComputeMyEgg(m_account, function(req) {
 		a_playerEgg = formatEthValue(req);
 		playereggdoc.textContent = a_playerEgg;
+	});
+}
+
+//Current player hatch size
+function updatePlayerBoost(){
+	var hatchboostdoc = document.getElementById('hatchboost');
+	GetMyProd(function(req) {
+		a_playerBoost = req;
+		hatchboostdoc.textContent = a_playerBoost;
 	});
 }
 
@@ -575,6 +682,19 @@ function updateBuyEstimate(){
 		buyEstimatedoc.textContent = req;
 	});	
 }
+
+//Hatch estimate
+function updateHatchEstimate(){
+	var hatchEstimatedoc = document.getElementById('hatchestimate');
+	hatchEstimatedoc.innerHTML = a_playerEgg * a_playerBoost;
+}
+
+//Player input on TadpolePrince
+function updateFieldPrince2(){
+	f_prince = document.getElementById('fieldPrince').value;
+	var fieldprince2doc = document.getElementById('fieldPrince2');
+	fieldprince2doc.textContent = f_buy;
+}	
 /*
 
 	
@@ -634,6 +754,56 @@ function webSellEgg(){
 //Withdraw balance
 function webWithdrawBalance(){
 	WithdrawBalance(function(){
+	});
+}
+
+//Become Snailmaster
+function webBecomeSnailmaster(){
+	BecomeSnailmaster(function(){
+	});
+}
+
+//Become Snailmaster
+function webBecomeSnailmaster(){
+	BecomeSnailmaster(function(){
+	});
+}
+
+//Become SpiderQueen
+function webBecomeSpiderQueen(){
+	BecomeSpiderQueen(function(){
+	});
+}
+
+//Become SquirrelDuke
+function webBecomeSquirrelDuke(){
+	BecomeSquirrelDuke(function(){
+	});
+}
+
+//Become TadpolePrince
+function webBecomeTadpolePrince(){
+	var weitospend = web3.toWei(f_prince,'ether');
+	BecomeTadpolePrince(weitospend, function(){
+	});
+}
+
+//Find Lettuce
+function webFindLettuce(){
+	FindLettuce(function(){
+	});
+}
+
+//Find Carrot
+function webFindCarrot(){
+	var weitospend = web3.toWei(0.02,'ether');
+	FindCarrot(weitospend, function(){
+	});
+}
+
+//Find Slug
+function webFindSlug(){
+	FindSlug(function(){
 	});
 }
 

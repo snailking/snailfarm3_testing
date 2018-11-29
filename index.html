@@ -7,33 +7,79 @@
 		<!-- Title, Favicon -->
 		<title>SnailFarm 3 Testing</title>
 		<link rel="shortcut icon" href="favicon.png" type="image/x-icon">		
-		<!-- CSS -->		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="theme_snailfarm3.css">		
 	</head>
 	
 	<body>
 		<div>
-			<p>Hello. You're on the SnailFarm 3 Testing page. We're busting our pods to bring you your Ropsten snail needs as soon as possible!</p>
-			<p>Contract balance: <span id="contractbalance">[undefined]</span></p>
-			<p>Round: <span id="round">[undefined]</span></p>
+			<p>Hello. You're on the SnailFarm 3 Testing page. We're busting our pods to bring you your Ropsten snail needs as soon as possible!</p><br>
+			<a href="#info">JUMP TO QUICK START</a><br><br>
+			
+			<p>GAME DATA<br><br>
+			
+			<p>Contract balance: <span id="contractbalance">[undefined]</span></p><br>
+			<p>Round: <span id="round">[undefined]</span></p><br>
 			<p>Roundpot: <span id="roundpot">[undefined]</span></p>
 			<p>Snailpot: <span id="snailpot">[undefined]</span></p>
 			<p>Thronepot: <span id="thronepot">[undefined]</span></p>
-			<p>Eggpot: <span id="eggpot">[undefined]</span></p>
+			<p>Eggpot: <span id="eggpot">[undefined]</span></p><br>
 			<p>Eggs on the market: <span id="marketegg">[undefined]</span></p>
-			<p>Total number of acorns: <span id="maxacorn">[undefined]</span></p>
+			<p>Total number of acorns: <span id="maxacorn">[undefined]</span></p><br>
 
+			<p>Red Harvest: <span id="harvestcost">[undefined]</span></p><br>
+			
+			<p>Current Snailmaster: <span id="snailmaster">[undefined]</span></p>
 			<p>Current Spider Owner: <span id="spiderowner">[undefined]</span></p>
+			<p>Current Squirrel Owner: <span id="squirrelowner">[undefined]</span></p>
+			<p>Current Tadpole Owner: <span id="tadpoleowner">[undefined]</span></p><br>
 
 			<p>My Snails: <span id="playersnail">[undefined]</span></p>
 			<p>Producing <span id="playerprod">[undefined]</span> eggs per hour</p>
 			<p>My Eggs: <span id="playeregg">[undefined]</span></p>
-			<p>My Balance: <span id="playerbalance">[undefined]</span> ETH</p>
+			<p>My Red Eggs: [ADD GETTER IN SMART CONTRACT]<!--<span id="playerred">[undefined]</span></p>-->
+			<p>My Hatch Boost: <span id="hatchboost">[undefined]</span></p><br>
+			
+			<p>My Boosts: [ADD GETTER IN SMART CONTRACT]</p>
+			
+			<p>My Balance: <span id="playerbalance">[undefined]</span> ETH</p><br>
 
 			<button onclick="webGetStarter()">Get Starting Snails!</button><br>
-			<button onclick="webHatchEgg()">Hatch Some Eggs!</button><br>
+			<button onclick="webHatchEgg()">Hatch your eggs into <span id="hatchestimate">[undefined]</span> snails!</button><br>
 			<button onclick="webBuyEgg()">Buy <span id="buyestimate">?</span> Eggs for <span id="fieldBuy2">?</span> ETH!</button><input type="text" id="fieldBuy" value="0.1" size="4"><br>
 			<button onclick="webSellEgg()">Sell your eggs!</button><br>
 			<button onclick="webWithdrawBalance()">Withdraw Balance!</button><br>
+			<button onclick="webBecomeSnailmaster()">Become Snailmaster!</button> Requirement: <span id="snailmasterreq">[undefined]</span> red eggs<br>
+			<button onclick="webBecomeSpiderQueen()">Become SpiderQueen!</button> Requirement: <span id="spiderreq">[undefined]</span> snails<br>
+			<button onclick="webBecomeSquirrelDuke()">Become SquirrelDuke!</button> Requirement: <span id="squirrelreq">[undefined]</span> red eggs<br>
+			<button onclick="webBecomeTadpolePrince()">Become TadpolePrince! <span id="fieldPrince2">?</span></button>
+			<input type="text" id="fieldPrince" value="0.02" size="4">Requirement: <span id="tadpolereq">[undefined]</span> ETH<br>
+			<button onclick="webClaimRedHarvest()">Claim Red Harvest!</button>
+			<button onclick="webFindLettuce()">Find Lettuce!</button> Requirement: <span id="lettucereq">[undefined]</span> red eggs<br>
+			<button onclick="webFindCarrot()">Find Carrot!</button> Requirement: 0.02 ETH<br>
+			<button onclick="webFindSlug()">Find Slug!</button> Requires a sacrifice of at least 100 000 snails. Sacrifices all your snails.<br>
+	
+			
+			<a name="info">QUICK START</a><br>
+			
+			<p>Your goal is to get to 1 million snails.<br>
+			<p>Buy your starting snails first, then hatch eggs to grow your nest.</p>
+			<p>You can buy and sell eggs from the contract.
+			<p>Use various boosts to improve your hatch size. Each boost gives you an extra full size hatch.
+			<p>Owning 2 boosts means you get 3 snails per egg when you hatch.
+			<p>(It's biology. Trust us.)<br>
+			<p>The SpiderQueen, SquirrelDuke and TadpoleOwner are hot potato boosts: only one player can hold them at once.
+			<p>The Lettuce, Carrot and Slug are personal boosts. The Lettuce lasts 1 round, the Carrot 3, the Slug is permanent.<br>
+			<p>There is another type of eggs you can find: red eggs.
+			<p>If you are not the winner at the end of a round, for every 100 snails you own, you will receive 1 red egg.
+			<p>The smart contract also puts 300 red eggs on a reverse dutch auction (price lowers as time goes).
+			<p>Red eggs can be used like normal eggs but without any ETH cost. Additionally, red eggs are required to claim the SquirrelDuke, the Lettuce or the Snailmaster.<br>
+			<p>The Snailmaster is another hot potato and lets you claim part of the ETH of every transaction.
+			<p>The Snailmaster requirement halves every round, and doubles whenever claimed.<br>
+			<p>Funding the game can be done through buying acorns.
+			<p>Acorns have a slightly decreasing price from round to round. On round 0 specifically, acorns are at half price.
+			<p>Acorn holders get 10% of the ETH spent proportionally to their number of acorns.
+			<p>Acorns cannot be sold or used. Funding the game means receiving dividends forever, however the decreasing price of acorns should ensure share dilution over time.
 		</div>
 		
 		<!-- Main Javascript -->
