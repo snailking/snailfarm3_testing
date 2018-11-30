@@ -2716,7 +2716,9 @@ function computeLeaderboard() {
 
 /* EVENTS */
 
-var hatchEvent = contractAbi.at(contractAddress).Hatched();
+var contractAbi = web3.eth.contract(abiDefinition);
+var myContract = contractAbi.at(contractAddress);
+var hatchEvent = myContract.Hatched();
 var e_hatched = { address: "", hatchery: 0 };
 
 hatchEvent.watch(function(error, result){
