@@ -2687,7 +2687,7 @@ function checkHash(txarray, txhash) {
 //Compute Leaderboard
 
 function computeLeaderboard() {
-	var lowest = d_leaderboard[0];
+	var lowest = d_leaderboard[9].hatchery;
 	var position = 0; 
 	//Check lowest leader
 	for(i = 1; i < 10; i++) {
