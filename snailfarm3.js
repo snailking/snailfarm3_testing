@@ -2690,7 +2690,7 @@ function computeLeaderboard() {
 	var lowest = d_leaderboard[9].hatchery;
 	var position = 0; 
 	//Check lowest leader
-	for(i = 1; i < 10; i++) {
+	for(i = 0; i < 10; i++) {
 		if(d_leaderboard[i].hatchery < lowest) {
 			lowest = d_leaderboard[i].hatchery;
 			position = d_leaderboard[i];
@@ -2721,6 +2721,8 @@ var contractAbi = web3.eth.contract(abiDefinition);
 var myContract = contractAbi.at(contractAddress);
 var hatchEvent = myContract.Hatched();
 var e_hatched = { address: "", hatchery: 0 };
+var f_hatched = 0;
+var g_hatched = { address: "", hatchery: 0 };
 
 hatchEvent.watch(function(error, result){
     if(!error){
@@ -2732,7 +2734,9 @@ hatchEvent.watch(function(error, result){
 			eventdoc.innerHTML += "<br>[" + datetext + "] " + result.args.player + " hatched " + result.args.snail + " snails for " + _ethspent + " ETH." ;
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;*/
 			e_hatched.address = result.args.player;
-			e_hatched.hatchery = result.args.hatchery;
+			e_hatched.hatchery = result.args.hatchery; //seems to return an array/object
+			f_hatched = result.args.hatchery;
+			g_hatched.hatchery = result.args.snails;
 			computeLeaderboard();
 		}
 	}
