@@ -352,8 +352,22 @@ function updateTadpoleReq(){
 	});
 }
 
-//Check if player owns hot potatoes
+//If player owns hot potatoes, display appropriate boosts
 function checkPotato(){
+	if(c_spiderowner == m_account){
+		document.getElementById('spider_yes').style.display = 'inline';
+		document.getElementById('spider_no').style.display = 'none';
+	} else {
+		document.getElementById('spider_yes').style.display = 'none';
+		document.getElementById('spider_no').style.display = 'inline';
+	}
+	if(c_squirrelowner == m_account){
+		document.getElementById('squirrel_yes').style.display = 'inline';
+		document.getElementById('squirrel_no').style.display = 'none';
+	} else {
+		document.getElementById('squirrel_yes').style.display = 'none';
+		document.getElementById('squirrel_no').style.display = 'inline';
+	}
 	if(c_tadpoleowner == m_account){
 		document.getElementById('tadpole_yes').style.display = 'inline';
 		document.getElementById('tadpole_no').style.display = 'none';
