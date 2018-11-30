@@ -318,7 +318,7 @@ function showLeaderboard() {
 	var leaderboarddoc = document.getElementById('leaderboard');
 	leaderboarddoc = "";
 	for(i = 0; i < 10; i++) {
-		leaderboarddoc.innerHTML +=; " "// + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " d_leaderboard[i].snails;
+		leaderboarddoc.innerHTML += " ";// + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " d_leaderboard[i].snails;
 	}
 }
 	
