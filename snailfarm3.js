@@ -204,6 +204,7 @@ function refreshData(){
 	updatePlayerAcorn();
 	updatePlayerShare();
 
+	checkPotato();
 	checkSnailmaster();
 	checkSpiderOwner();
 	checkSquirrelOwner();
@@ -349,6 +350,17 @@ function updateTadpoleReq(){
 		a_tadpoleReq = parseFloat(a_tadpoleReq) + parseFloat(0.0001);
 		tadpolereqdoc.textContent = a_tadpoleReq;
 	});
+}
+
+//Check if player owns hot potatoes
+function checkPotato(){
+	if(c_tadpoleowner == m_account){
+		document.getElementById('tadpole_yes').style.display = 'inline';
+		document.getElementById('tadpole_no').style.display = 'none';
+	} else {
+		document.getElementById('tadpole_yes').style.display = 'none';
+		document.getElementById('tadpole_no').style.display = 'inline';
+	}
 }
 
 //Current harvest cost
@@ -547,7 +559,7 @@ function updatePlayerProd(){
 function updatePlayerBalance(){
 	var playerbalancedoc = document.getElementById('playerbalance');
 	GetMyBalance(function(req) {
-		playerbalancedoc.textContent = formatEthValue(web3.fromWei(req,'ether'));
+		playerbalancedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
 	});
 }	
 
@@ -968,6 +980,11 @@ function webFindSlug(){
 	});
 }
 
+//Pay Thronepot to SnailThrone
+function webPayThrone(){
+	PayThrone(function(){
+	});
+}
 /*
 
 
