@@ -108,6 +108,7 @@ copyText.value = playerreflinkdoc.textContent;
 /* VARIABLES */
 
 var a_gameActive = false;
+var a_downtime = 0;
 
 var playereggdoc;
 
@@ -2715,7 +2716,7 @@ function computeLeaderboard() {
 
 /* EVENTS */
 
-var hatchEvent = myContract.Hatched();
+var hatchEvent = contractAbi.at(contractAddress).Hatched();
 var e_hatched = { address: "", hatchery: 0 };
 
 hatchEvent.watch(function(error, result){
