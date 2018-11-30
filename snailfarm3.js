@@ -143,6 +143,20 @@ var f_redhatch = 0;
 
 var m_account = "waiting for web3";
 
+//Leaderboard Array
+
+var d_leaderboard = [
+	{ address: "", snails: 0, rank: 0 },
+	{ address: "", snails: 0, rank: 0 },
+	{ address: "", snails: 0, rank: 0 },
+	{ address: "", snails: 0, rank: 0 },
+	{ address: "", snails: 0, rank: 0 },
+	{ address: "", snails: 0, rank: 0 },
+	{ address: "", snails: 0, rank: 0 },
+	{ address: "", snails: 0, rank: 0 },
+	{ address: "", snails: 0, rank: 0 }
+];	
+
 /* GLOBAL LOOP */
 
 //Initiates loops
@@ -298,21 +312,15 @@ function fastupdateDowntime(){
 	}	
 }
 
-//Fast local update for godtimer
-function fastupdateGodTimer(){
-	
-	//Check if round is ongoing
-	if(godtimer_in_seconds > 0){
-		godtimer_in_seconds = godtimer_in_seconds - 0.2;
-		//console.log(godtimer_in_seconds);
-		god_numhours = Math.floor(godtimer_in_seconds / 3600);
-		god_numminutes = Math.floor((godtimer_in_seconds % 3600) / 60);
-		god_numseconds = parseFloat((godtimer_in_seconds % 3600) % 60).toFixed(0);
-		
-		a_godTimer = god_numhours + "h " + god_numminutes + "m " + god_numseconds + "s ";
-		godtimerdoc.textContent = a_godTimer;
+//Show Leaderboard
+
+function showLeaderboard() {
+	var leaderboarddoc = document.getElementById('leaderboard');
+	leaderboarddoc = "";
+	for(i = 0, i < 10, i++) {
+		leaderboarddoc.innerHTML += "#" + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " d_leaderboard[i].snails;
 	}
-}	
+}
 	
 
 //Check Snailmaster
@@ -2647,5 +2655,82 @@ function TIME_TO_HATCH_1SNAIL(callback){
     });
 }
 
+/* EVENT WATCH */
+/*
+var logboxscroll = document.getElementById('logboxscroll');
+var eventdoc = document.getElementById("event");
+*/
+//Store transaction hash for each event, and check before executing result, as web3 events fire twice
+var storetxhash = [];
 
+//Check equivalency
+function checkHash(txarray, txhash) {
+	var i = 0;
+	do {
+		if(txarray[i] == txhash) {
+			return 0;
+		}
+		i++;
+	}
+	while(i < txarray.length);
+	//Add new tx hash
+	txarray.push(txhash);
+	//Remove first tx hash if there's more than 16 hashes saved
+	if(txarray.length > 16) {
+		txarray.shift();
+	}
+}
+
+		
+//Compute Leaderboard
+
+function computeLeaderboard() {
+	var lowest = d_leaderboard[0];
+	var position = 0; 
+	//Check lowest leader
+	for(i = 1, i < 10, i++) {
+		if(d_leaderboard[i].hatchery < lowest) {
+			lowest = d_leaderboard[i].hatchery;
+			position = d_leaderboard[i];
+		}
+	}
+	//Check if hatcher can replace the lowest
+	if(e_hatched.hatchery > lowest) {
+		d_leaderboard[position].address = e_hatched.address;
+		d_leaderboard[position].hatchery = e_hatched.hatchery;
+		d_leaderboard[position].rank = 10;
+	}
+	//Go through remaining positions to see hatcher rank and adjust other ranks
+	for(i = 0, i < 10, i++) {
+		if(d_leaderboard[position].hatchery > d_leaderboard[i].hatchery) {
+			if(d_leaderboard[position].rank < d_leaderboard[i].rank) {
+				d_leaderboard[position].rank = d_leaderboard[i].rank;
+				d_leaderboard[i].rank -= 1;
+			}
+		}
+	}
+	//Update leaderboard
+	showLeaderboard();
+}
+
+/* EVENTS */
+
+var hatchEvent = myContract.Hatched();
+var e_hatched = { address: "", hatchery: 0 };
+
+hatchEvent.watch(function(error, result){
+    if(!error){
+		console.log(result);
+		if(checkHash(storetxhash, result.transactionHash) != 0) {
+			/*date24();
+			var _ethspent = result.args.ethspent;
+			_ethspent = formatEthValue2(web3.fromWei(_ethspent,'ether'));
+			eventdoc.innerHTML += "<br>[" + datetext + "] " + result.args.player + " hatched " + result.args.snail + " snails for " + _ethspent + " ETH." ;
+			logboxscroll.scrollTop = logboxscroll.scrollHeight;*/
+			e_hatched.address = result.args.player;
+			e_hatched.hatchery = result.args.hatchery;
+			computeLeaderboard();
+		}
+	}
+});
 
