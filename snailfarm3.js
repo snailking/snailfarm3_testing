@@ -317,7 +317,7 @@ function fastupdateDowntime(){
 function showLeaderboard() {
 	var leaderboarddoc = document.getElementById('leaderboard');
 	leaderboarddoc = "";
-	for(i = 0, i < 10, i++) {
+	for(i = 0; i < 10; i++) {
 		leaderboarddoc.innerHTML += "#" + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " d_leaderboard[i].snails;
 	}
 }
@@ -2688,7 +2688,7 @@ function computeLeaderboard() {
 	var lowest = d_leaderboard[0];
 	var position = 0; 
 	//Check lowest leader
-	for(i = 1, i < 10, i++) {
+	for(i = 1; i < 10; i++) {
 		if(d_leaderboard[i].hatchery < lowest) {
 			lowest = d_leaderboard[i].hatchery;
 			position = d_leaderboard[i];
@@ -2701,7 +2701,7 @@ function computeLeaderboard() {
 		d_leaderboard[position].rank = 10;
 	}
 	//Go through remaining positions to see hatcher rank and adjust other ranks
-	for(i = 0, i < 10, i++) {
+	for(i = 0; i < 10; i++) {
 		if(d_leaderboard[position].hatchery > d_leaderboard[i].hatchery) {
 			if(d_leaderboard[position].rank < d_leaderboard[i].rank) {
 				d_leaderboard[position].rank = d_leaderboard[i].rank;
