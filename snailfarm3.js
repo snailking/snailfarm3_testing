@@ -107,15 +107,8 @@ copyText.value = playerreflinkdoc.textContent;
 
 /* VARIABLES */
 
-var a_godTimer = "";
-var godtimer_in_seconds = 0;
-var god_numhours = 0;
-var god_numminutes = 0;
-var god_numseconds = 0;
+var a_gameActive = false;
 
-var god_roundover = false;
-
-var godtimerdoc;
 var playereggdoc;
 
 var c_snailmaster = "";
@@ -157,8 +150,6 @@ function main(){
     console.log('Main loop started.');
     controlLoop();
 	controlLoopFast();
-	
-
 }
 
 //Main loop
@@ -255,6 +246,7 @@ function refreshDataFast(){
 	updateTreeEstimate();
 	updateRedHatch2();
 	updateRedEstimate();
+	fastupdateDowntime();
 	/*
 	fastupdateGodTimer();
 	//fastupdatePlayerEgg();
@@ -265,21 +257,62 @@ function refreshDataFast(){
 	*/
 }
 
+var gameactivedoc = document.getElementById('gameactive');
+
 //Current state of the game
 function updateGameActive(){
-	var gameactivedoc = document.getElementById('gameactive');
 	gameActive(function(result) {
 		if(result) {
+			a_gameActive = true;
 			gameactive.innerHTML = "The game is active!";
 		} else {
+			a_gameActive = false;
 			nextRoundStart(function(result2) {
 				var blocktime = Math.round((new Date()).getTime() / 1000); //current blocktime should be Unix timestamp
-				downtime = parseFloat(result2) - parseFloat(blocktime);
-				gameactive.innerHTML = "The game is paused. Next round in " + downtime + " seconds.";
+				a_downtime = parseFloat(result2) - parseFloat(blocktime);
+				if(a_downtime < 0) {
+					a_downtime = 0;
+				}
 			});
 		}
 	});
 }
+
+//Fast update for Downtime if round is unactive
+function fastupdateDowntime(){
+	if(a_gameActive != true) {
+		a_downtime = a_downtime - 0.2;
+		
+		downtime_hours = Math.floor(a_downtime / 3600);
+		if(downtime_hours < 10) { downtime_hours = "0" + downtime_hours }
+		downtime_minutes = Math.floor((a_downtime % 3600) / 60);
+		if(downtime_minutes < 10) { downtime_hours = "0" + downtime_minutes }
+		downtime_seconds = parseFloat((a_downtime % 3600) % 60).toFixed(0);
+		if(downtime_seconds < 10) { downtime_seconds = "0" + downtime_seconds }
+		
+		if(a_downtime > 0) {
+			gameactive.innerHTML = "Next round starts in " + downtime_hours + ":" + downtime_minutes + ":" + downtime_seconds;
+		} else {
+			gameactive.innerHTML = "The next round is ready to start!";
+		}
+	}	
+}
+
+//Fast local update for godtimer
+function fastupdateGodTimer(){
+	
+	//Check if round is ongoing
+	if(godtimer_in_seconds > 0){
+		godtimer_in_seconds = godtimer_in_seconds - 0.2;
+		//console.log(godtimer_in_seconds);
+		god_numhours = Math.floor(godtimer_in_seconds / 3600);
+		god_numminutes = Math.floor((godtimer_in_seconds % 3600) / 60);
+		god_numseconds = parseFloat((godtimer_in_seconds % 3600) % 60).toFixed(0);
+		
+		a_godTimer = god_numhours + "h " + god_numminutes + "m " + god_numseconds + "s ";
+		godtimerdoc.textContent = a_godTimer;
+	}
+}	
 	
 
 //Check Snailmaster
