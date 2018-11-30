@@ -147,16 +147,16 @@ var m_account = "waiting for web3";
 //Leaderboard Array
 
 var d_leaderboard = [
-	{ address: "", snails: 0, rank: 1 },
-	{ address: "", snails: 0, rank: 2 },
-	{ address: "", snails: 0, rank: 3 },
-	{ address: "", snails: 0, rank: 4 },
-	{ address: "", snails: 0, rank: 5 },
-	{ address: "", snails: 0, rank: 6 },
-	{ address: "", snails: 0, rank: 7 },
-	{ address: "", snails: 0, rank: 8 },
-	{ address: "", snails: 0, rank: 9 },
-	{ address: "", snails: 0, rank: 10 }
+	{ address: "", hatchery: 0, rank: 1 },
+	{ address: "", hatchery: 0, rank: 2 },
+	{ address: "", hatchery: 0, rank: 3 },
+	{ address: "", hatchery: 0, rank: 4 },
+	{ address: "", hatchery: 0, rank: 5 },
+	{ address: "", hatchery: 0, rank: 6 },
+	{ address: "", hatchery: 0, rank: 7 },
+	{ address: "", hatchery: 0, rank: 8 },
+	{ address: "", hatchery: 0, rank: 9 },
+	{ address: "", hatchery: 0, rank: 10 }
 ];	
 
 /* GLOBAL LOOP */
