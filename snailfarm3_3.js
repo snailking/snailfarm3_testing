@@ -335,7 +335,22 @@ function showLeaderboard() {
 				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " " + d_leaderboard[j].address + " " + d_leaderboard[j].hatchery + " ";
 				console.log("updated rank " + i + " with index " + j);
 				if(d_leaderboard[j].boost1 == true) {
-					leaderboarddoc.innerHTML += "SpiderQueen";
+					leaderboarddoc.innerHTML += "SpiderQueen ";
+				}
+				if(d_leaderboard[j].boost2 == true) {
+					leaderboarddoc.innerHTML += "SquirrelDuke ";
+				}
+				if(d_leaderboard[j].boost3 == true) {
+					leaderboarddoc.innerHTML += "TadpolePrince ";
+				}
+				if(d_leaderboard[j].boost4 == true) {
+					leaderboarddoc.innerHTML += "Lettuce ";
+				}
+				if(d_leaderboard[j].boost5 == true) {
+					leaderboarddoc.innerHTML += "Carrot ";
+				}
+				if(d_leaderboard[j].boost6 == true) {
+					leaderboarddoc.innerHTML += "Slug ";
 				}
 				leaderboarddoc.innerHTML += "<br>";
 			}
@@ -513,7 +528,7 @@ function updateEthAccount(){
 function updateLeader(){
 	var leaderdoc = document.getElementById('leader');
 	currentLeader(function(result) {
-		l_account = "0x" + resultsubstring(26,66);
+		l_account = "0x" + result.substring(26,66);
 		if(l_account != m_account) {
 			leaderdoc.textContent = " is ";
 		}
@@ -2807,6 +2822,21 @@ function computeLeaderboard() {
 		if(d_leaderboard[position].address == c_tadpoleowner) {
 			d_leaderboard[position].boost3 = true;
 		}
+		GetLettuce(d_leaderboard[position].address, function(result) {
+			if(result > 0) {
+				d_leaderboard[position].boost4 = true;
+			} 
+		});
+		GetCarrot(d_leaderboard[position].address, function(result) {
+			if(result > 0) {
+				d_leaderboard[position].boost5 = true;
+			} 
+		});
+		GetSlug(d_leaderboard[position].address, function(result) {
+			if(result > 0) {
+				d_leaderboard[position].boost6 = true;
+			} 
+		});
 	}
 	
 	//Update leaderboard
