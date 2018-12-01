@@ -2768,12 +2768,12 @@ function computeLeaderboard() {
 				console.log("loop j " + j);
 		if(d_leaderboard[position].hatchery > d_leaderboard[j].hatchery) {
 					console.log("d_leaderboard hatchery is greater than d_leaderboard[" + j + "]hatchery");
-			if(d_leaderboard[position].rank < d_leaderboard[j].rank) {
+			if(d_leaderboard[position].rank > d_leaderboard[j].rank) {
 						console.log("d_l rank is under d_l[" + j + "]rank");
 				d_leaderboard[position].rank = d_leaderboard[j].rank;
 						console.log("new d_l rank: " + d_leaderboard[position].rank);
 			}
-			d_leaderboard[j].rank -= 1;
+			d_leaderboard[j].rank += 1;
 				console.log("new d_l[" + j + "]rank: " + d_leaderboard[j].rank);
 		}
 	}
