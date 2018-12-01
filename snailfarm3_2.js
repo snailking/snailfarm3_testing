@@ -146,7 +146,7 @@ var f_tree = 0;
 var f_redhatch = 0;
 
 var m_account = "waiting for web3";
-var l_account = "waiting for web3";
+var l_account;
 
 //Leaderboard Array
 
