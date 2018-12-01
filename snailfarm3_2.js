@@ -330,7 +330,7 @@ function showLeaderboard() {
 	leaderboarddoc.innerHTML = "";
 	for(i = 0; i < 10; i++) {
 		leaderboarddoc.innerHTML += "#" + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " + d_leaderboard[i].hatchery + "<br>";
-		console.log("updated position " + i);
+		console.log("updated index " + i);
 	}
 }
 	
@@ -2739,9 +2739,9 @@ function checkHash(txarray, txhash) {
 //Compute Leaderboard
 
 function computeLeaderboard() {
-	var lowest = d_leaderboard[9].hatchery;
+	var lowest = d_leaderboard[0].hatchery;
 			console.log("lowest: " + lowest);
-	var position = 9; 
+	var position = 0; 
 			console.log("position: " + position);
 	//Check lowest leader
 	var i = 0;
@@ -2786,11 +2786,12 @@ function computeLeaderboard() {
 
 var contractAbi = web3.eth.contract(abiDefinition);
 var myContract = contractAbi.at(contractAddress);
-var hatchEvent = myContract.Hatched();
+
 var e_hatched = { address: "", hatchery: 0 };
-var f_hatched = 0;
-var g_hatched = { address: "", hatchery: 0 };
+
 var eventtestdoc = document.getElementById("eventtest");
+
+var hatchEvent = myContract.Hatched();
 
 hatchEvent.watch(function(error, result){
     if(!error){
@@ -2804,8 +2805,25 @@ hatchEvent.watch(function(error, result){
 			eventtestdoc.innerHTML = result.args.player + " hatched " + result.args.eggs + " eggs into " + result.args.snails + " snails, and has " + result.args.snails + " snails.";
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = result.args.hatchery; //seems to return an array/object
-			f_hatched = result.args.hatchery;
-			g_hatched.hatchery = parseFloat(result.args.hatchery);
+			computeLeaderboard();
+		}
+	}
+});
+
+var usedredEvent = myContract.UsedRed();
+
+usedredEvent.watch(function(error, result){
+    if(!error){
+		console.log(result);
+		if(checkHash(storetxhash, result.transactionHash) != 0) {
+			/*date24();
+			var _ethspent = result.args.ethspent;
+			_ethspent = formatEthValue2(web3.fromWei(_ethspent,'ether'));
+			eventdoc.innerHTML += "<br>[" + datetext + "] " + result.args.player + " hatched " + result.args.snail + " snails for " + _ethspent + " ETH." ;
+			logboxscroll.scrollTop = logboxscroll.scrollHeight;*/
+			eventtestdoc.innerHTML = result.args.player + " hatched " + result.args.eggs + " eggs into " + result.args.snails + " snails, and has " + result.args.snails + " snails.";
+			e_hatched.address = result.args.player;
+			e_hatched.hatchery = result.args.hatchery; //seems to return an array/object
 			computeLeaderboard();
 		}
 	}
