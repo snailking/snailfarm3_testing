@@ -397,7 +397,7 @@ function updateTadpoleReq(){
 	var tadpolereqdoc = document.getElementById('tadpolereq');
 	tadpoleReq(function(req) {
 		a_tadpoleReq = formatEthValue2(web3.fromWei(req, 'ether'));
-		a_tadpoleReq = parseFloat(a_tadpoleReq) + parseFloat(0.0001);
+		a_tadpoleReq = (parseFloat(a_tadpoleReq) + parseFloat(0.0001)).toFixed(6);
 		tadpolereqdoc.textContent = a_tadpoleReq;
 	});
 }
@@ -432,7 +432,7 @@ function updateHarvestCost(){
 	var harvestcostdoc = document.getElementById('harvestcost');
 	ComputeHarvest(function(req) {
 		a_harvestCost = formatEthValue2(web3.fromWei(req,'ether'));
-		a_harvestCost = parseFloat(a_harvestCost) + parseFloat(0.0001);
+		a_harvestCost = (parseFloat(a_harvestCost) + parseFloat(0.0001)).toFixed(6);
 		harvestcostdoc.textContent = a_harvestCost;
 	});
 }
