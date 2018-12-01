@@ -152,16 +152,16 @@ var l_account;
 //Leaderboard Array
 
 var d_leaderboard = [
-	{ address: "0xAA", hatchery: 0, rank: 1 },
-	{ address: "0xBB", hatchery: 0, rank: 2 },
-	{ address: "0xCC", hatchery: 0, rank: 3 },
-	{ address: "0xDD", hatchery: 0, rank: 4 },
-	{ address: "0xEE", hatchery: 0, rank: 5 },
-	{ address: "0xFF", hatchery: 0, rank: 6 },
-	{ address: "0xGG", hatchery: 0, rank: 7 },
-	{ address: "0xHH", hatchery: 0, rank: 8 },
-	{ address: "0xII", hatchery: 0, rank: 9 },
-	{ address: "0xJJ", hatchery: 0, rank: 10 }
+	{ address: "0xAA", hatchery: 0, rank: 1, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xBB", hatchery: 0, rank: 2, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xCC", hatchery: 0, rank: 3, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xDD", hatchery: 0, rank: 4, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xEE", hatchery: 0, rank: 5, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xFF", hatchery: 0, rank: 6, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xGG", hatchery: 0, rank: 7, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xHH", hatchery: 0, rank: 8, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xII", hatchery: 0, rank: 9, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0xJJ", hatchery: 0, rank: 10, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false }
 ];	
 
 /* GLOBAL LOOP */
@@ -331,12 +331,18 @@ function showLeaderboard() {
 	for(i = 1; i < 11; i++) {
 		for(j = 0; j < 10; j++) {
 			if(d_leaderboard[j].rank == i) {
-				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " " + d_leaderboard[j].address + " " + d_leaderboard[j].hatchery + "<br>";
+				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " " + d_leaderboard[j].address + " " + d_leaderboard[j].hatchery + " ";
 				console.log("updated rank " + i + " with index " + j);
+				if(d_leaderboard[j].boost1 == true) {
+					leaderboarddoc.innerHTML += "SpiderQueen";
+				}
+				leaderboarddoc.innerHTML += "<br>";
 			}
 		}
 	}
 }
+
+
 /*
 function showLeaderboard() {
 	var leaderboarddoc = document.getElementById('leaderboard');
@@ -506,9 +512,9 @@ function updateEthAccount(){
 function updateLeader(){
 	var leaderdoc = document.getElementById('leader');
 	currentLeader(function(result) {
-		l_account = result;
+		l_account = "0x" + resultsubstring(26,66);
 		if(l_account != m_account) {
-			leaderdoc.textContent = "0x" + l_account.substring(26, 66) + " is ";
+			leaderdoc.textContent = " is ";
 		}
 		else {
 			leaderdoc.textContent = "YOU are ";
@@ -2756,6 +2762,7 @@ function computeLeaderboard() {
 	console.log("lowest: " + lowest);
 	var position = 0; 
 	console.log("position: " + position);
+	
 	//Check lowest leader
 	var i = 0;
 	for(i = 0; i < 10; i++) {
@@ -2767,6 +2774,7 @@ function computeLeaderboard() {
 			console.log("position: " + position);
 		}
 	}
+	
 	//Check if hatcher is already on leaderboard, then check if hatcher can replace lowest
 	var notLeader = true;
 	for(k = 0; k < 10; k++) {
@@ -2778,13 +2786,16 @@ function computeLeaderboard() {
 		}
 	}
 
+	var newEntry = false;
 	if(notLeader == true && e_hatched.hatchery > lowest) {
 		console.log("e_hatched is above lowest");
 		d_leaderboard[position].address = e_hatched.address;
 		d_leaderboard[position].hatchery = e_hatched.hatchery;
 		console.log("d_leaderboard[" + position + "].hatchery = " + d_leaderboard[position].hatchery);
 		console.log("d_leaderboard[" + position + "].rank = " + d_leaderboard[position].rank);
+		newEntry = true;
 	}
+	
 	//Go through remaining positions to see hatcher rank and adjust other ranks
 	var j = 0;
 	var previousRank = d_leaderboard[position].rank
@@ -2801,10 +2812,29 @@ function computeLeaderboard() {
 			}
 		}
 	}
+	
+	//Update boosts if needed
+	if(newEntry == true) {
+		if(d_leaderboard[position].address == c_spiderowner) {
+			d_leaderboard[position].boost1 = true;
+		}
+		if(d_leaderboard[position].address == c_squirrelowner) {
+			d_leaderboard[position].boost2 = true;
+		}
+		if(d_leaderboard[position].address == c_tadpoleowner) {
+			d_leaderboard[position].boost3 = true;
+		}
+	}
+	
 	//Update leaderboard
 	console.log("time to update leaderboard");
 	showLeaderboard();
 }
+
+var c_spiderowner = "";
+var c_squirrelowner = "";
+var c_tadpoleowner = "";
+
 
 /* EVENTS */
 
