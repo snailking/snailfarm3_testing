@@ -2723,6 +2723,7 @@ var hatchEvent = myContract.Hatched();
 var e_hatched = { address: "", hatchery: 0 };
 var f_hatched = 0;
 var g_hatched = { address: "", hatchery: 0 };
+var eventtestdoc = document.getElementById("eventtest");
 
 hatchEvent.watch(function(error, result){
     if(!error){
@@ -2733,6 +2734,7 @@ hatchEvent.watch(function(error, result){
 			_ethspent = formatEthValue2(web3.fromWei(_ethspent,'ether'));
 			eventdoc.innerHTML += "<br>[" + datetext + "] " + result.args.player + " hatched " + result.args.snail + " snails for " + _ethspent + " ETH." ;
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;*/
+			eventtestdoc.innerHTML = result.args.player + " " + result.args.hatchery + " " + result.args.snails;
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = result.args.hatchery; //seems to return an array/object
 			f_hatched = result.args.hatchery;
