@@ -2759,7 +2759,6 @@ function computeLeaderboard() {
 				console.log("e_hatched is above lowest");
 		d_leaderboard[position].address = e_hatched.address;
 		d_leaderboard[position].hatchery = e_hatched.hatchery;
-		d_leaderboard[position].rank = 10;
 				console.log("d_leaderboard[" + position + "].hatchery = " + d_leaderboard[position].hatchery);
 				console.log("d_leaderboard[" + position + "].rank = " + d_leaderboard[position].rank);
 	}
