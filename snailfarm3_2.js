@@ -2772,9 +2772,9 @@ function computeLeaderboard() {
 						console.log("d_l rank is under d_l[" + j + "]rank");
 				d_leaderboard[position].rank = d_leaderboard[j].rank;
 						console.log("new d_l rank: " + d_leaderboard[position].rank);
+				d_leaderboard[j].rank += 1;
+						console.log("new d_l[" + j + "]rank: " + d_leaderboard[j].rank);
 			}
-			d_leaderboard[j].rank += 1;
-				console.log("new d_l[" + j + "]rank: " + d_leaderboard[j].rank);
 		}
 	}
 	//Update leaderboard
