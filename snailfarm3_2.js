@@ -2736,7 +2736,7 @@ function checkHash(txarray, txhash) {
 
 function computeLeaderboard() {
 	var lowest = d_leaderboard[9].hatchery;
-	var position = 0; 
+	var position = 9; 
 	//Check lowest leader
 	for(i = 0; i < 10; i++) {
 		if(d_leaderboard[i].hatchery < lowest) {
@@ -2755,8 +2755,8 @@ function computeLeaderboard() {
 		if(d_leaderboard[position].hatchery > d_leaderboard[i].hatchery) {
 			if(d_leaderboard[position].rank < d_leaderboard[i].rank) {
 				d_leaderboard[position].rank = d_leaderboard[i].rank;
-				d_leaderboard[i].rank -= 1;
 			}
+			d_leaderboard[i].rank -= 1;
 		}
 	}
 	//Update leaderboard
