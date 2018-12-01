@@ -2753,40 +2753,47 @@ function checkHash(txarray, txhash) {
 
 function computeLeaderboard() {
 	var lowest = d_leaderboard[0].hatchery;
-			console.log("lowest: " + lowest);
+	console.log("lowest: " + lowest);
 	var position = 0; 
-			console.log("position: " + position);
+	console.log("position: " + position);
 	//Check lowest leader
 	var i = 0;
 	for(i = 0; i < 10; i++) {
-				console.log("loop i " + i);
+		console.log("loop i " + i);
 		if(d_leaderboard[i].hatchery < lowest) {
 			lowest = d_leaderboard[i].hatchery;
-					console.log("lowest: " + lowest);
+			console.log("lowest: " + lowest);
 			position = i;
-					console.log("position: " + position);
+			console.log("position: " + position);
 		}
 	}
-	//Check if hatcher can replace the lowest
-	if(e_hatched.hatchery > lowest) {
-				console.log("e_hatched is above lowest");
-		d_leaderboard[position].address = e_hatched.address;
-		d_leaderboard[position].hatchery = e_hatched.hatchery;
-				console.log("d_leaderboard[" + position + "].hatchery = " + d_leaderboard[position].hatchery);
-				console.log("d_leaderboard[" + position + "].rank = " + d_leaderboard[position].rank);
+	//Check if hatcher is already on leaderboard, then check if hatcher can replace lowest
+	for(k = 0; k < 10; k++) {
+		if(e_hatched.address == d_leaderboard[k].address) {
+			d_leaderboard[k].address = e_hatched.address;
+			d_leaderboard[k].hatchery = e_hatched.hatchery;
+			console.log("e_hatched already on leaderboard, replace previous entry");
+		} else if(e_hatched.hatchery > lowest) {
+			console.log("e_hatched is above lowest");
+			d_leaderboard[position].address = e_hatched.address;
+			d_leaderboard[position].hatchery = e_hatched.hatchery;
+			console.log("d_leaderboard[" + position + "].hatchery = " + d_leaderboard[position].hatchery);
+			console.log("d_leaderboard[" + position + "].rank = " + d_leaderboard[position].rank);
+		}
 	}
 	//Go through remaining positions to see hatcher rank and adjust other ranks
 	var j = 0;
 	for(j = 0; j < 10; j++) {
 				console.log("loop j " + j);
 		if(d_leaderboard[position].hatchery > d_leaderboard[j].hatchery) {
-					console.log("d_leaderboard hatchery is greater than d_leaderboard[" + j + "]hatchery");
+			console.log("d_leaderboard hatchery is greater than d_leaderboard[" + j + "]hatchery");
+			d_leaderboard[j].rank += 1;
+			console.log("new d_l[" + j + "]rank: " + d_leaderboard[j].rank);		
 			if(d_leaderboard[position].rank > d_leaderboard[j].rank) {
-						console.log("d_l rank is under d_l[" + j + "]rank");
+				console.log("d_l rank is under d_l[" + j + "]rank");
 				d_leaderboard[position].rank = d_leaderboard[j].rank;
-						console.log("new d_l rank: " + d_leaderboard[position].rank);
-				d_leaderboard[j].rank += 1;
-						console.log("new d_l[" + j + "]rank: " + d_leaderboard[j].rank);
+				console.log("new d_l rank: " + d_leaderboard[position].rank);
+
 			}
 		}
 	}
