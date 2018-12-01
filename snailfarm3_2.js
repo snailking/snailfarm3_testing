@@ -2734,9 +2734,11 @@ function checkHash(txarray, txhash) {
 		
 //Compute Leaderboard
 
-function computeLeaderboard() {
 	var lowest = d_leaderboard[9].hatchery;
 	var position = 9; 
+
+function computeLeaderboard() {
+
 	//Check lowest leader
 	for(i = 0; i < 10; i++) {
 		if(d_leaderboard[i].hatchery < lowest) {
