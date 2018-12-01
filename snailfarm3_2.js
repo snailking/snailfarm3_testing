@@ -2768,37 +2768,42 @@ function computeLeaderboard() {
 		}
 	}
 	//Check if hatcher is already on leaderboard, then check if hatcher can replace lowest
+	var notLeader = false;
 	for(k = 0; k < 10; k++) {
 		if(e_hatched.address == d_leaderboard[k].address) {
 			d_leaderboard[k].address = e_hatched.address;
 			d_leaderboard[k].hatchery = e_hatched.hatchery;
 			console.log("e_hatched already on leaderboard, replace previous entry");
-		} else if(e_hatched.hatchery > lowest) {
-			console.log("e_hatched is above lowest");
-			d_leaderboard[position].address = e_hatched.address;
-			d_leaderboard[position].hatchery = e_hatched.hatchery;
-			console.log("d_leaderboard[" + position + "].hatchery = " + d_leaderboard[position].hatchery);
-			console.log("d_leaderboard[" + position + "].rank = " + d_leaderboard[position].rank);
+		} else {
+			notLeader = true;
 		}
+	}
+
+	if(notLeader == true && e_hatched.hatchery > lowest) {
+		console.log("e_hatched is above lowest");
+		d_leaderboard[position].address = e_hatched.address;
+		d_leaderboard[position].hatchery = e_hatched.hatchery;
+		console.log("d_leaderboard[" + position + "].hatchery = " + d_leaderboard[position].hatchery);
+		console.log("d_leaderboard[" + position + "].rank = " + d_leaderboard[position].rank);
 	}
 	//Go through remaining positions to see hatcher rank and adjust other ranks
 	var j = 0;
+	var previousRank = d_leaderboard[position].rank
 	for(j = 0; j < 10; j++) {
-				console.log("loop j " + j);
+		console.log("loop j " + j);
 		if(d_leaderboard[position].hatchery > d_leaderboard[j].hatchery) {
-			console.log("d_leaderboard hatchery is greater than d_leaderboard[" + j + "]hatchery");
-			d_leaderboard[j].rank += 1;
-			console.log("new d_l[" + j + "]rank: " + d_leaderboard[j].rank);		
-			if(d_leaderboard[position].rank > d_leaderboard[j].rank) {
+			console.log("d_leaderboard hatchery is greater than d_leaderboard[" + j + "]hatchery");		
+			if(previousRank > d_leaderboard[j].rank) {
 				console.log("d_l rank is under d_l[" + j + "]rank");
 				d_leaderboard[position].rank = d_leaderboard[j].rank;
 				console.log("new d_l rank: " + d_leaderboard[position].rank);
-
+				d_leaderboard[j].rank += 1;
+				console.log("new d_l[" + j + "]rank: " + d_leaderboard[j].rank);
 			}
 		}
 	}
 	//Update leaderboard
-			console.log("time to update leaderboard");
+	console.log("time to update leaderboard");
 	showLeaderboard();
 }
 
