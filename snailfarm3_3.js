@@ -172,19 +172,26 @@ function main(){
     console.log('Main loop started.');
     controlLoop();
 	controlLoopFast();
+	controlLoopSlow();
 	showLeaderboard();
 }
 
-//Main loop
+//Main loop on 4 seconds
 function controlLoop(){
     refreshData();
     setTimeout(controlLoop,4000);
 }
 
-//Secondary loop for actions that need faster refresh
+//Secondary loop on 200ms for actions that need faster refresh
 function controlLoopFast(){
 	refreshDataFast();
 	setTimeout(controlLoopFast,200);
+}
+
+//Another loop on 1 minute for a slow, heavy leaderboard update
+function controlLoopSlow(){
+	refreshDataSlow();
+	setTimeout(controlLoopSlow,60000);
 }
 
 /* STATE UPDATES */
@@ -283,6 +290,10 @@ function refreshDataFast(){
 	*/
 }
 
+//Refreshes leaderboard
+function refreshDataSlow(){
+	slowupdateLeaderboard();
+
 var gameactivedoc = document.getElementById('gameactive');
 
 //Current state of the game
@@ -358,7 +369,46 @@ function showLeaderboard() {
 	}
 }
 
+//Update for Leaderboard checking every address
+function slowupdateLeaderboard() {
+	for(i = 0; i < 10; i++) {
+		updateLeaderStat(d_leaderboard[i].address);
+	}
+	showLeaderboard();
+}
 
+//Boost and snail update for leaders
+function updateLeaderStat(lead.address) {
+		if(lead.address == c_spiderowner) {
+			lead.boost1 = true;
+		}
+		if(lead.address == c_squirrelowner) {
+			lead.boost2 = true;
+		}
+		if(lead.address == c_tadpoleowner) {
+			lead.boost3 = true;
+		}
+		GetLettuce(lead.address, function(result) {
+			if(result > 0) {
+				lead.boost4 = true;
+			} 
+		});
+		GetCarrot(lead.address, function(result) {
+			if(result > 0) {
+				lead.boost5 = true;
+			} 
+		});
+		GetSlug(lead.address, function(result) {
+			if(result > 0) {
+				lead.boost6 = true;
+			} 
+		});
+		GetSnail(lead.address, function(result) {
+			lead.hatchery = result;
+		});
+}
+
+	
 /*
 function showLeaderboard() {
 	var leaderboarddoc = document.getElementById('leaderboard');
@@ -2813,30 +2863,7 @@ function computeLeaderboard() {
 	
 	//Update boosts if needed
 	if(newEntry == true) {
-		if(d_leaderboard[position].address == c_spiderowner) {
-			d_leaderboard[position].boost1 = true;
-		}
-		if(d_leaderboard[position].address == c_squirrelowner) {
-			d_leaderboard[position].boost2 = true;
-		}
-		if(d_leaderboard[position].address == c_tadpoleowner) {
-			d_leaderboard[position].boost3 = true;
-		}
-		GetLettuce(d_leaderboard[position].address, function(result) {
-			if(result > 0) {
-				d_leaderboard[position].boost4 = true;
-			} 
-		});
-		GetCarrot(d_leaderboard[position].address, function(result) {
-			if(result > 0) {
-				d_leaderboard[position].boost5 = true;
-			} 
-		});
-		GetSlug(d_leaderboard[position].address, function(result) {
-			if(result > 0) {
-				d_leaderboard[position].boost6 = true;
-			} 
-		});
+		updateLeaderBoost(d_leaderboard[position].address);
 	}
 	
 	//Update leaderboard
