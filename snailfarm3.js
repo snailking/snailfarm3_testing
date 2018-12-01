@@ -147,16 +147,16 @@ var m_account = "waiting for web3";
 //Leaderboard Array
 
 var d_leaderboard = [
-	{ address: "", hatchery: 0, rank: 1 },
-	{ address: "", hatchery: 0, rank: 2 },
-	{ address: "", hatchery: 0, rank: 3 },
-	{ address: "", hatchery: 0, rank: 4 },
-	{ address: "", hatchery: 0, rank: 5 },
-	{ address: "", hatchery: 0, rank: 6 },
-	{ address: "", hatchery: 0, rank: 7 },
-	{ address: "", hatchery: 0, rank: 8 },
-	{ address: "", hatchery: 0, rank: 9 },
-	{ address: "", hatchery: 0, rank: 10 }
+	{ address: "0xAA", hatchery: 0, rank: 1 },
+	{ address: "0xBB", hatchery: 0, rank: 2 },
+	{ address: "0xCC", hatchery: 0, rank: 3 },
+	{ address: "0xDD", hatchery: 0, rank: 4 },
+	{ address: "0xEE", hatchery: 0, rank: 5 },
+	{ address: "0xFF", hatchery: 0, rank: 6 },
+	{ address: "0xGG", hatchery: 0, rank: 7 },
+	{ address: "0xHH", hatchery: 0, rank: 8 },
+	{ address: "0xII", hatchery: 0, rank: 9 },
+	{ address: "0xJJ", hatchery: 0, rank: 10 }
 ];	
 
 /* GLOBAL LOOP */
@@ -320,7 +320,7 @@ function showLeaderboard() {
 	var leaderboarddoc = document.getElementById('leaderboard');
 	leaderboarddoc = "";
 	for(i = 0; i < 10; i++) {
-		leaderboarddoc.innerHTML += " "; + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " + d_leaderboard[i].snails + "<br>";
+		leaderboarddoc.innerHTML += " " + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " + d_leaderboard[i].snails + "<br>";
 	}
 }
 	
@@ -2734,7 +2734,7 @@ hatchEvent.watch(function(error, result){
 			_ethspent = formatEthValue2(web3.fromWei(_ethspent,'ether'));
 			eventdoc.innerHTML += "<br>[" + datetext + "] " + result.args.player + " hatched " + result.args.snail + " snails for " + _ethspent + " ETH." ;
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;*/
-			eventtestdoc.innerHTML = result.args.player + " " + result.args.hatchery + " " + result.args.snails;
+			eventtestdoc.innerHTML = result.args.player + " hatched " + result.args.hatchery + " and has " + result.args.snails;
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = result.args.hatchery; //seems to return an array/object
 			f_hatched = result.args.hatchery;
