@@ -328,12 +328,25 @@ function fastupdateDowntime(){
 function showLeaderboard() {
 	var leaderboarddoc = document.getElementById('leaderboard');
 	leaderboarddoc.innerHTML = "";
+	for(i = 1; i < 11; i++) {
+		for(j = 0; j < 10; j++) {
+			if(d_leaderboard[j].rank = i) {
+				leaderboarddoc.innerHTML += "#" + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " + d_leaderboard[i].hatchery + "<br>";
+				console.log("updated rank " + i + " with index " + j);
+			}
+		}
+	}
+}
+/*
+function showLeaderboard() {
+	var leaderboarddoc = document.getElementById('leaderboard');
+	leaderboarddoc.innerHTML = "";
 	for(i = 0; i < 10; i++) {
 		leaderboarddoc.innerHTML += "#" + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " + d_leaderboard[i].hatchery + "<br>";
 		console.log("updated index " + i);
 	}
 }
-	
+*/	
 
 //Check Snailmaster
 function checkSnailmaster(){
