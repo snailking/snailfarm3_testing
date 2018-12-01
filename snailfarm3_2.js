@@ -171,6 +171,7 @@ function main(){
     console.log('Main loop started.');
     controlLoop();
 	controlLoopFast();
+	showLeaderboard();
 }
 
 //Main loop
@@ -2749,7 +2750,7 @@ function computeLeaderboard() {
 		if(d_leaderboard[i].hatchery < lowest) {
 			lowest = d_leaderboard[i].hatchery;
 					console.log("lowest: " + lowest);
-			position = d_leaderboard[i];
+			position = i;
 					console.log("position: " + position);
 		}
 	}
