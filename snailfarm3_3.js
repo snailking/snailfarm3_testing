@@ -372,13 +372,13 @@ function showLeaderboard() {
 //Update for Leaderboard checking every address
 function slowupdateLeaderboard() {
 	for(i = 0; i < 10; i++) {
-		updateLeaderStat(d_leaderboard[i].address);
+		updateLeaderStat(d_leaderboard[i]);
 	}
 	showLeaderboard();
 }
 
 //Boost and snail update for leaders
-function updateLeaderStat(lead.address) {
+function updateLeaderStat(lead) {
 		if(lead.address == c_spiderowner) {
 			lead.boost1 = true;
 		}
