@@ -278,7 +278,7 @@ var gameactivedoc = document.getElementById('gameactive');
 //Current state of the game
 function updateGameActive(){
 	gameActive(function(result) {
-		if(result) {
+		if(result == true) {
 			a_gameActive = true;
 			gameactive.innerHTML = "The game is active!";
 		} else {
@@ -2738,7 +2738,7 @@ hatchEvent.watch(function(error, result){
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = result.args.hatchery; //seems to return an array/object
 			f_hatched = result.args.hatchery;
-			g_hatched.hatchery = result.args.snails;
+			g_hatched.hatchery = parseFloat(result.args.hatchery);
 			computeLeaderboard();
 		}
 	}
