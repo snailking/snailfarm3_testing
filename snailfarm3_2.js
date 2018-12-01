@@ -330,8 +330,8 @@ function showLeaderboard() {
 	leaderboarddoc.innerHTML = "";
 	for(i = 1; i < 11; i++) {
 		for(j = 0; j < 10; j++) {
-			if(d_leaderboard[j].rank = i) {
-				leaderboarddoc.innerHTML += "#" + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " + d_leaderboard[i].hatchery + "<br>";
+			if(d_leaderboard[j].rank == i) {
+				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " " + d_leaderboard[j].address + " " + d_leaderboard[j].hatchery + "<br>";
 				console.log("updated rank " + i + " with index " + j);
 			}
 		}
