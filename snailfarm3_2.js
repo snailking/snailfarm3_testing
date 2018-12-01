@@ -129,6 +129,8 @@ var a_eggPot = 0;
 var a_snailPot = 0; 
 var a_thronePot = 0; 
 
+var a_leaderSnail = 0;
+
 var a_harvestCost = 0;
 var a_tadpoleReq = 0; 
 
@@ -144,6 +146,7 @@ var f_tree = 0;
 var f_redhatch = 0;
 
 var m_account = "waiting for web3";
+var l_account = "waiting for web3";
 
 //Leaderboard Array
 
