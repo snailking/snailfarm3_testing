@@ -491,7 +491,12 @@ function updateLeader(){
 	var leaderdoc = document.getElementById('leader');
 	currentLeader(function(result) {
 		l_account = result;
-		leaderdoc.textContent = "0x" + result.substring(26, 66);		
+		if(l_account != m_account) {
+			leaderdoc.textContent = "0x" + l_account.substring(26, 66) + " is ";
+		}
+		else {
+			leaderdoc.textContent = "YOU are ";
+		}
 	});
 }
 
