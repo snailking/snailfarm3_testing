@@ -327,7 +327,7 @@ function showLeaderboard() {
 	var leaderboarddoc = document.getElementById('leaderboard');
 	leaderboarddoc.innerHTML = "";
 	for(i = 0; i < 10; i++) {
-		leaderboarddoc.innerHTML += "h " + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " + d_leaderboard[i].snails + "<br>";
+		leaderboarddoc.innerHTML += "#" + d_leaderboard[i].rank + " " + d_leaderboard[i].address + " " + d_leaderboard[i].hatchery + "<br>";
 	}
 }
 	
