@@ -2768,14 +2768,13 @@ function computeLeaderboard() {
 		}
 	}
 	//Check if hatcher is already on leaderboard, then check if hatcher can replace lowest
-	var notLeader = false;
+	var notLeader = true;
 	for(k = 0; k < 10; k++) {
 		if(e_hatched.address == d_leaderboard[k].address) {
 			d_leaderboard[k].address = e_hatched.address;
 			d_leaderboard[k].hatchery = e_hatched.hatchery;
 			console.log("e_hatched already on leaderboard, replace previous entry");
-		} else {
-			notLeader = true;
+			notLeader = false;
 		}
 	}
 
