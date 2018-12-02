@@ -373,12 +373,40 @@ function showLeaderboard() {
 //Update for Leaderboard checking every address
 function slowupdateLeaderboard() {
 	for(i = 0; i < 10; i++) {
-		updateLeaderStat(d_leaderboard[i]);
+		//updateLeaderStat(d_leaderboard[i]);
+		if(d_leaderboard[i].address == c_spiderowner) {
+			d_leaderboard[i].boost1 = true;
+		}
+		if(d_leaderboard[i].address == c_squirrelowner) {
+			d_leaderboard[i].boost2 = true;
+		}
+		if(d_leaderboard[i].address == c_tadpoleowner) {
+			d_leaderboard[i].boost3 = true;
+		}
+		GetLettuce(d_leaderboard[i].address, function(result) {
+			if(result > 0) {
+				d_leaderboard[i].boost4 = true;
+			} 
+		});
+		GetCarrot(d_leaderboard[i].address, function(result) {
+			if(result > 0) {
+				d_leaderboard[i].boost5 = true;
+			} 
+		});
+		GetSlug(d_leaderboard[i].address, function(result) {
+			if(result > 0) {
+				d_leaderboard[i].boost6 = true;
+			} 
+		});
+		GetSnail(d_leaderboard[i].address, function(result) {
+			d_leaderboard[i].hatchery = result;
+		});
 	}
 	showLeaderboard();
 }
 
 //Boost and snail update for leaders
+/*
 function updateLeaderStat(lead) {
 		if(lead.address == c_spiderowner) {
 			lead.boost1 = true;
@@ -407,7 +435,7 @@ function updateLeaderStat(lead) {
 		GetSnail(lead.address, function(result) {
 			lead.hatchery = result;
 		});
-}
+}*/
 
 	
 /*
