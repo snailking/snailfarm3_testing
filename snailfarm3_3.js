@@ -2892,7 +2892,7 @@ function computeLeaderboard() {
 	
 	//Update boosts if needed
 	if(newEntry == true) {
-		updateLeaderBoost(d_leaderboard[position].address);
+		slowupdateLeaderboard(d_leaderboard[position].address);
 	}
 	
 	//Update leaderboard
