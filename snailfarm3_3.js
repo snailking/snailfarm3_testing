@@ -80,6 +80,11 @@ function formatEthValue(ethstr){
 function formatEthValue2(ethstr){
 	return parseFloat(parseFloat(ethstr).toFixed(6));
 }
+
+//Truncates ETH address and changes it into an etherscan link
+function formatEthAdr(adr){
+	return adr.substring(0, 10);
+}
 /*
 //Referrals
 function getQueryVariable(variable){
@@ -332,7 +337,7 @@ function updatePlayerStatus(){
 		} else if(a_playerRound != a_round){
 			playerstatusdoc.innerHTML = '<button onclick="webJoinRound()">Join New Round!</button><br>(will give you red eggs for your previous performance)';
 		} else {
-			playerstatusdoc.innerHTML = '<img height="32" src="snail.png">';
+			playerstatusdoc.innerHTML = '<img height="64" src="snail.png">';
 		}
 	} else {
 		playerstatusdoc.innerHTML = '<button onclick="webBeginRound()">Begin New Round!</button><br>(will only work if countdown timer is at 0)';
@@ -507,7 +512,7 @@ function checkSpiderOwner(){
 	var spiderownerdoc = document.getElementById('spiderowner');
 	currentSpiderOwner(function(req) {
 		c_spiderowner = "0x" + req.substring(26, 66);
-		spiderownerdoc.textContent = c_spiderowner;
+		spiderownerdoc.textContent = formatEthAdr(c_spiderowner);
 	});
 }
 
@@ -524,7 +529,7 @@ function checkSquirrelOwner(){
 	var squirrelownerdoc = document.getElementById('squirrelowner');
 	currentSquirrelOwner(function(req) {
 		c_squirrelowner = "0x" + req.substring(26, 66);
-		squirrelownerdoc.textContent = c_squirrelowner;
+		squirrelownerdoc.textContent = formatEthAdr(c_squirrelowner);
 	});
 }
 
@@ -541,7 +546,7 @@ function checkTadpoleOwner(){
 	var tadpoleownerdoc = document.getElementById('tadpoleowner');
 	currentTadpoleOwner(function(req) {
 		c_tadpoleowner = "0x" + req.substring(26, 66);
-		tadpoleownerdoc.textContent = c_tadpoleowner;
+		tadpoleownerdoc.textContent = formatEthAdr(c_tadpoleowner);
 	});
 }
 
@@ -603,9 +608,13 @@ function checkOwnsLettuce(){
 	var haslettucedoc = document.getElementById('haslettuce');
 	GetLettuce(m_account, function(req) {
 		if(req > 0) {
-			haslettuce.innerHTML = " Lettuce,";
+			haslettuce.innerHTML = "You already own a Lettuce.";
+			document.getElementById('lettuce_yes').style.display = 'inline';
+			document.getElementById('lettuce_no').style.display = 'none';
 		} else {
-			haslettuce.innerHTML = "";
+			haslettuce.innerHTML = "Lettuces last 1 Round.";
+			document.getElementById('lettuce_no').style.display = 'inline';
+			document.getElementById('lettuce_yes').style.display = 'none';
 		}
 	});
 }
@@ -615,9 +624,13 @@ function checkOwnsCarrot(){
 	var hascarrotdoc = document.getElementById('hascarrot');
 	GetCarrot(m_account, function(req) {
 		if(req > 0) {
-			hascarrot.innerHTML = " Carrot,";
+			hascarrot.innerHTML = "You already own a Carrot.";
+			document.getElementById('carrot_yes').style.display = 'inline';
+			document.getElementById('carrot_no').style.display = 'none';
 		} else {
-			hascarrot.innerHTML = "";
+			hascarrot.innerHTML = "Carrots last 3 Rounds.";
+			document.getElementById('carrot_no').style.display = 'inline';
+			document.getElementById('carrot_yes').style.display = 'none';
 		}
 	});
 }
@@ -627,9 +640,13 @@ function checkOwnsSlug(){
 	var hasslugdoc = document.getElementById('hasslug');
 	GetSlug(m_account, function(req) {
 		if(req > 0) {
-			hasslug.innerHTML = " Slug.";
+			hasslug.innerHTML = "You already own a Slug.";
+			document.getElementById('slug_yes').style.display = 'inline';
+			document.getElementById('slug_no').style.display = 'none';
 		} else {
-			hasslug.innerHTML = "";
+			hasslug.innerHTML = "Slugs are permanent.";
+			document.getElementById('slug_no').style.display = 'inline';
+			document.getElementById('slug_yes').style.display = 'none';
 		}
 	});
 }
