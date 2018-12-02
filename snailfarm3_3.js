@@ -410,7 +410,10 @@ function slowupdateLeaderboard() {
 		GetSlug(lead.address, function(result) {
 			if(result > 0) {
 				lead.boost6 = true;
-			} 
+			}
+		if(lead.boost4 == true) { d_leaderboard[i].boost4 = true; }
+		if(lead.boost5 == true) { d_leaderboard[i].boost5 = true; }
+		if(lead.boost6 == true) { d_leaderboard[i].boost6 = true; }
 		});
 		/*
 		GetSnail(d_leaderboard[i].address, function(result) {
