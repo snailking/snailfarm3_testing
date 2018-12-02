@@ -387,17 +387,21 @@ function slowupdateLeaderboard() {
 		if(lead == c_spiderowner) {
 			d_leaderboard[i].boost1 = true;
 		}
+		console.log("checked spiderowner for " + i);
 		if(lead == c_squirrelowner) {
 			d_leaderboard[i].boost2 = true;
 		}
+		console.log("checked squirrelowner for " + i);
 		if(lead == c_tadpoleowner) {
 			d_leaderboard[i].boost3 = true;
 		}
+		console.log("checked tadpoleowner for " + i);
 		GetLettuce(lead, function(result) {
 			if(result > 0) {
 				d_leaderboard[i].boost4 = true;
 			} 
 		});
+		console.log("checked lettuce for " + i);
 		GetCarrot(lead, function(result) {
 			if(result > 0) {
 				d_leaderboard[i].boost5 = true;
