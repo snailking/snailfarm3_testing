@@ -411,10 +411,11 @@ function slowupdateLeaderboard() {
 			if(result > 0) {
 				lead.boost6 = true;
 			}
+		});
+		//For some mysterious reason, web3 functions hate d_leaderboard[i] here
 		if(lead.boost4 == true) { d_leaderboard[i].boost4 = true; }
 		if(lead.boost5 == true) { d_leaderboard[i].boost5 = true; }
 		if(lead.boost6 == true) { d_leaderboard[i].boost6 = true; }
-		});
 		/*
 		GetSnail(d_leaderboard[i].address, function(result) {
 			d_leaderboard[i].hatchery = result;
