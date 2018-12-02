@@ -383,34 +383,33 @@ function showLeaderboard() {
 function slowupdateLeaderboard() {
 	for(i = 0; i < 10; i++) {
 		//updateLeaderStat(d_leaderboard[i]);
-		var lead = d_leaderboard[i].address;
-		var hmm = d_leaderboard[i];
-		if(lead == c_spiderowner) {
+		var lead = d_leaderboard[i];
+		if(lead.address == c_spiderowner) {
 			d_leaderboard[i].boost1 = true;
 		}
 		console.log("checked spiderowner for " + i);
-		if(lead == c_squirrelowner) {
+		if(lead.address == c_squirrelowner) {
 			d_leaderboard[i].boost2 = true;
 		}
 		console.log("checked squirrelowner for " + i);
-		if(lead == c_tadpoleowner) {
+		if(lead.address == c_tadpoleowner) {
 			d_leaderboard[i].boost3 = true;
 		}
 		console.log("checked tadpoleowner for " + i);
-		GetLettuce(lead, function(result) {
+		GetLettuce(lead.address, function(result) {
 			if(result > 0) {
-				hmm.boost4 = true;
+				lead.boost4 = true;
 			} 
 		});
 		console.log("checked lettuce for " + i);
-		GetCarrot(lead, function(result) {
+		GetCarrot(lead.address, function(result) {
 			if(result > 0) {
-				hmm.boost5 = true;
+				lead.boost5 = true;
 			} 
 		});
-		GetSlug(lead, function(result) {
+		GetSlug(lead.address, function(result) {
 			if(result > 0) {
-				hmm.boost6 = true;
+				lead.boost6 = true;
 			} 
 		});
 		/*
