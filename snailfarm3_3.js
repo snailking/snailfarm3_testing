@@ -407,9 +407,10 @@ function slowupdateLeaderboard() {
 				d_leaderboard[i].boost6 = true;
 			} 
 		});
+		/*
 		GetSnail(d_leaderboard[i].address, function(result) {
 			d_leaderboard[i].hatchery = result;
-		});
+		});*/
 	}
 	showLeaderboard();
 }
