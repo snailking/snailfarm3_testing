@@ -2714,7 +2714,7 @@ hatchEvent.watch(function(error, result){
 			eventtestdoc.innerHTML = result.args.player + " hatched " + result.args.eggs + " eggs into " + result.args.snails + " snails, and has " + result.args.hatchery + " hatchery.";
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = parseInt(result.args.hatchery); //seems to return an array/object
-			console.log(e_hatched.hatchery);
+			console.log("e_hatch is " + e_hatched.hatchery);
 			computeLeaderboard();
 		}
 	}
