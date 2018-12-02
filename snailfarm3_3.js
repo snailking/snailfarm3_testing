@@ -384,6 +384,7 @@ function slowupdateLeaderboard() {
 	for(i = 0; i < 10; i++) {
 		//updateLeaderStat(d_leaderboard[i]);
 		var lead = d_leaderboard[i].address;
+		var hmm = d_leaderboard[i];
 		if(lead == c_spiderowner) {
 			d_leaderboard[i].boost1 = true;
 		}
@@ -398,18 +399,18 @@ function slowupdateLeaderboard() {
 		console.log("checked tadpoleowner for " + i);
 		GetLettuce(lead, function(result) {
 			if(result > 0) {
-				d_leaderboard[i].boost4 = true;
+				hmm.boost4 = true;
 			} 
 		});
 		console.log("checked lettuce for " + i);
 		GetCarrot(lead, function(result) {
 			if(result > 0) {
-				d_leaderboard[i].boost5 = true;
+				hmm.boost5 = true;
 			} 
 		});
 		GetSlug(lead, function(result) {
 			if(result > 0) {
-				d_leaderboard[i].boost6 = true;
+				hmm.boost6 = true;
 			} 
 		});
 		/*
