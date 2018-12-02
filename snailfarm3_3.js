@@ -173,7 +173,7 @@ function main(){
     controlLoop();
 	controlLoopFast();
 	controlLoopSlow();
-	showLeaderboard();
+	//showLeaderboard();
 }
 
 //Main loop on 4 seconds
@@ -402,7 +402,7 @@ function slowupdateLeaderboard() {
 			d_leaderboard[i].hatchery = result;
 		});
 	}
-	showLeaderboard();
+	//showLeaderboard(); //??
 }
 
 //Boost and snail update for leaders
@@ -2889,12 +2889,12 @@ function computeLeaderboard() {
 			}
 		}
 	}
-	
+	/*
 	//Update boosts if needed
 	if(newEntry == true) {
-		slowupdateLeaderboard(d_leaderboard[position].address);
+		slowupdateLeaderboard();
 	}
-	
+	*/
 	//Update leaderboard
 	console.log("time to update leaderboard");
 	showLeaderboard();
