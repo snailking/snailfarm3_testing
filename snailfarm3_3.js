@@ -293,6 +293,7 @@ function refreshDataFast(){
 //Refreshes leaderboard
 function refreshDataSlow(){
 	slowupdateLeaderboard();
+}
 
 var gameactivedoc = document.getElementById('gameactive');
 
