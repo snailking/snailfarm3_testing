@@ -2,3 +2,67 @@ p {
 	margin: 0px;
 	padding: 0px;
 }
+
+body {
+	background-image: url("forest_bg.jpg"), url("grass.png");
+	background-repeat: no-repeat, repeat;
+	background-position: center top;
+	
+	
+}
+
+
+.jumbotron {
+	background-color: #6c855d; /*#e8e6b6;*/
+	position: center;
+	margin-left: auto;
+	margin-right: auto;
+	border: 4px solid transparent;
+	border-image: url("brick.png") 30 round;
+	padding: 1rem 1rem;
+	margin-bottom: 0.5rem;
+	border-radius: 0.2rem;
+}
+
+@media (min-width: 576px) {
+  .jumbotron {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .jumbotron {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .jumbotron{
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .jumbotron{
+    max-width: 1140px;
+  }
+}
+
+.container-beige {
+	background-color: #e8e6b6;
+	color: black;
+	position: center;
+	border: 4px solid transparent;
+	border-image: url("brick.png") 30 round;
+	padding: 0.5rem 0.5rem;
+	margin: 1rem;
+}
+
+.black-shadow {
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,  
+	1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}

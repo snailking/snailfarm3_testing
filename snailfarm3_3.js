@@ -136,6 +136,7 @@ var a_leaderSnail = 0;
 var a_harvestCost = 0;
 var a_tadpoleReq = 0; 
 
+var a_playerRound = 0;
 var a_playerSnail = 0; 
 var a_playerEgg = 0; 
 var a_playerBoost = 0; 
@@ -218,6 +219,9 @@ function refreshData(){
 	
 	updateLeader();
 	updateLeaderSnail();
+	
+	updatePlayerStatus();
+	updatePlayerRound();
 	
 	updatePlayerSnail();
 	updatePlayerEgg();
@@ -319,6 +323,30 @@ function updateGameActive(){
 	});
 }
 
+//Player status (if game is active, get starting snails if needed, else join round if needed, else nothing)
+function updatePlayerStatus(){
+	var playerstatusdoc = document.getElementById('playerstatus')
+	if(a_gameActive == true){
+		if(a_playerRound == 0){
+			playerstatusdoc.innerHTML = '<button onclick="webGetStarter()">Get Starting Snails!</button><br>(will let you play every round, 0.004 ETH cost)';
+		} else if(a_playerRound != a_round){
+			playerstatusdoc.innerHTML = '<button onclick="webJoinRound()">Join New Round!</button><br>(will give you red eggs for your previous performance)';
+		} else {
+			playerstatusdoc.innerHTML = '<img height="32" src="snail.png">';
+		}
+	} else {
+		playerstatusdoc.innerHTML = '<button onclick="webBeginRound()">Begin New Round!</button><br>(will only work if countdown timer is at 0)';
+	}
+}
+		
+
+//Check player round
+function updatePlayerRound() {
+	GetMyRound( function(result) {
+		a_playerRound = result;	
+	});
+}
+		
 //Fast update for Downtime if round is unactive
 function fastupdateDowntime(){
 	if(a_gameActive != true) {
@@ -804,8 +832,8 @@ function updateFieldBuy2(){
 //Player input on TadpolePrince
 function updateFieldPrince2(){
 	f_prince = document.getElementById('fieldPrince').value;
-	var fieldprince2doc = document.getElementById('fieldPrince2');
-	fieldprince2doc.textContent = f_prince;
+	//var fieldprince2doc = document.getElementById('fieldPrince2');
+	//fieldprince2doc.textContent = f_prince;
 }
 
 //Player input on Acorn buy
