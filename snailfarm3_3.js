@@ -383,26 +383,27 @@ function showLeaderboard() {
 function slowupdateLeaderboard() {
 	for(i = 0; i < 10; i++) {
 		//updateLeaderStat(d_leaderboard[i]);
-		if(d_leaderboard[i].address == c_spiderowner) {
+		var lead = d_leaderboard[i].address;
+		if(lead == c_spiderowner) {
 			d_leaderboard[i].boost1 = true;
 		}
-		if(d_leaderboard[i].address == c_squirrelowner) {
+		if(lead == c_squirrelowner) {
 			d_leaderboard[i].boost2 = true;
 		}
-		if(d_leaderboard[i].address == c_tadpoleowner) {
+		if(lead == c_tadpoleowner) {
 			d_leaderboard[i].boost3 = true;
 		}
-		GetLettuce(d_leaderboard[i].address, function(result) {
+		GetLettuce(lead, function(result) {
 			if(result > 0) {
 				d_leaderboard[i].boost4 = true;
 			} 
 		});
-		GetCarrot(d_leaderboard[i].address, function(result) {
+		GetCarrot(lead, function(result) {
 			if(result > 0) {
 				d_leaderboard[i].boost5 = true;
 			} 
 		});
-		GetSlug(d_leaderboard[i].address, function(result) {
+		GetSlug(lead, function(result) {
 			if(result > 0) {
 				d_leaderboard[i].boost6 = true;
 			} 
@@ -411,6 +412,7 @@ function slowupdateLeaderboard() {
 		GetSnail(d_leaderboard[i].address, function(result) {
 			d_leaderboard[i].hatchery = result;
 		});*/
+		console.log("slowupdate iteration " + i);
 	}
 	showLeaderboard();
 }
