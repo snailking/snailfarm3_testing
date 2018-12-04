@@ -17,13 +17,16 @@
 		<div class="jumbotron" align="center">
 			<a name="top"><h1>SNAILFARM 3 TESTING</h1></a>
 			<h3>Your Favorite Ethereum Forest Adventure</h3>
-			<a href="#quickstart">QUICK START</a> <a href="#gameinfo">GAME INFO</a> <a href="https://ropsten.etherscan.io/address/0x8BECf05666D536c82aA72565dD9BaD4bC31F3bec" target="_blank">SMART CONTRACT</a>
+			<a href="#quickstart"><img height="48" src="img/question_circle.png"></a> 
+			<a href="https://ropsten.etherscan.io/address/0x8BECf05666D536c82aA72565dD9BaD4bC31F3bec" target="_blank"><img height="48" src="img/contract_circle.png"></a>
+			<a href="https://discord.gg/8h3Emyb" target="_blank"><img height="48" src="img/discord_circle.png"></a>
+			<a href="https://twitter.com/EtherSnailFarm" target="_blank"><img height="48" src="img/twitter_circle.png"></a>
 			<div class="row black-shadow">
 				<div class="col-sm" align="left">
-					<p>Contract balance: <span id="contractbalance">[undefined]</span></p>
+					<p>Contract balance: <span id="contractbalance">[undefined]</span> ETH</p>
 				</div>
 				<div class="col-sm" align="right">
-					<p>Snailpot: <span id="snailpot">[undefined]</span></p>
+					<p>Snailpot: <span id="snailpot">[undefined]</span> ETH</p>
 				</div>
 			</div>
 		</div>
@@ -42,7 +45,7 @@
 			</div>
 		</div>
 		<div class="container" align="center">
-			<span id="playerstatus"><img height="64" src="snail.png"></span>
+			<span id="playerstatus"><img height="64" src="img/snail.png"></span>
 		</div>
 		<div class="container black-shadow" align="center">
 			<h1>REACH 1 MILLION SNAILS TO WIN THE POT</h1>
@@ -62,8 +65,8 @@
 			</div>
 		</div>
 		<!-- SNAILMASTER -->
-		<div class="container black-shadow">
-			<h2 align="center">Current Snailmaster: <span id="snailmaster">[undefined]</span></h2><br>
+		<div class="container black-shadow druid-img">
+			<h2 align="center">Current Snailmaster: <span id="snailmaster">[undefined]</span></h2><br><br><br><br>
 			<div class="row">
 				<div class="col-sm">
 					<h4>Spend <span id="snailmasterreq">[undefined]</span> red eggs to take their place.</h4>
@@ -72,9 +75,9 @@
 					<button onclick="webBecomeSnailmaster()">Become Snailmaster!</button>
 				</div>
 			</div>	
-		</div>
+		</div><br>
 		<!-- SNAILS -->
-		<div class="jumbotron" align="center">
+		<div class="jumbotron snail-img" align="center">
 			<div class="row">
 				<div class="col-sm" align="left">
 					<h1>MY SNAILS</h1>
@@ -93,27 +96,27 @@
 			</div><br>
 			<div class="row">
 				<div class="col-sm">
-					<img height="64" src="spider.png" id="spider_yes"><img height="64" src="spider_grey.png" id="spider_no">
+					<img height="64" src="img/spider.png" id="spider_yes"><img height="64" src="img/spider_grey.png" id="spider_no">
 				</div>
 				<div class="col-sm">
-					<img height="64" src="squirrel.png" id="squirrel_yes"><img height="64" src="squirrel_grey.png" id="squirrel_no">
+					<img height="64" src="img/squirrel.png" id="squirrel_yes"><img height="64" src="img/squirrel_grey.png" id="squirrel_no">
 				</div>
 				<div class="col-sm">
-					<img height="64" src="tadpole.png" id="tadpole_yes"><img height="64" src="tadpole_grey.png" id="tadpole_no">
+					<img height="64" src="img/tadpole.png" id="tadpole_yes"><img height="64" src="img/tadpole_grey.png" id="tadpole_no">
 				</div>
 				<div class="col-sm">
-					<img height="64" src="lettuce.png" id="lettuce_yes"><img height="64" src="lettuce_grey.png" id="lettuce_no">
+					<img height="64" src="img/lettuce.png" id="lettuce_yes"><img height="64" src="img/lettuce_grey.png" id="lettuce_no">
 				</div>
 				<div class="col-sm">
-					<img height="64" src="carrot.png" id="carrot_yes"><img height="64" src="carrot_grey.png" id="carrot_no">
+					<img height="64" src="img/carrot.png" id="carrot_yes"><img height="64" src="img/carrot_grey.png" id="carrot_no">
 				</div>
 				<div class="col-sm">
-					<img height="64" src="slug.png" id="slug_yes"><img height="64" src="slug_grey.png" id="slug_no">
+					<img height="64" src="img/slug.png" id="slug_yes"><img height="64" src="img/slug_grey.png" id="slug_no">
 				</div>
 			</div>
 		</div>
 		<!-- EGGS -->
-		<div class="jumbotron" align="center">
+		<div class="jumbotron egg-img" align="center">
 			<div class="row">
 				<div class="col-sm" align="left">
 					<h1>MY EGGS</h1>
@@ -156,7 +159,7 @@
 			</div>
 		</div>
 		<!-- REDS -->
-		<div class="jumbotron" align="center">
+		<div class="jumbotron red-img" align="center">
 			<div class="row">
 				<div class="col-sm" align="left">
 					<h1>MY REDS</h1>
@@ -182,26 +185,26 @@
 				</div>
 			</div>				
 		</div>
-		<!-- HOT POTATOES -->
+		<!-- FRIENDS -->
 		<div class="jumbotron" align="center">
 			<div class="row">
 				<div class="col-sm">
 					<h1>SPIDERQUEEN</h1>
-					<img height="96" src="spider.png">
+					<img height="96" src="img/spider.png">
 					<h5 class="black-shadow">Owned by <span id="spiderowner">[undefined]</span></h3><br>
 					<button onclick="webBecomeSpiderQueen()">BECOME SPIDERQUEEN</button>
 					<p>Requirement: <span id="spiderreq">[undefined]</span> Snails</p>
 				</div>
 				<div class="col-sm">
 					<h1>SQUIRRELDUKE</h1>
-					<img height="96" src="squirrel.png">
+					<img height="96" src="img/squirrel.png">
 					<h5 class="black-shadow">Owned by <span id="squirrelowner">[undefined]</span></h3><br>
 					<button onclick="webBecomeSquirrelDuke()">BECOME SQUIRRELDUKE</button>
 					<p>Requirement: <span id="squirrelreq">[undefined]</span> Reds</p>
 				</div>
 				<div class="col-sm">
 					<h1>TADPOLE PRINCE</h1>
-					<img height="96" src="tadpole.png">
+					<img height="96" src="img/tadpole.png">
 					<h5 class="black-shadow">Owned by <span id="tadpoleowner">[undefined]</span></h3><br>
 					<button onclick="webBecomeTadpolePrince()">BECOME TADPOLEPRINCE</button>
 					<p>Requirement: <span id="tadpolereq">[undefined]</span> ETH </p>
@@ -209,26 +212,26 @@
 				</div>
 			</div>
 		</div>
-		<!-- PERSONAL BOOSTS -->
+		<!-- FOOD -->
 		<div class="jumbotron" align="center">
 			<div class="row">
 				<div class="col-sm">
 					<h1>LETTUCE</h1>
-					<img height="96" src="lettuce.png">
+					<img height="96" src="img/lettuce.png">
 					<h5 class="black-shadow"><span id="haslettuce"></span></h3><br>
 					<button onclick="webFindLettuce()">FIND LETTUCE</button>
 					<p>Requirement: <span id="lettucereq">[undefined]</span> Reds</p>
 				</div>
 				<div class="col-sm">
 					<h1>CARROT</h1>
-					<img height="96" src="carrot.png">
+					<img height="96" src="img/carrot.png">
 					<h5 class="black-shadow"><span id="hascarrot"></span></h3><br>
 					<button onclick="webFindCarrot()">FIND CARROT</button>
 					<p>Requirement: 0.02 ETH</p>
 				</div>
 				<div class="col-sm">
 					<h1>SLUG</h1>
-					<img height="96" src="slug.png">
+					<img height="96" src="img/slug.png">
 					<h5 class="black-shadow"><span id="hasslug"></span></h3><br>
 					<button onclick="webFindSlug()">FIND SLUG</button>
 					<p>Requirement: at least 100 000 Snails</p>
@@ -236,7 +239,7 @@
 			</div>
 		</div>
 		<!-- ACORNS -->
-		<div class="jumbotron" align="center">
+		<div class="jumbotron acorn-img" align="center">
 			<div class="row">
 				<div class="col-sm" align="left">
 					<h1>MY BALANCE</h1>
@@ -274,7 +277,7 @@
 			</div>
 		</div>
 		<!-- SNAILTHRONE -->
-		<div class="container black-shadow">
+		<div class="container black-shadow throne-img">
 			<h1 align="center">SNAILTHRONE</h1><br><br><br><br>
 			<div class="row">
 				<div class="col-sm" align="left">
@@ -284,10 +287,10 @@
 					<p>(No requirement) <button onclick="webPayThrone()">SEND</button></p>
 				</div>
 			</div>
-		</div>	
+		</div><br>	
 		<!-- QUICK START -->
 		<div class="jumbotron">			
-			<a name="info"><h2 align="center">QUICK START</h2></a>
+			<a name="quickstart"><h2 align="center">QUICK START</h2></a>
 			<div class="container-beige">		
 				<p><b>SnailFarm</b> is an idlegame played in rounds. The goal is to be the first to reach <b>1 million Snails</b>. Once you hatch enough snails to get to that number, you win the round and receive the current pot.</p><br>
 				<p>At the end of the round, <b>all Snails and Eggs are wiped</b>, and the game starts anew 12 hours later.</p><br>
@@ -398,7 +401,9 @@
 				<p>- 10% in dividends to Acorn holders</p>
 				<p>- 5% to the current Snailmaster</p>
 			</div>
-			<a href="#top">Return to the Top</a>
+			<div align="center">
+				<a href="#top"><img height="48" src="img/arrow_circle.png"></a>
+			</div>
 		</div>
 		
 		<!-- Main Javascript -->

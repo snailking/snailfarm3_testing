@@ -800,9 +800,10 @@ function updateFieldBuy2(){
 
 //Player input on TadpolePrince
 function updateFieldPrince2(){
-	f_prince = document.getElementById('fieldPrince').value;
-	//var fieldprince2doc = document.getElementById('fieldPrince2');
-	//fieldprince2doc.textContent = f_prince;
+	var fieldprincedoc = document.getElementById('fieldPrince');
+	f_prince = fieldprincedoc.value;
+	if(f_prince < a_tadpoleReq) {
+		fieldprincedoc.textContent = a_tadpoleReq; 
 }
 
 //Player input on Acorn buy
@@ -2639,7 +2640,7 @@ function computeLeaderboard() {
 	
 	//Check lowest leader
 	var i = 0;
-	for(i = 0; i < 10; i++) {
+	for(i = 0; i < 5; i++) {
 		//console.log("loop i " + i);
 		if(d_leaderboard[i].hatchery < lowest) {
 			lowest = d_leaderboard[i].hatchery;
@@ -2651,7 +2652,7 @@ function computeLeaderboard() {
 	
 	//Check if hatcher is already on leaderboard, then check if hatcher can replace lowest
 	var notLeader = true;
-	for(k = 0; k < 10; k++) {
+	for(k = 0; k < 5; k++) {
 		if(e_hatched.address == d_leaderboard[k].address) {
 			d_leaderboard[k].address = e_hatched.address;
 			d_leaderboard[k].hatchery = e_hatched.hatchery;
@@ -2673,7 +2674,7 @@ function computeLeaderboard() {
 	//Go through remaining positions to see hatcher rank and adjust other ranks
 	var j = 0;
 	var previousRank = d_leaderboard[position].rank
-	for(j = 0; j < 10; j++) {
+	for(j = 0; j < 5; j++) {
 		//console.log("loop j " + j);
 		if(d_leaderboard[position].hatchery > d_leaderboard[j].hatchery) {
 			//console.log("d_leaderboard hatchery is greater than d_leaderboard[" + j + "]hatchery");		
