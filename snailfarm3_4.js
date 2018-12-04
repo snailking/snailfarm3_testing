@@ -804,7 +804,9 @@ function updateFieldPrince2(){
 	f_prince = fieldprincedoc.value;
 	if(f_prince < a_tadpoleReq) {
 		fieldprincedoc.textContent = a_tadpoleReq; 
+	}	
 }
+
 
 //Player input on Acorn buy
 function updateFieldTree2(){
