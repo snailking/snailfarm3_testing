@@ -15,9 +15,17 @@
 	<body>
 		<!-- TITLE -->
 		<div class="jumbotron" align="center">
-			<h1>SNAILFARM 3 TESTING</h1>
+			<a name="top"><h1>SNAILFARM 3 TESTING</h1></a>
 			<h3>Your Favorite Ethereum Forest Adventure</h3>
-			<a href="#quickstart">QUICK START</a> <a href="#gameinfo">GAME INFO</a> <a href="https://ropsten.etherscan.io/address/0x3Fb1D4075C12611293D583E79CD3A62993ec974E" target="_blank">SMART CONTRACT</a>
+			<a href="#quickstart">QUICK START</a> <a href="#gameinfo">GAME INFO</a> <a href="https://ropsten.etherscan.io/address/0x8BECf05666D536c82aA72565dD9BaD4bC31F3bec" target="_blank">SMART CONTRACT</a>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<p>Contract balance: <span id="contractbalance">[undefined]</span></p>
+				</div>
+				<div class="col-sm" align="right">
+					<p>Snailpot: <span id="snailpot">[undefined]</span></p>
+				</div>
+			</div>
 		</div>
 		<!-- ROUND INFO -->
 		<div class="container">
@@ -44,12 +52,12 @@
 		<div class="jumbotron">
 			<h2 align="center">LEADERBOARD</h2>
 			<div class="container-beige">
-				<span id="leaderboard">LEADERS GO HERE</span>
+				<span id="leaderboard">Waiting for hatches...</span>
 			</div>
 			<h2 align="center">EVENTS</h2>
 			<div class="container-beige">
 				<div class="scroll-box" id="logboxscroll">
-					<span id="eventlog">EVENTS GO HERE</span>
+					<span id="eventlog">Waiting for events...</span>
 				</div>
 			</div>
 		</div>
@@ -267,7 +275,7 @@
 		</div>
 		<!-- SNAILTHRONE -->
 		<div class="container black-shadow">
-			<h1 align="center">SNAILTHRONE</h1><br><br>
+			<h1 align="center">SNAILTHRONE</h1><br><br><br><br>
 			<div class="row">
 				<div class="col-sm" align="left">
 					<h5>Send <span id="thronepot">[undefined]</span> ETH to SnailThrone holders</h5>
@@ -277,15 +285,6 @@
 				</div>
 			</div>
 		</div>	
-		<!-- DATA -->
-		<div class="jumbotron">
-			<h2 align="center">GAME STATS</h2>
-			<div class="container-beige">
-					<p>Contract address: <a href="https://ropsten.etherscan.io/address/0x3Fb1D4075C12611293D583E79CD3A62993ec974E" target="_blank">0x3Fb1D4075C12611293D583E79CD3A62993ec974E</a></p>
-					<p>Contract balance: <span id="contractbalance">[undefined]</span></p>
-					<p>Snailpot: <span id="snailpot">[undefined]</span></p>
-			</div>
-		</div>
 		<!-- QUICK START -->
 		<div class="jumbotron">			
 			<a name="info"><h2 align="center">QUICK START</h2></a>
@@ -390,6 +389,16 @@
 				<p>The Thronepot claims 10% of all ETH spent in the game (minus the Tadpole).</p>
 				<p>This Thronepot can be sent at any moment, by any player. The sender doesn't receive any personal advantage for doing so. The ETH sent is split proportionally to SnailThrone holders.</p>
 			</div>
+			<h3>POT SPLIT</h3>
+			<div class="container-beige">
+				<p>Incoming ETH of each transaction is distributed as follows:</p>
+				<p>- 50% to the Snailpot</p>
+				<p>- 25% to the Eggpot</p>
+				<p>- 10% to the Thronepot</p>
+				<p>- 10% in dividends to Acorn holders</p>
+				<p>- 5% to the current Snailmaster</p>
+			</div>
+			<a href="#top">Return to the Top</a>
 		</div>
 		
 		<!-- Main Javascript -->
