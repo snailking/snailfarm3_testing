@@ -2687,7 +2687,7 @@ hatchEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " hatched " + result.args.eggs + " eggs into " + result.args.snails + " snails, and has " + result.args.hatchery + " hatchery.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " hatched " + result.args.eggs + " eggs into " + result.args.snails + " snails, and has " + result.args.hatchery + " snails in total.";
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = parseInt(result.args.hatchery); //seems to return an array/object
 			//console.log("e_hatch is " + e_hatched.hatchery);
