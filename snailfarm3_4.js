@@ -143,11 +143,11 @@ var l_account;
 //Leaderboard Array
 
 var d_leaderboard = [
-	{ address: "0x0000000022223333444455556666777788889999", hatchery: 0, rank: 1, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
-	{ address: "0x0000111122223333444455556666777788889999", hatchery: 0, rank: 2, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
-	{ address: "0x0000222222223333444455556666777788889999", hatchery: 0, rank: 3, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
-	{ address: "0x0000333322223333444455556666777788889999", hatchery: 0, rank: 4, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
-	{ address: "0x0000444422223333444455556666777788889999", hatchery: 0, rank: 5, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false }
+	{ address: "0x0000000022223333444455556666777788889999", hatchery: 0, egg: 0, rank: 1, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0x0000111122223333444455556666777788889999", hatchery: 0, egg: 0, rank: 2, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0x0000222222223333444455556666777788889999", hatchery: 0, egg: 0, rank: 3, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0x0000333322223333444455556666777788889999", hatchery: 0, egg: 0, rank: 4, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0x0000444422223333444455556666777788889999", hatchery: 0, egg: 0, rank: 5, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false }
 ];	
 
 /* GLOBAL LOOP */
@@ -239,6 +239,8 @@ function refreshData(){
 	checkLeaderboard2();
 	checkLeaderboard3();
 	checkLeaderboard4();
+	
+	checkLeaderEgg0();
 }
 
 //Refreshes some game data faster
@@ -335,7 +337,7 @@ function showLeaderboard() {
 	for(i = 1; i < 6; i++) {
 		for(j = 0; j < 5; j++) {
 			if(d_leaderboard[j].rank == i) {
-				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | ";
+				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
 				//console.log("updated rank " + i + " with index " + j);
 				if(d_leaderboard[j].boost1 == true) {
 					leaderboarddoc.innerHTML += "<img src='spider.png' height='32'>";
@@ -453,6 +455,36 @@ function checkLeaderboard3(){
 function checkLeaderboard4(){
 	GetSnail(d_leaderboard[4].address, function(result) {
 		d_leaderboard[4].hatchery = result;
+	});
+}
+
+function checkLeaderEgg0(){
+	ComputeMyEgg(d_leaderboard[0].address, function(result) {
+		d_leaderboard[0].hatchery = result;
+	});
+}
+
+function checkLeaderEgg1(){
+	ComputeMyEgg(d_leaderboard[1].address, function(result) {
+		d_leaderboard[1].hatchery = result;
+	});
+}
+
+function checkLeaderEgg2(){
+	ComputeMyEgg(d_leaderboard[2].address, function(result) {
+		d_leaderboard[2].hatchery = result;
+	});
+}
+
+function checkLeaderEgg3(){
+	ComputeMyEgg(d_leaderboard[3].address, function(result) {
+		d_leaderboard[3].hatchery = result;
+	});
+}
+
+function checkLeaderEgg4(){
+	ComputeMyEgg(d_leaderboard[4].address, function(result) {
+		d_leaderboard[4].egg = result;
 	});
 }
 
