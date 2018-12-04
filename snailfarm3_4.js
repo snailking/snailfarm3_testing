@@ -366,6 +366,10 @@ function slowupdateLeaderboard() {
 	for(i = 0; i < 5; i++) {
 		//updateLeaderStat(d_leaderboard[i]);
 		var lead = d_leaderboard[i];
+		var _boost4 = false;
+		var _boost5 = false;
+		var _boost6 = false;
+		var _hatchery = 0;
 		if(lead.address == c_spiderowner) {
 			d_leaderboard[i].boost1 = true;
 		}
@@ -380,29 +384,27 @@ function slowupdateLeaderboard() {
 		console.log("checked tadpoleowner for " + i);
 		GetLettuce(lead.address, function(result) {
 			if(result > 0) {
-				d_leaderboard[i].boost4 = true;
+				_boost4 = true;
 			} 
 		});
 		console.log("checked lettuce for " + i);
 		GetCarrot(lead.address, function(result) {
 			if(result > 0) {
-				d_leaderboard[i].boost5 = true;
+				_boost5 = true;
 			} 
 		});
 		GetSlug(lead.address, function(result) {
 			if(result > 0) {
-				d_leaderboard[i].boost6 = true;
+				_boost6 = true;
 			}
 		});
-		/*
-		//For some mysterious reason, web3 functions hate d_leaderboard[i] here
-		if(lead.boost4 == true) { d_leaderboard[i].boost4 = true; }
-		if(lead.boost5 == true) { d_leaderboard[i].boost5 = true; }
-		if(lead.boost6 == true) { d_leaderboard[i].boost6 = true; }
-		*/
 		GetSnail(lead.address, function(result) {
-			d_leaderboard[i].hatchery = result;
+			_hatchery = result;
 		});
+		d_leaderboard[i].boost4 = _boost4;
+		d_leaderboard[i].boost5 = _boost5;
+		d_leaderboard[i].boost6 = _boost6;
+		d_leaderboard[i].hatchery = _hatchery;
 		console.log("slowupdate iteration " + i);
 	}
 	showLeaderboard();
@@ -949,7 +951,7 @@ function webBecomeTadpolePrince(){
 //Claim Red Harvest
 function webClaimRedHarvest(){
 	var weitospend = web3.toWei(a_harvestCost,'ether');
-	ClaimRedHarvest(weitospend, function(){
+	GrabRedHarvest(weitospend, function(){
 	});
 }
 
@@ -2741,7 +2743,7 @@ fundedtreeEvent.watch(function(error, result){
 		//console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " funded the EtherTree with " + result.args.eth + " ETH and receives " + result.args.acorns + " Acorns.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " funded the EtherTree with " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH and receives " + result.args.acorns + " Acorns.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
