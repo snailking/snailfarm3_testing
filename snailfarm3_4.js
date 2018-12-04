@@ -233,6 +233,12 @@ function refreshData(){
 	updateLettuceReq();
 	
 	updateHatchEstimate();
+	
+	checkLeaderboard0();
+	checkLeaderboard1();
+	checkLeaderboard2();
+	checkLeaderboard3();
+	checkLeaderboard4();
 }
 
 //Refreshes some game data faster
@@ -375,19 +381,20 @@ function slowupdateLeaderboard() {
 		} else {
 			d_leaderboard[i].boost1 = false;
 		}
-		console.log("checked spiderowner for " + i);
+		//console.log("checked spiderowner for " + i);
 		if(lead.address == c_squirrelowner) {
 			d_leaderboard[i].boost2 = true;
 		}  else {
 			d_leaderboard[i].boost2 = false;
 		}
-		console.log("checked squirrelowner for " + i);
+		//console.log("checked squirrelowner for " + i);
 		if(lead.address == c_tadpoleowner) {
 			d_leaderboard[i].boost3 = true;
 		}  else {
 			d_leaderboard[i].boost3 = false;
 		}
-		console.log("checked tadpoleowner for " + i);
+		//console.log("checked tadpoleowner for " + i);
+		/* Web3 calls take too long to be solved this way. Not sure how to do it right!
 		GetLettuce(lead.address, function(result) {
 			if(result > 0) {
 				_boost4 = true;
@@ -412,10 +419,41 @@ function slowupdateLeaderboard() {
 		d_leaderboard[i].boost5 = _boost5;
 		d_leaderboard[i].boost6 = _boost6;
 		d_leaderboard[i].hatchery = _hatchery;
-		console.log("hatchery is " + d_leaderboard[i].hatchery);
+		console.log("hatchery is " + d_leaderboard[i].hatchery);*/
 		console.log("slowupdate iteration " + i);
 	}
 	showLeaderboard();
+}
+
+//Ugly Leaderboard updates
+function checkLeaderboard0(){
+	GetSnail(d_leaderboard[0].address, function(result) {
+		d_leaderboard[0].hatchery = result;
+	});
+}
+
+function checkLeaderboard1(){
+	GetSnail(d_leaderboard[1].address, function(result) {
+		d_leaderboard[1].hatchery = result;
+	});
+}
+
+function checkLeaderboard2(){
+	GetSnail(d_leaderboard[2].address, function(result) {
+		d_leaderboard[2].hatchery = result;
+	});
+}
+
+function checkLeaderboard3(){
+	GetSnail(d_leaderboard[3].address, function(result) {
+		d_leaderboard[3].hatchery = result;
+	});
+}
+
+function checkLeaderboard4(){
+	GetSnail(d_leaderboard[4].address, function(result) {
+		d_leaderboard[4].hatchery = result;
+	});
 }
 
 //Check Snailmaster
