@@ -405,12 +405,12 @@ function slowupdateLeaderboard() {
 			}
 		});
 		GetSnail(lead.address, function(result) {
-			_hatchery = result;
+			d_leaderboard[i].hatchery = result;
 		});
 		d_leaderboard[i].boost4 = _boost4;
 		d_leaderboard[i].boost5 = _boost5;
 		d_leaderboard[i].boost6 = _boost6;
-		d_leaderboard[i].hatchery = _hatchery;
+		//d_leaderboard[i].hatchery = _hatchery;
 		console.log("slowupdate iteration " + i);
 	}
 	showLeaderboard();
