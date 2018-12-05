@@ -359,10 +359,10 @@ function showLeaderboard() {
 	for(i = 1; i < 6; i++) {
 		for(j = 0; j < 5; j++) {
 			if(d_leaderboard[j].rank == i) {
-				leaderboarddoc.innerHTML += "<h5>#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
+				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
 				//console.log("updated rank " + i + " with index " + j);
 				if(d_leaderboard[j].boost1 == true) {
-					leaderboarddoc.innerHTML += "<img style='display: inline-block;' src='spider.png' height='32'>";
+					leaderboarddoc.innerHTML += "<img src='spider.png' height='32'>";
 					//console.log(d_leaderboard[j] + " has spidersqueen");
 				}
 				if(d_leaderboard[j].boost2 == true) {
@@ -385,7 +385,7 @@ function showLeaderboard() {
 					leaderboarddoc.innerHTML += "<img src='slug.png' height='32'>";
 					//console.log(d_leaderboard[j] + " has slug");
 				}
-				leaderboarddoc.innerHTML += "</h5>";
+				leaderboarddoc.innerHTML += "<br>";
 			}
 		}
 	}
