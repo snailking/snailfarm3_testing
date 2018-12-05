@@ -359,7 +359,7 @@ function showLeaderboard() {
 	for(i = 1; i < 6; i++) {
 		for(j = 0; j < 5; j++) {
 			if(d_leaderboard[j].rank == i) {
-				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
+				leaderboarddoc.innerHTML += "<div class='leader-style'>#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
 				//console.log("updated rank " + i + " with index " + j);
 				if(d_leaderboard[j].boost1 == true) {
 					leaderboarddoc.innerHTML += "<img src='spider.png' height='32'>";
@@ -389,6 +389,7 @@ function showLeaderboard() {
 			}
 		}
 	}
+	leaderboarddoc.innerHTML += "</div>";
 }
 
 //Update for Leaderboard checking every address
