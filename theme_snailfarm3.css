@@ -68,7 +68,7 @@ body {
 }
 
 .scroll-box {
-	width: 80%; 
+	width: 98%; 
 	overflow: auto; 
 	overflow-x: hidden; 
 	height: 110px;
@@ -115,4 +115,8 @@ body {
 	border-image: url("img/brick.png") 30 round;
 	margin: 2px;
 	background-color: #b7a575;
+}
+
+.leader-style {
+	font-size: 1.25rem;
 }
