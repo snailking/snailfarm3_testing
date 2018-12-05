@@ -359,7 +359,7 @@ function showLeaderboard() {
 	for(i = 1; i < 6; i++) {
 		for(j = 0; j < 5; j++) {
 			if(d_leaderboard[j].rank == i) {
-				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
+				leaderboarddoc.innerHTML += "<h5>#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
 				//console.log("updated rank " + i + " with index " + j);
 				if(d_leaderboard[j].boost1 == true) {
 					leaderboarddoc.innerHTML += "<img src='spider.png' height='32'>";
@@ -375,7 +375,7 @@ function showLeaderboard() {
 				}
 				if(d_leaderboard[j].boost4 == true) {
 					leaderboarddoc.innerHTML += "<img src='lettuce.png' height='32'>";
-					//console.log(d_leaderboard[j] + " has lettuce");
+					console.log(d_leaderboard[j] + " has lettuce");
 				}
 				if(d_leaderboard[j].boost5 == true) {
 					leaderboarddoc.innerHTML += "<img src='carrot.png' height='32'>";
@@ -385,7 +385,7 @@ function showLeaderboard() {
 					leaderboarddoc.innerHTML += "<img src='slug.png' height='32'>";
 					//console.log(d_leaderboard[j] + " has slug");
 				}
-				leaderboarddoc.innerHTML += "<br>";
+				leaderboarddoc.innerHTML += "</h5><br>";
 			}
 		}
 	}
@@ -566,7 +566,7 @@ function checkLeaderLettuce4(){
 }
 
 function checkLeaderCarrot0(){
-	GetLettuce(d_leaderboard[0].address, function(result) {
+	GetCarrot(d_leaderboard[0].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[0].boost5 = true;
 		} else {
@@ -576,7 +576,7 @@ function checkLeaderCarrot0(){
 }
 
 function checkLeaderCarrot1(){
-	GetLettuce(d_leaderboard[1].address, function(result) {
+	GetCarrot(d_leaderboard[1].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[1].boost5 = true;
 		} else {
@@ -586,7 +586,7 @@ function checkLeaderCarrot1(){
 }
 
 function checkLeaderCarrot2(){
-	GetLettuce(d_leaderboard[2].address, function(result) {
+	GetCarrot(d_leaderboard[2].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[2].boost5 = true;
 		} else {
@@ -596,7 +596,7 @@ function checkLeaderCarrot2(){
 }
 
 function checkLeaderCarrot3(){
-	GetLettuce(d_leaderboard[3].address, function(result) {
+	GetCarrot(d_leaderboard[3].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[3].boost5 = true;
 		} else {
@@ -606,7 +606,7 @@ function checkLeaderCarrot3(){
 }
 
 function checkLeaderCarrot4(){
-	GetLettuce(d_leaderboard[4].address, function(result) {
+	GetCarrot(d_leaderboard[4].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[4].boost5 = true;
 		} else {
@@ -616,7 +616,7 @@ function checkLeaderCarrot4(){
 }
 
 function checkLeaderSlug0(){
-	GetLettuce(d_leaderboard[0].address, function(result) {
+	GetSlug(d_leaderboard[0].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[0].boost6 = true;
 		} else {
@@ -626,7 +626,7 @@ function checkLeaderSlug0(){
 }
 
 function checkLeaderSlug1(){
-	GetLettuce(d_leaderboard[1].address, function(result) {
+	GetSlug(d_leaderboard[1].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[1].boost6 = true;
 		} else {
@@ -636,7 +636,7 @@ function checkLeaderSlug1(){
 }
 
 function checkLeaderSlug2(){
-	GetLettuce(d_leaderboard[2].address, function(result) {
+	GetSlug(d_leaderboard[2].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[2].boost6 = true;
 		} else {
@@ -646,7 +646,7 @@ function checkLeaderSlug2(){
 }
 
 function checkLeaderSlug3(){
-	GetLettuce(d_leaderboard[3].address, function(result) {
+	GetSlug(d_leaderboard[3].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[3].boost6 = true;
 		} else {
@@ -656,7 +656,7 @@ function checkLeaderSlug3(){
 }
 
 function checkLeaderSlug4(){
-	GetLettuce(d_leaderboard[4].address, function(result) {
+	GetSlug(d_leaderboard[4].address, function(result) {
 		if(result > 0) {
 			d_leaderboard[4].boost6 = true;
 		} else {
