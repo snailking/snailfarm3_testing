@@ -385,7 +385,7 @@ function showLeaderboard() {
 					leaderboarddoc.innerHTML += "<img src='slug.png' height='32'>";
 					//console.log(d_leaderboard[j] + " has slug");
 				}
-				leaderboarddoc.innerHTML += "</h5><br>";
+				leaderboarddoc.innerHTML += "</h5>";
 			}
 		}
 	}
