@@ -362,7 +362,7 @@ function showLeaderboard() {
 				leaderboarddoc.innerHTML += "<h5>#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
 				//console.log("updated rank " + i + " with index " + j);
 				if(d_leaderboard[j].boost1 == true) {
-					leaderboarddoc.innerHTML += "<img src='spider.png' height='32'>";
+					leaderboarddoc.innerHTML += "<img style='display: inline-block;' src='spider.png' height='32'>";
 					//console.log(d_leaderboard[j] + " has spidersqueen");
 				}
 				if(d_leaderboard[j].boost2 == true) {
