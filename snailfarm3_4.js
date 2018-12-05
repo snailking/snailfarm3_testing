@@ -143,11 +143,11 @@ var l_account;
 //Leaderboard Array
 
 var d_leaderboard = [
-	{ address: "0x0000000022223333444455556666777788889999", hatchery: 0, egg: 0, rank: 1, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
-	{ address: "0x0000111122223333444455556666777788889999", hatchery: 0, egg: 0, rank: 2, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
-	{ address: "0x0000222222223333444455556666777788889999", hatchery: 0, egg: 0, rank: 3, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
-	{ address: "0x0000333322223333444455556666777788889999", hatchery: 0, egg: 0, rank: 4, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
-	{ address: "0x0000444422223333444455556666777788889999", hatchery: 0, egg: 0, rank: 5, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false }
+	{ address: "0x0000000022223333444455556666777788889999", hatchery: 0, egg: 0, red: 0, rank: 1, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0x0000111122223333444455556666777788889999", hatchery: 0, egg: 0, red: 0, rank: 2, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0x0000222222223333444455556666777788889999", hatchery: 0, egg: 0, red: 0, rank: 3, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0x0000333322223333444455556666777788889999", hatchery: 0, egg: 0, red: 0, rank: 4, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false },
+	{ address: "0x0000444422223333444455556666777788889999", hatchery: 0, egg: 0, red: 0, rank: 5, boost1: false, boost2: false, boost3: false, boost4: false, boost5: false, boost6: false }
 ];	
 
 /* GLOBAL LOOP */
@@ -263,6 +263,12 @@ function refreshDataSlow(){
 	checkLeaderEgg3();
 	checkLeaderEgg4();
 	
+	checkLeaderRed0();
+	checkLeaderRed1();
+	checkLeaderRed2();
+	checkLeaderRed3();
+	checkLeaderRed4();
+	
 	checkLeaderLettuce0();
 	checkLeaderLettuce1();
 	checkLeaderLettuce2();
@@ -359,7 +365,7 @@ function showLeaderboard() {
 	for(i = 1; i < 6; i++) {
 		for(j = 0; j < 5; j++) {
 			if(d_leaderboard[j].rank == i) {
-				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | ";
+				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | " + d_leaderboard[j].red + " Reds | ";
 				//console.log("updated rank " + i + " with index " + j);
 				if(d_leaderboard[j].boost1 == true) {
 					leaderboarddoc.innerHTML += "<img src='spider.png' height='32'>";
@@ -417,34 +423,6 @@ function slowupdateLeaderboard() {
 		}  else {
 			d_leaderboard[i].boost3 = false;
 		}
-		//console.log("checked tadpoleowner for " + i);
-		/* Web3 calls take too long to be solved this way. Not sure how to do it right!
-		GetLettuce(lead.address, function(result) {
-			if(result > 0) {
-				_boost4 = true;
-			} 
-		});
-		console.log("checked lettuce for " + i);
-		GetCarrot(lead.address, function(result) {
-			if(result > 0) {
-				_boost5 = true;
-			} 
-		});
-		GetSlug(lead.address, function(result) {
-			if(result > 0) {
-				_boost6 = true;
-			}
-		});
-		GetSnail(lead.address, function(result) {
-			_hatchery = result;
-			console.log("hatchery is " + _hatchery);
-		});
-		d_leaderboard[i].boost4 = _boost4;
-		d_leaderboard[i].boost5 = _boost5;
-		d_leaderboard[i].boost6 = _boost6;
-		d_leaderboard[i].hatchery = _hatchery;
-		console.log("hatchery is " + d_leaderboard[i].hatchery);*/
-		//console.log("slowupdate iteration " + i);
 	}
 	showLeaderboard();
 }
@@ -509,6 +487,36 @@ function checkLeaderEgg3(){
 function checkLeaderEgg4(){
 	ComputeMyEgg(d_leaderboard[4].address, function(result) {
 		d_leaderboard[4].egg = result;
+	});
+}
+
+function checkLeaderRed0(){
+	GetRed(d_leaderboard[0].address, function(result) {
+		d_leaderboard[0].red = result;
+	});
+}
+
+function checkLeaderRed1(){
+	GetRed(d_leaderboard[1].address, function(result) {
+		d_leaderboard[1].red = result;
+	});
+}
+
+function checkLeaderRed2(){
+	GetRed(d_leaderboard[2].address, function(result) {
+		d_leaderboard[2].red = result;
+	});
+}
+
+function checkLeaderRed3(){
+	GetRed(d_leaderboard[3].address, function(result) {
+		d_leaderboard[3].red = result;
+	});
+}
+
+function checkLeaderRed4(){
+	GetRed(d_leaderboard[4].address, function(result) {
+		d_leaderboard[4].red = result;
 	});
 }
 
@@ -670,7 +678,11 @@ function checkSnailmaster(){
 	var snailmasterdoc = document.getElementById('snailmaster');
 	currentSnailmaster(function(req) {
 		c_snailmaster = "0x" + req.substring(26, 66);
+		if(c_snailmaster == m_account) {
+			snailmasterdoc.textContent = "YOU!";
+		} else {
 		snailmasterdoc.textContent = formatEthAdr(c_snailmaster);
+		}
 	});
 }
 
@@ -687,7 +699,11 @@ function checkSpiderOwner(){
 	var spiderownerdoc = document.getElementById('spiderowner');
 	currentSpiderOwner(function(req) {
 		c_spiderowner = "0x" + req.substring(26, 66);
+		if(c_spiderowner == m_account) {
+			spiderownerdoc.textContent = "YOU!";
+		} else {
 		spiderownerdoc.textContent = formatEthAdr(c_spiderowner);
+		}
 	});
 }
 
@@ -704,7 +720,11 @@ function checkSquirrelOwner(){
 	var squirrelownerdoc = document.getElementById('squirrelowner');
 	currentSquirrelOwner(function(req) {
 		c_squirrelowner = "0x" + req.substring(26, 66);
+		if(c_squirrelowner == m_account) {
+			squirrelownerdoc.textContent = "YOU!";
+		} else {
 		squirrelownerdoc.textContent = formatEthAdr(c_squirrelowner);
+		}
 	});
 }
 
@@ -721,7 +741,11 @@ function checkTadpoleOwner(){
 	var tadpoleownerdoc = document.getElementById('tadpoleowner');
 	currentTadpoleOwner(function(req) {
 		c_tadpoleowner = "0x" + req.substring(26, 66);
-		tadpoleownerdoc.textContent = formatEthAdr(c_tadpoleowner);
+		if(c_tadpoleowner == m_account) {
+			tadpoleownerdoc.textContent = "YOU!";
+		} else {
+			tadpoleownerdoc.textContent = formatEthAdr(c_tadpoleowner);
+		}
 	});
 }
 
@@ -1026,7 +1050,7 @@ function updateFieldPrince2(){
 	var fieldprincedoc = document.getElementById('fieldPrince');
 	f_prince = fieldprincedoc.value;
 	if(f_prince < a_tadpoleReq) {
-		fieldprincedoc.textContent = a_tadpoleReq; 
+		fieldprincedoc.value = a_tadpoleReq; 
 	}	
 }
 
