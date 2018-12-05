@@ -14,17 +14,18 @@ window.addEventListener("load", function() {
         web3.version.getNetwork(function(error, result) {
             if (!error) {
                 if (result == "3") {
-					////console.log("Ropsten Testnet successfully loaded!");
+					console.log("Ropsten Testnet successfully loaded!");
                 } else {
-                    ////console.log("You must be on the Testnet to play SnailFarm 3 Test!");
+                    console.log("You must be on the Testnet to play SnailFarm 3 Test!");
+					web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
 					//modal2.style.display = "block";
                 }
             }
         });
     } else {
-        ////console.log("Web3 library not found.");
+        console.log("Web3 library not found.");
 		//modal2.style.display = "block";
-        web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
+        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
     }
 });
 /*
@@ -123,6 +124,7 @@ var a_thronePot = 0;
 var a_leaderSnail = 0;
 
 var a_harvestCost = 0;
+var a_lettuceReq = 0;
 var a_tadpoleReq = 0; 
 
 var a_playerRound = 0;
@@ -797,8 +799,9 @@ function updateHarvestCost(){
 //Current lettuce req
 function updateLettuceReq(){
 	var lettucereqdoc = document.getElementById('lettucereq');
-	lettuceReq(function(req) {
-		lettucereqdoc.textContent = req;
+	lettuceReq(function(result) {
+		a_lettuceReq = result;
+		lettucereqdoc.textContent = a_lettuceReq;
 	});
 }
 
@@ -3061,7 +3064,7 @@ boughteggEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " bought " + result.args.eggs + " eggs for " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " bought " + result.args.eth + " eggs for " + formatEthValue2(web3.fromWei(result.args.eggs,'ether')) + " ETH."; //inverted eggs and ETH in contract event
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
@@ -3191,8 +3194,7 @@ foundlettuceEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			var _spent = parseInt(result.args.lettucereq) - parseInt(20);
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " spent " + _spent + " Red Eggs to find a Lettuce.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " spent " + a_lettuceReq + " Red Eggs to find a Lettuce.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
