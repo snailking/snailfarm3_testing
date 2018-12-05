@@ -3243,9 +3243,12 @@ boostedpotEvent.watch(function(error, result){
 
 //--
 
-myContract.getPastEvents("HatchedEgg", { fromBlock: 0, toBlock: "latest" })
-.then(function(events) {
-	  // `events` is an array of `event` objects that we can iterate, like we did above
-	  // This code will get us a list of every zombie that was ever created
-	  arrayPastHatch = events;
+myContract.getPastEvents("HatchedEgg", {
+	fromBlock: 0, 
+	toBlock: "latest" 
+	}, function(error, events) {
+		for (i=0; i<events.length; i++) {
+			var eventObj = events[i];
+			console.log('Address: ' + eventObj.args.eth);
+		}
 });
