@@ -528,9 +528,9 @@ function checkLeaderLettuce0(){
 function checkLeaderLettuce1(){
 	GetLettuce(d_leaderboard[1].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost4 = true;
+			d_leaderboard[1].boost4 = true;
 		} else {
-			d_leaderboard[0].boost4 = false;
+			d_leaderboard[1].boost4 = false;
 		}
 	});
 }
@@ -538,9 +538,9 @@ function checkLeaderLettuce1(){
 function checkLeaderLettuce2(){
 	GetLettuce(d_leaderboard[2].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost4 = true;
+			d_leaderboard[2].boost4 = true;
 		} else {
-			d_leaderboard[0].boost4 = false;
+			d_leaderboard[2].boost4 = false;
 		}
 	});
 }
@@ -548,9 +548,9 @@ function checkLeaderLettuce2(){
 function checkLeaderLettuce3(){
 	GetLettuce(d_leaderboard[3].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost4 = true;
+			d_leaderboard[3].boost4 = true;
 		} else {
-			d_leaderboard[0].boost4 = false;
+			d_leaderboard[3].boost4 = false;
 		}
 	});
 }
@@ -558,9 +558,9 @@ function checkLeaderLettuce3(){
 function checkLeaderLettuce4(){
 	GetLettuce(d_leaderboard[4].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost4 = true;
+			d_leaderboard[4].boost4 = true;
 		} else {
-			d_leaderboard[0].boost4 = false;
+			d_leaderboard[4].boost4 = false;
 		}
 	});
 }
@@ -578,9 +578,9 @@ function checkLeaderCarrot0(){
 function checkLeaderCarrot1(){
 	GetLettuce(d_leaderboard[1].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost5 = true;
+			d_leaderboard[1].boost5 = true;
 		} else {
-			d_leaderboard[0].boost5 = false;
+			d_leaderboard[1].boost5 = false;
 		}
 	});
 }
@@ -588,9 +588,9 @@ function checkLeaderCarrot1(){
 function checkLeaderCarrot2(){
 	GetLettuce(d_leaderboard[2].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost5 = true;
+			d_leaderboard[2].boost5 = true;
 		} else {
-			d_leaderboard[0].boost5 = false;
+			d_leaderboard[2].boost5 = false;
 		}
 	});
 }
@@ -598,9 +598,9 @@ function checkLeaderCarrot2(){
 function checkLeaderCarrot3(){
 	GetLettuce(d_leaderboard[3].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost5 = true;
+			d_leaderboard[3].boost5 = true;
 		} else {
-			d_leaderboard[0].boost5 = false;
+			d_leaderboard[3].boost5 = false;
 		}
 	});
 }
@@ -608,9 +608,9 @@ function checkLeaderCarrot3(){
 function checkLeaderCarrot4(){
 	GetLettuce(d_leaderboard[4].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost5 = true;
+			d_leaderboard[4].boost5 = true;
 		} else {
-			d_leaderboard[0].boost5 = false;
+			d_leaderboard[4].boost5 = false;
 		}
 	});
 }
@@ -628,9 +628,9 @@ function checkLeaderSlug0(){
 function checkLeaderSlug1(){
 	GetLettuce(d_leaderboard[1].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost6 = true;
+			d_leaderboard[1].boost6 = true;
 		} else {
-			d_leaderboard[0].boost6 = false;
+			d_leaderboard[1].boost6 = false;
 		}
 	});
 }
@@ -638,9 +638,9 @@ function checkLeaderSlug1(){
 function checkLeaderSlug2(){
 	GetLettuce(d_leaderboard[2].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost6 = true;
+			d_leaderboard[2].boost6 = true;
 		} else {
-			d_leaderboard[0].boost6 = false;
+			d_leaderboard[2].boost6 = false;
 		}
 	});
 }
@@ -648,9 +648,9 @@ function checkLeaderSlug2(){
 function checkLeaderSlug3(){
 	GetLettuce(d_leaderboard[3].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost6 = true;
+			d_leaderboard[3].boost6 = true;
 		} else {
-			d_leaderboard[0].boost6 = false;
+			d_leaderboard[3].boost6 = false;
 		}
 	});
 }
@@ -658,9 +658,9 @@ function checkLeaderSlug3(){
 function checkLeaderSlug4(){
 	GetLettuce(d_leaderboard[4].address, function(result) {
 		if(result > 0) {
-			d_leaderboard[0].boost6 = true;
+			d_leaderboard[4].boost6 = true;
 		} else {
-			d_leaderboard[0].boost6 = false;
+			d_leaderboard[4].boost6 = false;
 		}
 	});
 }
