@@ -462,25 +462,25 @@ function checkLeaderboard4(){
 
 function checkLeaderEgg0(){
 	ComputeMyEgg(d_leaderboard[0].address, function(result) {
-		d_leaderboard[0].hatchery = result;
+		d_leaderboard[0].egg = result;
 	});
 }
 
 function checkLeaderEgg1(){
 	ComputeMyEgg(d_leaderboard[1].address, function(result) {
-		d_leaderboard[1].hatchery = result;
+		d_leaderboard[1].egg = result;
 	});
 }
 
 function checkLeaderEgg2(){
 	ComputeMyEgg(d_leaderboard[2].address, function(result) {
-		d_leaderboard[2].hatchery = result;
+		d_leaderboard[2].egg = result;
 	});
 }
 
 function checkLeaderEgg3(){
 	ComputeMyEgg(d_leaderboard[3].address, function(result) {
-		d_leaderboard[3].hatchery = result;
+		d_leaderboard[3].egg = result;
 	});
 }
 
