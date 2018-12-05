@@ -233,14 +233,6 @@ function refreshData(){
 	updateLettuceReq();
 	
 	updateHatchEstimate();
-	
-	checkLeaderboard0();
-	checkLeaderboard1();
-	checkLeaderboard2();
-	checkLeaderboard3();
-	checkLeaderboard4();
-	
-	checkLeaderEgg0();
 }
 
 //Refreshes some game data faster
@@ -259,6 +251,36 @@ function refreshDataFast(){
 
 //Refreshes leaderboard
 function refreshDataSlow(){
+	checkLeaderboard0();
+	checkLeaderboard1();
+	checkLeaderboard2();
+	checkLeaderboard3();
+	checkLeaderboard4();
+	
+	checkLeaderEgg0();
+	checkLeaderEgg1();
+	checkLeaderEgg2();
+	checkLeaderEgg3();
+	checkLeaderEgg4();
+	
+	checkLeaderLettuce0();
+	checkLeaderLettuce1();
+	checkLeaderLettuce2();
+	checkLeaderLettuce3();
+	checkLeaderLettuce4();
+	
+	checkLeaderCarrot0();
+	checkLeaderCarrot1();
+	checkLeaderCarrot2();
+	checkLeaderCarrot3();
+	checkLeaderCarrot4();
+	
+	checkLeaderSlug0();
+	checkLeaderSlug1();
+	checkLeaderSlug2();
+	checkLeaderSlug3();
+	checkLeaderSlug4();
+	
 	slowupdateLeaderboard();
 	showLeaderboard();
 	//console.log("refreshed leaderboard fully");
@@ -427,7 +449,7 @@ function slowupdateLeaderboard() {
 	showLeaderboard();
 }
 
-//Ugly Leaderboard updates
+//Ugly Leaderboard updates. Can't seem to get a loop working for these web3 calls due to delays
 function checkLeaderboard0(){
 	GetSnail(d_leaderboard[0].address, function(result) {
 		d_leaderboard[0].hatchery = result;
@@ -487,6 +509,156 @@ function checkLeaderEgg3(){
 function checkLeaderEgg4(){
 	ComputeMyEgg(d_leaderboard[4].address, function(result) {
 		d_leaderboard[4].egg = result;
+	});
+}
+
+function checkLeaderLettuce0(){
+	GetLettuce(d_leaderboard[0].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost4 = true;
+		} else {
+			d_leaderboard[0].boost4 = false;
+		}
+	});
+}
+
+function checkLeaderLettuce1(){
+	GetLettuce(d_leaderboard[1].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost4 = true;
+		} else {
+			d_leaderboard[0].boost4 = false;
+		}
+	});
+}
+
+function checkLeaderLettuce2(){
+	GetLettuce(d_leaderboard[2].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost4 = true;
+		} else {
+			d_leaderboard[0].boost4 = false;
+		}
+	});
+}
+
+function checkLeaderLettuce3(){
+	GetLettuce(d_leaderboard[3].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost4 = true;
+		} else {
+			d_leaderboard[0].boost4 = false;
+		}
+	});
+}
+
+function checkLeaderLettuce4(){
+	GetLettuce(d_leaderboard[4].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost4 = true;
+		} else {
+			d_leaderboard[0].boost4 = false;
+		}
+	});
+}
+
+function checkLeaderCarrot0(){
+	GetLettuce(d_leaderboard[0].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost5 = true;
+		} else {
+			d_leaderboard[0].boost5 = false;
+		}
+	});
+}
+
+function checkLeaderCarrot1(){
+	GetLettuce(d_leaderboard[1].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost5 = true;
+		} else {
+			d_leaderboard[0].boost5 = false;
+		}
+	});
+}
+
+function checkLeaderCarrot2(){
+	GetLettuce(d_leaderboard[2].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost5 = true;
+		} else {
+			d_leaderboard[0].boost5 = false;
+		}
+	});
+}
+
+function checkLeaderCarrot3(){
+	GetLettuce(d_leaderboard[3].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost5 = true;
+		} else {
+			d_leaderboard[0].boost5 = false;
+		}
+	});
+}
+
+function checkLeaderCarrot4(){
+	GetLettuce(d_leaderboard[4].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost5 = true;
+		} else {
+			d_leaderboard[0].boost5 = false;
+		}
+	});
+}
+
+function checkLeaderSlug0(){
+	GetLettuce(d_leaderboard[0].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost6 = true;
+		} else {
+			d_leaderboard[0].boost6 = false;
+		}
+	});
+}
+
+function checkLeaderSlug1(){
+	GetLettuce(d_leaderboard[1].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost6 = true;
+		} else {
+			d_leaderboard[0].boost6 = false;
+		}
+	});
+}
+
+function checkLeaderSlug2(){
+	GetLettuce(d_leaderboard[2].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost6 = true;
+		} else {
+			d_leaderboard[0].boost6 = false;
+		}
+	});
+}
+
+function checkLeaderSlug3(){
+	GetLettuce(d_leaderboard[3].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost6 = true;
+		} else {
+			d_leaderboard[0].boost6 = false;
+		}
+	});
+}
+
+function checkLeaderSlug4(){
+	GetLettuce(d_leaderboard[4].address, function(result) {
+		if(result > 0) {
+			d_leaderboard[0].boost6 = true;
+		} else {
+			d_leaderboard[0].boost6 = false;
+		}
 	});
 }
 
