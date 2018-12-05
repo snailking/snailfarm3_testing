@@ -68,7 +68,7 @@ body {
 }
 
 .scroll-box {
-	width: 98%; 
+	width: 100%; 
 	overflow: auto; 
 	overflow-x: hidden; 
 	height: 110px;

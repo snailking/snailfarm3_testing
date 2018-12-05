@@ -2963,7 +2963,7 @@ hatchEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " hatched " + result.args.eggs + " eggs into " + result.args.snails + " snails, and has " + result.args.hatchery + " snails in total.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " hatched " + result.args.eggs + " Eggs into " + result.args.snails + " Snails, and has " + result.args.hatchery + " Snails in total.";
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = parseInt(result.args.hatchery); //seems to return an array/object
 			//console.log("e_hatch is " + e_hatched.hatchery);
@@ -2980,7 +2980,7 @@ usedredEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " hatched " + result.args.eggs + " eggs into " + result.args.snails + " snails, and has " + result.args.hatchery + " hatchery.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " hatched " + result.args.eggs + " Reds into " + result.args.snails + " Snails, and has a total of " + result.args.hatchery + " Snails.";
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = result.args.hatchery; //seems to return an array/object
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
@@ -3051,7 +3051,7 @@ soldeggEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " sold " + result.args.eggs + " eggs for " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " sold " + result.args.eggs + " Eggs for " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
@@ -3064,7 +3064,7 @@ boughteggEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " bought " + result.args.eth + " eggs for " + formatEthValue2(web3.fromWei(result.args.eggs,'ether')) + " ETH."; //inverted eggs and ETH in contract event
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " bought " + result.args.eth + " Eggs for " + formatEthValue2(web3.fromWei(result.args.eggs,'ether')) + " ETH."; //inverted eggs and ETH in contract event
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
@@ -3181,7 +3181,7 @@ foundslugEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " sacrifices a colossal " + result.args.snails + " and finds the Slug.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " sacrifices a colossal " + result.args.snails + " Snails and finds the Slug.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
