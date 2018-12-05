@@ -290,14 +290,14 @@ function updatePlayerStatus(){
 	var playerstatusdoc = document.getElementById('playerstatus')
 	if(a_gameActive == true){
 		if(a_playerRound == 0){
-			playerstatusdoc.innerHTML = '<button onclick="webGetStarter()">Get Starting Snails!</button><br>(will let you play every round, 0.004 ETH cost)';
+			playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webGetStarter()">Get Starting Snails!</button><br>(will let you play every round, 0.004 ETH cost)';
 		} else if(a_playerRound != a_round){
-			playerstatusdoc.innerHTML = '<button onclick="webJoinRound()">Join New Round!</button><br>(will give you red eggs for your previous performance)';
+			playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webJoinRound()">Join New Round!</button><br>(will give you red eggs for your previous performance)';
 		} else {
 			playerstatusdoc.innerHTML = '<img height="64" src="snail.png">';
 		}
 	} else {
-		playerstatusdoc.innerHTML = '<button onclick="webBeginRound()">Begin New Round!</button><br>(will only work if countdown timer is at 0)';
+		playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webBeginRound()">Begin New Round!</button><br>(will only work if countdown timer is at 0)';
 	}
 }
 		
@@ -422,7 +422,7 @@ function slowupdateLeaderboard() {
 		d_leaderboard[i].boost6 = _boost6;
 		d_leaderboard[i].hatchery = _hatchery;
 		console.log("hatchery is " + d_leaderboard[i].hatchery);*/
-		console.log("slowupdate iteration " + i);
+		//console.log("slowupdate iteration " + i);
 	}
 	showLeaderboard();
 }
@@ -431,6 +431,8 @@ function slowupdateLeaderboard() {
 function checkLeaderboard0(){
 	GetSnail(d_leaderboard[0].address, function(result) {
 		d_leaderboard[0].hatchery = result;
+		console.log(result);
+		console.log("hatchery of " + d_leaderboard[0].address + " = " + d_leaderboard[0].hatchery);
 	});
 }
 
@@ -3017,7 +3019,7 @@ paidthroneEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " paid tribute to the SnailThrone! " + result.args.eth + " ETH have been sent.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " paid tribute to the SnailThrone! " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH have been sent.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
@@ -3030,7 +3032,7 @@ boostedpotEvent.watch(function(error, result){
 		////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " makes a generous " + result.args.eth + " ETH donation to the SnailPot. Next round is going to be sweet!";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " makes a generous " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH donation to the SnailPot. Next round is going to be sweet!";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}

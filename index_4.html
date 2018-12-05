@@ -72,7 +72,7 @@
 					<h4>Spend <span id="snailmasterreq">[undefined]</span> red eggs to take their place.</h4>
 				</div>
 				<div class="col-sm" align="right">
-					<button onclick="webBecomeSnailmaster()">Become Snailmaster!</button>
+					<button class="btn btn-success" onclick="webBecomeSnailmaster()">Become Snailmaster!</button>
 				</div>
 			</div>	
 		</div><br>
@@ -130,7 +130,7 @@
 					<h5>Hatch Eggs into <span id="hatchestimate">[undefined]</span> Snails</h5>
 				</div>
 				<div class="col-sm" align="right">
-					<p>(Cost: 0.0008 ETH) <button onclick="webHatchEgg()">HATCH</button></p>
+					<p>(Cost: 0.0008 ETH) <button class="btn btn-success" onclick="webHatchEgg()">HATCH</button></p>
 				</div>
 			</div>
 			<div class="row black-shadow">
@@ -138,7 +138,7 @@
 					<h5>Sell Eggs for <span id="sellestimate">?</span> ETH</h5>
 				</div>
 				<div class="col-sm" align="right">
-					<p>(Maximum reward: half of eggpot) <button onclick="webSellEgg()">SELL</button></p>
+					<p>(Maximum reward: half of eggpot) <button class="btn btn-success" onclick="webSellEgg()">SELL</button></p>
 				</div>
 			</div>
 			<div class="row black-shadow">
@@ -146,7 +146,7 @@
 					<h5>Buy <span id="buyestimate">?</span> Eggs for <span id="fieldBuy2">?</span> ETH <input type="text" id="fieldBuy" value="0.01" size="4">
 				</div>
 				<div class="col-sm" align="right">
-					<p>(Maximum eggs in one buy: <span id="maxeggbuy">[undefined]</span>) <button onclick="webBuyEgg()">BUY</button></p>
+					<p>(Maximum eggs in one buy: <span id="maxeggbuy">[undefined]</span>) <button class="btn btn-success" onclick="webBuyEgg()">BUY</button></p>
 				</div>
 			</div><br>
 			<div class="row black-shadow">
@@ -173,7 +173,7 @@
 					<h5>Grab the Red Harvest at a cost of <span id="harvestcost">[undefined]</span> ETH</h5>
 				</div>
 				<div class="col-sm" align="right">
-					<p>(Reward: 300 Red Eggs) <button onclick="webClaimRedHarvest()">GRAB</button></p>
+					<p>(Reward: 300 Red Eggs) <button class="btn btn-success" onclick="webClaimRedHarvest()">GRAB</button></p>
 				</div>
 			</div>
 			<div class="row black-shadow">
@@ -181,7 +181,7 @@
 					<h5>Hatch <span id="fieldRed2">?</span> Red Eggs and get <span id="redestimate">?</span> Snails <input type="text" id="fieldRed" value="0" size="4"></h5>
 				</div>
 				<div class="col-sm" align="right">
-					<p>(Red Eggs hatch for free) <button onclick="webHatchRed()">HATCH</button></p>
+					<p>(Red Eggs hatch for free) <button class="btn btn-success" onclick="webHatchRed()">HATCH</button></p>
 				</div>
 			</div>				
 		</div>
@@ -192,21 +192,21 @@
 					<h1>SPIDERQUEEN</h1>
 					<img height="96" src="img/spider.png">
 					<h5 class="black-shadow">Owned by <span id="spiderowner">[undefined]</span></h3><br>
-					<button onclick="webBecomeSpiderQueen()">BECOME SPIDERQUEEN</button>
+					<button class="btn btn-success" onclick="webBecomeSpiderQueen()">BECOME SPIDERQUEEN</button>
 					<p>Requirement: <span id="spiderreq">[undefined]</span> Snails</p>
 				</div>
 				<div class="col-sm">
 					<h1>SQUIRRELDUKE</h1>
 					<img height="96" src="img/squirrel.png">
 					<h5 class="black-shadow">Owned by <span id="squirrelowner">[undefined]</span></h3><br>
-					<button onclick="webBecomeSquirrelDuke()">BECOME SQUIRRELDUKE</button>
+					<button class="btn btn-success" onclick="webBecomeSquirrelDuke()">BECOME SQUIRRELDUKE</button>
 					<p>Requirement: <span id="squirrelreq">[undefined]</span> Reds</p>
 				</div>
 				<div class="col-sm">
 					<h1>TADPOLE PRINCE</h1>
 					<img height="96" src="img/tadpole.png">
 					<h5 class="black-shadow">Owned by <span id="tadpoleowner">[undefined]</span></h3><br>
-					<button onclick="webBecomeTadpolePrince()">BECOME TADPOLEPRINCE</button>
+					<button class="btn btn-success" onclick="webBecomeTadpolePrince()">BECOME TADPOLEPRINCE</button>
 					<p>Requirement: <span id="tadpolereq">[undefined]</span> ETH </p>
 					<input type="text" id="fieldPrince" value="0.02" size="4">
 				</div>
@@ -219,21 +219,21 @@
 					<h1>LETTUCE</h1>
 					<img height="96" src="img/lettuce.png">
 					<h5 class="black-shadow"><span id="haslettuce"></span></h3><br>
-					<button onclick="webFindLettuce()">FIND LETTUCE</button>
+					<button class="btn btn-success" onclick="webFindLettuce()">FIND LETTUCE</button>
 					<p>Requirement: <span id="lettucereq">[undefined]</span> Reds</p>
 				</div>
 				<div class="col-sm">
 					<h1>CARROT</h1>
 					<img height="96" src="img/carrot.png">
 					<h5 class="black-shadow"><span id="hascarrot"></span></h3><br>
-					<button onclick="webFindCarrot()">FIND CARROT</button>
+					<button class="btn btn-success" onclick="webFindCarrot()">FIND CARROT</button>
 					<p>Requirement: 0.02 ETH</p>
 				</div>
 				<div class="col-sm">
 					<h1>SLUG</h1>
 					<img height="96" src="img/slug.png">
 					<h5 class="black-shadow"><span id="hasslug"></span></h3><br>
-					<button onclick="webFindSlug()">FIND SLUG</button>
+					<button class="btn btn-success" onclick="webFindSlug()">FIND SLUG</button>
 					<p>Requirement: at least 100 000 Snails</p>
 				</div>
 			</div>
@@ -253,7 +253,7 @@
 					<h5>Transfer your balance to your wallet</h5>
 				</div>
 				<div class="col-sm" align="right">
-					<p>(Remember to claim your share) <button onclick="webWithdrawBalance()">WITHDRAW</button></p>
+					<p>(Remember to claim your share) <button class="btn btn-success" onclick="webWithdrawBalance()">WITHDRAW</button></p>
 				</div>
 			</div>
 			<div class="row black-shadow">
@@ -261,7 +261,7 @@
 					<h5>You own <span id="playeracorn">[undefined]</span> Acorns</h5>
 				</div>
 				<div class="col-sm" align="right">
-					<p>(Unclaimed share: <span id="playershare">?</span> ETH) <button onclick="webClaimShare()">CLAIM</button></p>
+					<p>(Unclaimed share: <span id="playershare">?</span> ETH) <button class="btn btn-success" onclick="webClaimShare()">CLAIM</button></p>
 				</div>
 			</div>
 			<div class="row black-shadow">
@@ -269,7 +269,7 @@
 					<h5>Fund Ethertree with <span id="fieldTree2">?</span> ETH to get <span id="treeestimate">?</span> Acorns <input type="text" id="fieldTree" value="0.01" size="4"></h5>
 				</div>
 				<div class="col-sm" align="right">
-					<p>(Cost per acorn: <span id="acorncost">[undefined]</span>) <button onclick="webFundTree()">FUND</button></p>
+					<p>(Cost per acorn: <span id="acorncost">[undefined]</span>) <button class="btn btn-success" onclick="webFundTree()">FUND</button></p>
 				</div>
 			</div>
 			<div class="col-sm black-shadow" align="center"><br>
@@ -284,7 +284,7 @@
 					<h5>Send <span id="thronepot">[undefined]</span> ETH to SnailThrone holders</h5>
 				</div>
 				<div class="col-sm" align="right">
-					<p>(No requirement) <button onclick="webPayThrone()">SEND</button></p>
+					<p>(No requirement) <button class="btn btn-success" onclick="webPayThrone()">SEND</button></p>
 				</div>
 			</div>
 		</div><br>	
