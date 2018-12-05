@@ -3243,16 +3243,15 @@ boostedpotEvent.watch(function(error, result){
 
 //--
 
-function testPastEvent {
-	
-	myContract.getPastEvents("HatchedEgg", {
+function myContract.getPastEvents("HatchedEgg", {
 		fromBlock: 0, 
 		toBlock: "latest" 
 		}, function(error, events) {
-			for (i=0; i<events.length; i++) {
-				var eventObj = events[i];
-				console.log('Address: ' + eventObj.args.eth);
+			if(!error) {
+				for (i=0; i<events.length; i++) {
+					var eventObj = events[i];
+					console.log('Address: ' + eventObj.args.eth);
+				}
 			}
-	}
+	});
 	
-});
