@@ -3253,6 +3253,6 @@ function testPastEvent {
 				var eventObj = events[i];
 				console.log('Address: ' + eventObj.args.eth);
 			}
-	});
+	}
 	
-}
+});
