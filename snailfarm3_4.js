@@ -395,7 +395,7 @@ function showLeaderboard() {
 function slowupdateLeaderboard() {
 	for(i = 0; i < 5; i++) {
 		var lead = d_leaderboard[i];
-		console.log(lead);
+		//console.log(lead);
 		var _boost4 = false;
 		var _boost5 = false;
 		var _boost6 = false;
@@ -514,10 +514,13 @@ function checkLeaderEgg4(){
 
 function checkLeaderLettuce0(){
 	GetLettuce(d_leaderboard[0].address, function(result) {
+		console.log(d_leaderboard[0].address + " lettuce result is " + result);
 		if(result > 0) {
 			d_leaderboard[0].boost4 = true;
+			console.log("We have a lettuce!");
 		} else {
 			d_leaderboard[0].boost4 = false;
+			console.log("No lettuce here.");
 		}
 	});
 }
