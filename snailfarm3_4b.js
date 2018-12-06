@@ -1118,7 +1118,7 @@ function updateTreeEstimate(){
 //Hatch estimate
 function updateHatchEstimate(){
 	var hatchEstimatedoc = document.getElementById('hatchestimate');
-	hatchEstimatedoc.innerHTML = a_playerEgg * a_playerBoost;
+	hatchEstimatedoc.innerHTML = (a_playerEgg * a_playerBoost).toFixed(0);
 }
 
 //Red estimate
