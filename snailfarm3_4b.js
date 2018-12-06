@@ -164,7 +164,7 @@ function main(){
     controlLoop();
 	controlLoopFast();
 	controlLoopSlow();
-	//showLeaderboard();
+	controlLoopEgg();
 }
 
 //Main loop on 4 seconds
