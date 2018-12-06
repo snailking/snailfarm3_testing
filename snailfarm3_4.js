@@ -137,6 +137,7 @@ var a_playerProd = 0;
 var a_playerRed = 0; 
 
 var o_playerEgg = 0;
+var z_playerEgg = 0;
 
 var f_buy = 0;
 var f_prince = 0;
@@ -300,6 +301,8 @@ function refreshDataSlow(){
 	
 	slowupdateLeaderboard();
 	showLeaderboard();
+	
+	slowupdatePlayerEgg();
 	//console.log("refreshed leaderboard fully");
 }
 
@@ -993,6 +996,19 @@ function updateAcornCost(){
 //Current player eggs
 var playereggdoc = document.getElementById('playeregg');
 
+function slowupdatePlayerEgg(){
+	ComputeMyEgg(m_account, function(result) {
+		if(result == o_playerEgg) {
+			z_playerEgg += 1;
+		} else {
+			z_playerEgg = 0;
+		}
+		o_playerEgg = formatEthValue(result);
+		a_playerEgg = o_playerEgg;
+		playereggdoc.textContent = a_playerEgg + ".000";
+	});
+}
+
 function updatePlayerEgg(){
 	ComputeMyEgg(m_account, function(result) {
 		_result = formatEthValue(result);
@@ -1006,9 +1022,11 @@ function updatePlayerEgg(){
 
 //Fast player egg update
 function fastPlayerEgg(){
-	_prod = parseFloat(a_playerProd / 36000).toFixed(3); //hour prod divided to 100ms intervals
-	a_playerEgg = (parseFloat(a_playerEgg) + parseFloat(_prod)).toFixed(3);
-	playereggdoc.textContent = a_playerEgg;
+	if(z_playerEgg < 2) {
+		_prod = parseFloat(a_playerProd / 36000).toFixed(3); //hour prod divided to 100ms intervals
+		a_playerEgg = (parseFloat(a_playerEgg) + parseFloat(_prod)).toFixed(3);
+		playereggdoc.textContent = a_playerEgg;
+	}
 }
 
 //Current player red eggs
