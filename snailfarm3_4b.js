@@ -136,6 +136,8 @@ var a_playerBoost = 0;
 var a_playerProd = 0;
 var a_playerRed = 0; 
 
+var o_playerEgg = 0;
+
 var f_buy = 0;
 var f_prince = 0;
 var f_tree = 0;
@@ -251,6 +253,7 @@ function refreshDataFast(){
 	updateRedEstimate();
 	fastupdateDowntime();
 	fastupdateDowntime();
+	fastPlayerEgg();
 }
 
 //Refreshes leaderboard
@@ -984,12 +987,24 @@ function updateAcornCost(){
 }
 
 //Current player eggs
+var playereggdoc = document.getElementById('playeregg');
+
 function updatePlayerEgg(){
-	playereggdoc = document.getElementById('playeregg');
-	ComputeMyEgg(m_account, function(req) {
-		a_playerEgg = formatEthValue(req);
-		playereggdoc.textContent = a_playerEgg;
+	ComputeMyEgg(m_account, function(result) {
+		_result = formatEthValue(result);
+		if(_result != o_playerEgg) {
+			a_playerEgg = _result;
+			o_playerEgg = _result;
+			playereggdoc.textContent = a_playerEgg;
+		}
 	});
+}
+
+//Fast player egg update
+function fastPlayerEgg(){
+	_prod = parseFloat(a_playerProd / 1800).toFixed(3); //hour prod divided to 200ms intervals
+	a_playerEgg = parseFloat(a_playerEgg) + parseFloat(_prod);
+	playereggdoc.textContent = a_playerEgg;
 }
 
 //Current player red eggs
@@ -1013,7 +1028,7 @@ function updatePlayerBoost(){
 //Current player prod
 function updatePlayerProd(){
 	var playerproddoc = document.getElementById('playerprod');
-	a_playerProd = parseFloat(a_playerSnail / 24).toFixed(4); //100% per day, divided by 24 hours
+	a_playerProd = parseFloat(a_playerSnail / 24).toFixed(3); //100% per day, divided by 24 hours
 	playerproddoc.textContent = a_playerProd;
 }
 
@@ -3243,15 +3258,4 @@ boostedpotEvent.watch(function(error, result){
 
 //--
 
-myContract.getPastEvents("HatchedEgg", {
-		fromBlock: 0, 
-		toBlock: "latest" 
-		}, function(error, events) {
-			if(!error) {
-				for (i=0; i<events.length; i++) {
-					var eventObj = events[i];
-					console.log('Address: ' + eventObj.args.eth);
-				}
-			}
-		});
-	
+
