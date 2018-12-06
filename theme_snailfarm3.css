@@ -4,11 +4,10 @@ p {
 }
 
 body {
-	background-image: url("img/forest_bg.jpg"), url("img/grass.png");
-	background-repeat: no-repeat, repeat;
-	background-position: center top;
-	
-	
+	background-image: url("img/forest_bg.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
 }
 
 
