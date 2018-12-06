@@ -8,6 +8,8 @@ var contractAddress="0x8BECf05666D536c82aA72565dD9BaD4bC31F3bec" // ROPSTEN 5
 
 //var modal2 = document.getElementById("modal2");
 
+var web3;
+
 window.addEventListener("load", function() {
 	if (typeof web3 !== "undefined") {
         web3 = new Web3(web3.currentProvider);
@@ -25,7 +27,7 @@ window.addEventListener("load", function() {
     } else {
         console.log("Web3 library not found.");
 		//modal2.style.display = "block";
-        web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
     }
 });
 /*
@@ -134,6 +136,8 @@ var a_playerBoost = 0;
 var a_playerProd = 0;
 var a_playerRed = 0; 
 
+var o_playerEgg = 0;
+
 var f_buy = 0;
 var f_prince = 0;
 var f_tree = 0;
@@ -160,7 +164,7 @@ function main(){
     controlLoop();
 	controlLoopFast();
 	controlLoopSlow();
-	//showLeaderboard();
+	controlLoopEgg();
 }
 
 //Main loop on 4 seconds
@@ -180,6 +184,12 @@ function controlLoopSlow(){
 	refreshDataSlow();
 	//console.log("slow loop");
 	setTimeout(controlLoopSlow,60000);
+}
+
+//Super fast 100ms loop for eggs approximation
+function controlLoopEgg(){
+	fastPlayerEgg();
+	setTimeout(controlLoopEgg,100);
 }
 
 /* STATE UPDATES */
@@ -247,7 +257,6 @@ function refreshDataFast(){
 	updateTreeEstimate();
 	updateRedHatch2();
 	updateRedEstimate();
-	fastupdateDowntime();
 	fastupdateDowntime();
 }
 
@@ -982,12 +991,24 @@ function updateAcornCost(){
 }
 
 //Current player eggs
+var playereggdoc = document.getElementById('playeregg');
+
 function updatePlayerEgg(){
-	playereggdoc = document.getElementById('playeregg');
-	ComputeMyEgg(m_account, function(req) {
-		a_playerEgg = formatEthValue(req);
-		playereggdoc.textContent = a_playerEgg;
+	ComputeMyEgg(m_account, function(result) {
+		_result = formatEthValue(result);
+		if(_result != o_playerEgg) {
+			a_playerEgg = _result;
+			o_playerEgg = _result;
+			playereggdoc.textContent = a_playerEgg + ".000";
+		}
 	});
+}
+
+//Fast player egg update
+function fastPlayerEgg(){
+	_prod = parseFloat(a_playerProd / 36000).toFixed(3); //hour prod divided to 100ms intervals
+	a_playerEgg = (parseFloat(a_playerEgg) + parseFloat(_prod)).toFixed(3);
+	playereggdoc.textContent = a_playerEgg;
 }
 
 //Current player red eggs
@@ -1011,7 +1032,7 @@ function updatePlayerBoost(){
 //Current player prod
 function updatePlayerProd(){
 	var playerproddoc = document.getElementById('playerprod');
-	a_playerProd = parseFloat(a_playerSnail / 24).toFixed(4); //100% per day, divided by 24 hours
+	a_playerProd = parseFloat(a_playerSnail / 24).toFixed(3); //100% per day, divided by 24 hours
 	playerproddoc.textContent = a_playerProd;
 }
 
@@ -1101,7 +1122,7 @@ function updateTreeEstimate(){
 //Hatch estimate
 function updateHatchEstimate(){
 	var hatchEstimatedoc = document.getElementById('hatchestimate');
-	hatchEstimatedoc.innerHTML = a_playerEgg * a_playerBoost;
+	hatchEstimatedoc.innerHTML = (a_playerEgg * a_playerBoost).toFixed(0);
 }
 
 //Red estimate
@@ -3238,3 +3259,7 @@ boostedpotEvent.watch(function(error, result){
 		}
 	}
 });
+
+//--
+
+
