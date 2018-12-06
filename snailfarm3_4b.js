@@ -995,7 +995,7 @@ function updatePlayerEgg(){
 		if(_result != o_playerEgg) {
 			a_playerEgg = _result;
 			o_playerEgg = _result;
-			playereggdoc.textContent = a_playerEgg;
+			playereggdoc.textContent = a_playerEgg + ".000";
 		}
 	});
 }
