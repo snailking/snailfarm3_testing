@@ -186,6 +186,12 @@ function controlLoopSlow(){
 	setTimeout(controlLoopSlow,60000);
 }
 
+//Super fast 100ms loop for eggs approximation
+function controlLoopEgg(){
+	fastPlayerEgg();
+	setTimeout(controlLoopEgg,100);
+}
+
 /* STATE UPDATES */
 
 //Refreshes game data
@@ -252,8 +258,6 @@ function refreshDataFast(){
 	updateRedHatch2();
 	updateRedEstimate();
 	fastupdateDowntime();
-	fastupdateDowntime();
-	fastPlayerEgg();
 }
 
 //Refreshes leaderboard
@@ -1002,7 +1006,7 @@ function updatePlayerEgg(){
 
 //Fast player egg update
 function fastPlayerEgg(){
-	_prod = parseFloat(a_playerProd / 18000).toFixed(3); //hour prod divided to 200ms intervals
+	_prod = parseFloat(a_playerProd / 36000).toFixed(3); //hour prod divided to 100ms intervals
 	a_playerEgg = (parseFloat(a_playerEgg) + parseFloat(_prod)).toFixed(3);
 	playereggdoc.textContent = a_playerEgg;
 }
