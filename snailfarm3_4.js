@@ -329,14 +329,14 @@ function updatePlayerStatus(){
 	var playerstatusdoc = document.getElementById('playerstatus')
 	if(a_gameActive == true){
 		if(a_playerRound == 0){
-			playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webGetStarter()">Get Starting Snails!</button><br>(will let you play every round, 0.004 ETH cost)';
+			playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webGetStarter()">Get Starting Snails!</button><br><p class="black-shadow">(will let you play every round, 0.004 ETH cost)</p>';
 		} else if(a_playerRound != a_round){
-			playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webJoinRound()">Join New Round!</button><br>(will give you red eggs for your previous performance)';
+			playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webJoinRound()">Join New Round!</button><br><p class="black-shadow">(will give you red eggs for your previous performance)</p>';
 		} else {
 			playerstatusdoc.innerHTML = '<img height="64" src="snail.png">';
 		}
 	} else {
-		playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webBeginRound()">Begin New Round!</button><br>(will only work if countdown timer is at 0)';
+		playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webBeginRound()">Begin New Round!</button><br><p class="black-shadow">(will only work if countdown timer is at 0)</p>';
 	}
 }
 		
@@ -3148,11 +3148,11 @@ var wonroundEvent = myContract.WonRound();
 wonroundEvent.watch(function(error, result){
     if(!error){
 		////console.log(result);
-		if(checkHash(storetxhash, result.transactionHash) != 0) {
+		//if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " WINS ROUND " + result.args.round + " AND EARNS " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH!";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
-		}
+		//}
 	}
 });
 
