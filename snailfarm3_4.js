@@ -137,6 +137,7 @@ var a_playerProd = 0;
 var a_playerRed = 0; 
 
 var o_playerEgg = 0;
+var s_playerEgg = 0;
 var z_playerEgg = 0;
 
 var f_buy = 0;
@@ -998,13 +999,13 @@ var playereggdoc = document.getElementById('playeregg');
 
 function slowupdatePlayerEgg(){
 	ComputeMyEgg(m_account, function(result) {
-		if(result == o_playerEgg) {
+		if(result == s_playerEgg) {
 			z_playerEgg += 1;
 		} else {
 			z_playerEgg = 0;
 		}
-		o_playerEgg = formatEthValue(result);
-		a_playerEgg = o_playerEgg;
+		s_playerEgg = formatEthValue(result);
+		a_playerEgg = s_playerEgg;
 		playereggdoc.textContent = a_playerEgg + ".000";
 	});
 }
