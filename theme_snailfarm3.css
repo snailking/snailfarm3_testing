@@ -5,6 +5,7 @@ p {
 
 body {
 	background-image: url("img/forest_bg.jpg");
+	background-color: #49633c;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-attachment: fixed;
