@@ -994,22 +994,26 @@ function updateAcornCost(){
 	});
 }
 
-//Current player eggs
+//Eggs
 var playereggdoc = document.getElementById('playeregg');
 
+//Check if player eggs are above player snails, and stop local timer if needed
 function slowupdatePlayerEgg(){
-	ComputeMyEgg(m_account, function(result) {
-		if(result == s_playerEgg) {
-			z_playerEgg += 1;
-		} else {
-			z_playerEgg = 0;
-		}
-		s_playerEgg = formatEthValue(result);
-		a_playerEgg = s_playerEgg;
-		playereggdoc.textContent = a_playerEgg + ".000";
-	});
+	if(a_playerEgg >= a_playerSnail) {
+		ComputeMyEgg(m_account, function(result) {
+			if(result == s_playerEgg) {
+				z_playerEgg += 1;
+			} else {
+				z_playerEgg = 0;
+			}
+			s_playerEgg = formatEthValue(result);
+			a_playerEgg = s_playerEgg;
+			playereggdoc.textContent = a_playerEgg + ".000";
+		});
+	}
 }
 
+//Current player eggs
 function updatePlayerEgg(){
 	ComputeMyEgg(m_account, function(result) {
 		_result = formatEthValue(result);
