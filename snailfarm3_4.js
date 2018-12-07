@@ -4,6 +4,11 @@
 //var contractAddress="0x3Fb1D4075C12611293D583E79CD3A62993ec974E" // ROPSTEN 4
 var contractAddress="0x8BECf05666D536c82aA72565dD9BaD4bC31F3bec" // ROPSTEN 5
 
+/* TO CHANGE FOR FINAL TESTNET/MAINNET:
+Line 6: Contract Address
+Line 23 to 26: Mainnet is 1, change console.logs to Mainnet
+Line 3111: Inverted ARGS corrected in next contract
+
 /* WEB3 DETECTION */
 
 //var modal2 = document.getElementById("modal2");
@@ -85,7 +90,7 @@ function formatEthValue2(ethstr){
 	return parseFloat(parseFloat(ethstr).toFixed(6));
 }
 
-//Truncates ETH address and changes it into an etherscan link
+//Truncates ETH address to first 8 numbers
 function formatEthAdr(adr){
 	return adr.substring(0, 10);
 }
@@ -826,10 +831,14 @@ function checkOwnsLettuce(){
 			haslettuce.innerHTML = "You already own a Lettuce.";
 			document.getElementById('lettuce_yes').style.display = 'inline';
 			document.getElementById('lettuce_no').style.display = 'none';
+			document.getElementById('yeslettuce').style.display = 'inline';
+			document.getElementById('nolettuce').style.display = 'none';
 		} else {
 			haslettuce.innerHTML = "Lettuces last 1 Round.";
 			document.getElementById('lettuce_no').style.display = 'inline';
 			document.getElementById('lettuce_yes').style.display = 'none';
+			document.getElementById('nolettuce').style.display = 'inline';
+			document.getElementById('yeslettuce').style.display = 'none';
 		}
 	});
 }
@@ -842,10 +851,15 @@ function checkOwnsCarrot(){
 			hascarrot.innerHTML = "You already own a Carrot.";
 			document.getElementById('carrot_yes').style.display = 'inline';
 			document.getElementById('carrot_no').style.display = 'none';
+			document.getElementById('yescarrot').style.display = 'inline';
+			document.getElementById('nocarrot').style.display = 'none';
+			carrottime.innerHTML = req + " more round(s)";
 		} else {
 			hascarrot.innerHTML = "Carrots last 3 Rounds.";
 			document.getElementById('carrot_no').style.display = 'inline';
 			document.getElementById('carrot_yes').style.display = 'none';
+			document.getElementById('nocarrot').style.display = 'inline';
+			document.getElementById('yescarrot').style.display = 'none';
 		}
 	});
 }
@@ -858,10 +872,14 @@ function checkOwnsSlug(){
 			hasslug.innerHTML = "You already own a Slug.";
 			document.getElementById('slug_yes').style.display = 'inline';
 			document.getElementById('slug_no').style.display = 'none';
+			document.getElementById('yesslug').style.display = 'inline';
+			document.getElementById('noslug').style.display = 'none';
 		} else {
 			hasslug.innerHTML = "Slugs are permanent.";
 			document.getElementById('slug_no').style.display = 'inline';
 			document.getElementById('slug_yes').style.display = 'none';
+			document.getElementById('noslug').style.display = 'inline';
+			document.getElementById('yesslug').style.display = 'none';
 		}
 	});
 }
