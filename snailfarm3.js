@@ -1031,6 +1031,9 @@ function slowupdatePlayerEgg(){
 			playereggdoc.textContent = a_playerEgg + ".000";
 		});
 	}
+	else {
+		z_playerEgg = 0;
+	}
 }
 
 //Current player eggs
