@@ -66,7 +66,7 @@ var m_account = "waiting for web3";
 //Set game timer
 function initCountdown(){
 	var currentTime = Math.round((new Date()).getTime() / 1000);
-	var endTime = 1544385600; //snailfarm3 launch
+	var endTime = 1544374600;//1544385600; //snailfarm3 launch
 	countdownState = Math.floor((endTime - currentTime));
 	updateCountdown();
 }
