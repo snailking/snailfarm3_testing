@@ -1,5 +1,6 @@
 //var contractAddress="0x486e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF"; // ROPSTEN 6
-var contractAddress="0x386e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF"; // FAKE
+var contractAddress="0x38aa3B86164A23d34937780B730306eC05Caff91"; // ROPSTEN 7
+
 /* WEB3 DETECTION */
 
 var web3;
