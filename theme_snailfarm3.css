@@ -126,7 +126,7 @@ body {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 120px; /* Location of the box */
+    padding-top: 200px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -149,7 +149,7 @@ body {
 
 /* The Close Button */
 .close {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 	color: white;
 	vertical-align: text-top;
