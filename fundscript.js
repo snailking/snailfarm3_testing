@@ -85,6 +85,12 @@ function updateContractBalance(){
 	});
 }
 
+//Acorn estimate
+function updateTreeEstimate(){
+	var treeEstimatedoc = document.getElementById('treeestimate');
+	treeEstimatedoc.innerHTML = (f_tree / 0.0005).toFixed(0);
+}
+
 //Current acorns for player
 function updatePlayerAcorn(){
 	var playeracorndoc = document.getElementById('playeracorn');
