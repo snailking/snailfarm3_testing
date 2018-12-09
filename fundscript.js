@@ -61,6 +61,11 @@ function formatEthValue(ethstr){
     return parseFloat(parseFloat(ethstr).toFixed(3));
 }
 
+//Truncates ETH value to 6 decimals
+function formatEthValue2(ethstr){
+	return parseFloat(parseFloat(ethstr).toFixed(6));
+}
+
 //Current ETH address in use
 function updateEthAccount(){
 	m_account = web3.eth.accounts[0];
