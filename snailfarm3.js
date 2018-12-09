@@ -3,13 +3,8 @@
 //var contractAddress="0xFaF0263bDB5556d3013eB67Db2cfe6f9545a1c48" // ROPSTEN 3
 //var contractAddress="0x3Fb1D4075C12611293D583E79CD3A62993ec974E" // ROPSTEN 4
 //var contractAddress="0x8BECf05666D536c82aA72565dD9BaD4bC31F3bec" // ROPSTEN 5
-
-var contractAddress="0x486e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF" // ROPSTEN 6
-
-/* TO CHANGE FOR FINAL TESTNET/MAINNET:
-Line 6: Contract Address
-Line 23 to 26: Mainnet is 1, change console.logs to Mainnet
-Line 3111: Inverted ARGS corrected in next contract
+//var contractAddress="0x486e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF" // ROPSTEN 6
+var contractAddress="0x38aa3B86164A23d34937780B730306eC05Caff91"; // ROPSTEN 7
 
 /* WEB3 DETECTION */
 
