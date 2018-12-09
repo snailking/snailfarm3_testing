@@ -39,6 +39,8 @@ var a_snailPot;
 var a_contractBalance;
 var a_playerAcorn;
 var a_maxAcorn;
+
+var m_account = "waiting for web3";
 	
 //Set game timer
 function initCountdown(){
@@ -46,6 +48,11 @@ function initCountdown(){
 	var endTime = 1544385600; //snailfarm3 launch
 	countdownState = Math.floor((endTime - currentTime));
 	updateCountdown();
+}
+
+//Current ETH address in use
+function updateEthAccount(){
+	m_account = web3.eth.accounts[0];
 }
 
 //Current snail pot
@@ -115,6 +122,7 @@ function updateCountdown(){
 		document.getElementById('fundingstate').textContent = 'THE ETHERTREE IS GROWING!';
 		countdowndoc.textContent = "GET ACORNS NOW";
 	}
+	updateEthAccount();
 	updateMaxAcorn();
 	updatePlayerAcorn();
 	updateContractBalance();
