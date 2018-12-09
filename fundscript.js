@@ -39,6 +39,8 @@ var a_snailPot;
 var a_contractBalance;
 var a_playerAcorn;
 var a_maxAcorn;
+var a_playerShare;
+var a_playerBalance;
 
 var f_tree;
 
@@ -66,21 +68,17 @@ function updateEthAccount(){
 
 //Current snail pot
 function updateSnailPot(){
-	var snailpotdoc = document.getElementById('snailpot');
 	snailPot(function(req) {
 		a_snailPot = formatEthValue(web3.fromWei(req,'ether'));
-		snailpotdoc.textContent = a_snailPot;
 	});
 }
 
 //Current ETH balance in contract
 function updateContractBalance(){
-	var contractbalancedoc = document.getElementById('contractbalance');
 	web3.eth.getBalance(contractAddress, function(error, result) {
 		if(!error) {
 			////////console.log(result);
-			a_contractBalance = formatEthValue(web3.fromWei(result, 'ether'))
-			contractbalancedoc.textContent = a_contractBalance; 
+			a_contractBalance = formatEthValue(web3.fromWei(result, 'ether')) 
 		} else {
 			//////console.log("didn't work");
 		}
@@ -95,6 +93,22 @@ function updatePlayerAcorn(){
 		playeracorndoc.textContent = a_playerAcorn;
 	});
 }
+
+//Current unclaimed share for player
+function updatePlayerShare(){
+	var playersharedoc = document.getElementById('playershare');
+	ComputeMyShare(function(req) {
+		playersharedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
+	});
+}
+
+//Current balance for player
+function updatePlayerBalance(){
+	var playerbalancedoc = document.getElementById('playerbalance');
+	GetMyBalance(function(req) {
+		playerbalancedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
+	});
+}	
 
 //Current number of acorns
 function updateMaxAcorn(){
