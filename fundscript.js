@@ -1,5 +1,5 @@
 //var contractAddress="0x486e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF"; // ROPSTEN 6
-var contractAddress="0x486e218E8029eFCc096DbE8a8E4C7f1a30aF8ddF"; // FAKE
+var contractAddress="0"; // FAKE
 /* WEB3 DETECTION */
 
 var web3;
