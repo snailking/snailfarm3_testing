@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Title, Favicon -->
+		<title>SnailFarm 3 Funding</title>
+		<link rel="shortcut icon" href="favicon.png" type="image/x-icon">		
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="theme_bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="theme_animista.css">
+		<link rel="stylesheet" type="text/css" href="theme_snailfarm3.css">		
+	</head>
+	
+	<body>
+		<div align="center" class="jumbotron">
+			<h1>SNAILFARM 3</h1> 
+			<h2>Growing the Ethertree</h2>
+			<a href="https://ropsten.etherscan.io/address/0x486e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF" target="_blank"><img height="48" src="img/contract_circle.png"></a>
+			<a href="https://discord.gg/8h3Emyb" target="_blank"><img height="48" src="img/discord_circle.png"></a>
+			<a href="https://twitter.com/EtherSnailFarm" target="_blank"><img height="48" src="img/twitter_circle.png"></a>
+			<a href="https://reddit.com/r/snailthrone" target="_blank"><img height="48" src="img/reddit_circle.png"></a>
+			<a href="https://medium.com/@thesnailking/snailfarm-3-competitive-idlegame-on-ethereum-3fe32bf774c7" target="_blank"><img height="48" src="img/medium_circle.png"></a>
+			<div class="container-beige">
+				<h3 class="text-uppercase font-weight-bold">The Ethertree is the life force of SnailFarm 3</h3>
+				<h5>Think of it as a bankroll made of wood and ether.</h5>
+				<h5>The Ethertree lets you take a stake in SnailFarm 3 success, and be rewarded for it.</h5>
+				<br><br>
+				<h3 class="text-uppercase font-weight-bold">Funding the Ethertree will give you Acorns in return</h3>
+				<h5>Acorns entitle you to a share of the Treepot.</h5>
+				<h5>The Treepot is replenished as players take actions in SnailFarm 3.</h5>
+				<br><br>
+				<h3 class="text-uppercase font-weight-bold">Double your Acorns until the game starts</h3>
+				<h5>The first round of SnailFarm 3 starts on Saturday the 15th.</h5>
+				<h5>Fund the Tree before that time, and get TWO times the Acorns for your ETH.</h5>
+				<br><br>
+				<h3 class="text-uppercase font-weight-bold">Withdraw your returns at any time</h3>
+				<h5>You can claim your share and withdraw your balance as many times as you want.</h5>
+				<h5>Even while the game is paused, and even during the funding period.</h5>
+			</div>
+		</div>
+			<div align="center" class="container black-shadow"><br>
+				<h1><span id="fundingstate">FUNDING OPENS SOON:</span></h1>
+				<h1 class="pulse-text"><span id="countdown">?</span></h1>
+				<br><br>
+				<div class="row">
+					<div class="col-sm" align="left">
+						<br><h5>How much ETH to invest? <input type="text" id="fieldTree" value="0.01" size="4">
+					</div>
+					<div class="col-sm" align="center">
+						<span id="fundingopened"><button class="btn btn-lg btn-success" onclick="webFundTree()">FUND ETHERTREE</button>
+					</div>
+					<div class="col-sm" align="right">
+						<br><h5>Your <span id="fieldTree2">?</span> ETH will get you: <span id="treeestimate">?</span> Acorns</p>
+					</div>
+				</div>					
+			</div><br>
+		<div class="jumbotron">
+			<h1 align="center">ETHERTREE GROWTH REPORT</h1><br>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<h3>Total number of Acorns: </h3>
+				</div>
+				<div class="col-sm" align="left">
+					<h3><span id="maxacorn">0</span> Acorns</h3>
+				</div>
+			</div>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<h3>Global investment: </h3>
+				</div>
+				<div class="col-sm" align="left">
+					<h3><span id="doublesnailpot">0</span> ETH</h3>
+				</div>
+			</div>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<h3>Claimed Share: </h3>
+				</div>
+				<div class="col-sm" align="left">
+					<h3><span id="doubleminusbalance">0</span> out of <span id="doubledivten">0</span> ETH</h3>
+				</div>
+			</div>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<h3>First RoundPot will start at: </h3>
+				</div>
+				<div class="col-sm" align="left">
+					<h3><span id="firstroundpot">0</span> ETH</h3>
+				</div>
+			</div><br>
+			<h1 align="center">PERSONAL STATS</h1><br>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<h3>You own: </h3>
+				</div>
+				<div class="col-sm" align="left">
+					<h3><span id="playeracorn">0</span> Acorns</h3>
+				</div>
+			</div>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<h3>Your proportion of the Acorn supply:</h3>
+				</div>
+				<div class="col-sm" align="left">
+					<h3><span id="playeracornpercent">0</span>%</h3>
+				</div>
+			</div>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<h3>Your unclaimed share:</h3>
+				</div>
+				<div class="col-sm" align="left">
+					<h3><span id="playershare">0</span> ETH</h3>
+				</div>
+			</div>
+			<div class="row black-shadow">
+				<div class="col-sm" align="left">
+					<h3>Your balance:</h3>
+				</div>
+				<div class="col-sm" align="left">
+					<h3><span id="playerbalance">0</span> ETH</h3>
+				</div>
+			</div><br>
+			<div align="center">
+				<button class="btn btn-lg btn-success" onclick="webClaimShare()">CLAIM ACORN SHARE</button>
+				<button class="btn btn-lg btn-success" onclick="webWithdrawBalance()">WITHDRAW BALANCE</button>
+			</div>
+		</div>
+		<script src="snailfarm3.js"></script>				
+		<script>
+			main();
+		</script>	
+		<script>
+		var countdownState = 0;
+		initCountdown();
+		
+		var fund_doublesnailpot;
+		var fund_doubleminusbalance;
+		var fund_doubledivten;
+		var fund_firstroundpot;
+		var fund_playeracornpercent;
+	
+		//Set game timer
+		function initCountdown(){
+			var currentTime = Math.round((new Date()).getTime() / 1000);
+			var endTime = 1544385600; //snailfarm3 launch
+			countdownState = Math.floor((endTime - currentTime));
+			updateCountdown();
+		}
+		
+		//Update game timer
+		function updateCountdown(){
+			var countdowndoc = document.getElementById("countdown");
+			if(countdownState > 0) {
+				countdownState = countdownState - 1;
+				
+				var	numhours = Math.floor(countdownState / 3600);
+				var numminutes = Math.floor((countdownState % 3600) / 60);
+				var numseconds = (countdownState % 3600) % 60;
+				
+				if(numseconds < 10) {
+					numseconds = "0" + numseconds;
+				}
+				if(numminutes < 10) {
+					numminutes = "0" + numminutes;
+				}
+				if(numhours < 10) {
+					numhours = "0" + numhours;
+				}
+
+				var countdownString = numhours + ":" + numminutes + ":" + numseconds;
+				countdowndoc.textContent = countdownString;
+			} else {
+				document.getElementById('fundingstate').textContent = 'THE ETHERTREE IS GROWING!';
+				countdowndoc.textContent = "GET ACORNS NOW";
+			}
+			updateFundVariables();
+			setTimeout(updateCountdown, 1000);
+		}
+		
+		//Update FundTree-specific variables
+		function updateFundVariables() {
+			fund_doublesnailpot = parseFloat(a_snailPot * 2).toFixed(3);
+			var doublesnailpotdoc = document.getElementById('doublesnailpot');
+			doublesnailpotdoc.textContent = fund_doublesnailpot;
+			
+			fund_doubleminusbalance = parseFloat(fund_doublesnailpot - a_contractBalance).toFixed(3);
+			var doubleminusbalancedoc = document.getElementById('doubleminusbalance');
+			doubleminusbalancedoc.textContent = fund_doubleminusbalance;
+			
+			fund_doubledivten = parseFloat(fund_doublesnailpot / 10).toFixed(4);
+			var doubledivtendoc = document.getElementById('doubledivten');
+			doubledivtendoc.textContent = fund_doubledivten;
+			
+			fund_firstroundpot = parseFloat(a_snailPot / 10).toFixed(4);
+			var firstroundpotdoc = document.getElementById('firstroundpot');
+			firstroundpotdoc.textContent = fund_firstroundpot;
+			
+			fund_playeracornpercent = parseFloat(100 * a_playerAcorn / a_maxAcorn).toFixed(2);
+			var playeracornpercentdoc = document.getElementById('playeracornpercent');
+			playeracornpercentdoc.textContent = fund_playeracornpercent;
+		}
+
+		</script>
+	</body>
+</html>
