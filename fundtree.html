@@ -128,81 +128,9 @@
 				<button class="btn btn-lg btn-success" onclick="webWithdrawBalance()">WITHDRAW BALANCE</button>
 			</div>
 		</div>
-		<script src="snailfarm3.js"></script>				
+		<script src="fundscript.js"></script>				
 		<script>
-			main();
-		</script>	
-		<script>
-		var countdownState = 0;
-		initCountdown();
-		
-		var fund_doublesnailpot;
-		var fund_doubleminusbalance;
-		var fund_doubledivten;
-		var fund_firstroundpot;
-		var fund_playeracornpercent;
-	
-		//Set game timer
-		function initCountdown(){
-			var currentTime = Math.round((new Date()).getTime() / 1000);
-			var endTime = 1544385600; //snailfarm3 launch
-			countdownState = Math.floor((endTime - currentTime));
-			updateCountdown();
-		}
-		
-		//Update game timer
-		function updateCountdown(){
-			var countdowndoc = document.getElementById("countdown");
-			if(countdownState > 0) {
-				countdownState = countdownState - 1;
-				
-				var	numhours = Math.floor(countdownState / 3600);
-				var numminutes = Math.floor((countdownState % 3600) / 60);
-				var numseconds = (countdownState % 3600) % 60;
-				
-				if(numseconds < 10) {
-					numseconds = "0" + numseconds;
-				}
-				if(numminutes < 10) {
-					numminutes = "0" + numminutes;
-				}
-				if(numhours < 10) {
-					numhours = "0" + numhours;
-				}
-
-				var countdownString = numhours + ":" + numminutes + ":" + numseconds;
-				countdowndoc.textContent = countdownString;
-			} else {
-				document.getElementById('fundingstate').textContent = 'THE ETHERTREE IS GROWING!';
-				countdowndoc.textContent = "GET ACORNS NOW";
-			}
-			updateFundVariables();
-			setTimeout(updateCountdown, 1000);
-		}
-		
-		//Update FundTree-specific variables
-		function updateFundVariables() {
-			fund_doublesnailpot = parseFloat(a_snailPot * 2).toFixed(3);
-			var doublesnailpotdoc = document.getElementById('doublesnailpot');
-			doublesnailpotdoc.textContent = fund_doublesnailpot;
-			
-			fund_doubleminusbalance = parseFloat(fund_doublesnailpot - a_contractBalance).toFixed(3);
-			var doubleminusbalancedoc = document.getElementById('doubleminusbalance');
-			doubleminusbalancedoc.textContent = fund_doubleminusbalance;
-			
-			fund_doubledivten = parseFloat(fund_doublesnailpot / 10).toFixed(4);
-			var doubledivtendoc = document.getElementById('doubledivten');
-			doubledivtendoc.textContent = fund_doubledivten;
-			
-			fund_firstroundpot = parseFloat(a_snailPot / 10).toFixed(4);
-			var firstroundpotdoc = document.getElementById('firstroundpot');
-			firstroundpotdoc.textContent = fund_firstroundpot;
-			
-			fund_playeracornpercent = parseFloat(100 * a_playerAcorn / a_maxAcorn).toFixed(2);
-			var playeracornpercentdoc = document.getElementById('playeracornpercent');
-			playeracornpercentdoc.textContent = fund_playeracornpercent;
-		}
-
+			initCountdown();
 		</script>
 	</body>
 </html>
