@@ -136,7 +136,7 @@ body {
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
+/* Modal Content *//*
 .modal-content {
     background-color: #250405;
     margin: auto;
@@ -145,11 +145,11 @@ body {
     width: 80%;
 	max-width: 860px;
     color: white;
-}
+}*/
 
 /* The Close Button */
 .close {
-    font-size: 40px;
+    font-size: 20px;
     font-weight: bold;
 	color: white;
 	vertical-align: text-top;
