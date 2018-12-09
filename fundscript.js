@@ -187,6 +187,9 @@ function updateCountdown(){
 	updateContractBalance();
 	updateSnailPot();
 	updateFieldTree2();
+	updateTreeEstimate();
+	updatePlayerBalance();
+	updatePlayerShare();
 	updateFundVariables();
 	setTimeout(updateCountdown, 1000);
 }
