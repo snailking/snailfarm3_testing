@@ -1,5 +1,5 @@
 //var contractAddress="0x486e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF"; // ROPSTEN 6
-var contractAddress="0"; // FAKE
+var contractAddress="0x386e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF"; // FAKE
 /* WEB3 DETECTION */
 
 var web3;
@@ -24,6 +24,30 @@ window.addEventListener("load", function() {
         web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
     }
 });
+
+/* MODAL */
+
+// Get the modal
+var modal = document.getElementById("modal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementById("close");
+
+// When the user clicks the button, open the modal 
+b_helpmodal.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 /* COUNTDOWN */
 
@@ -141,21 +165,33 @@ function updateFieldTree2(){
  
 //Fund tree
 function webFundTree(){
-    var weitospend = web3.toWei(f_tree,'ether');
-    FundTree(weitospend, function(){
-    });
+	if(countdownState > 0) {
+		modal.style.display = "block";
+	} else {
+		var weitospend = web3.toWei(f_tree,'ether');
+		FundTree(weitospend, function(){
+		});
+	}
 }
 
 //Claim share
 function webClaimShare(){
-	ClaimAcornShare(function(){
-	});
+	if(countdownState > 0) {
+		modal.style.display = "block";
+	} else {
+		ClaimAcornShare(function(){
+		});
+	}
 }
 
 //Withdraw balance
 function webWithdrawBalance(){
-	WithdrawBalance(function(){
-	});
+	if(countdownState > 0) {
+		modal.style.display = "block";
+	} else {
+		WithdrawBalance(function(){
+		});
+	}
 }
 
 /* COUNTDOWN UPDATE */
