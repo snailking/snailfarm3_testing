@@ -40,6 +40,8 @@ var a_contractBalance;
 var a_playerAcorn;
 var a_maxAcorn;
 
+var f_tree;
+
 var m_account = "waiting for web3";
 	
 //Set game timer
@@ -49,6 +51,8 @@ function initCountdown(){
 	countdownState = Math.floor((endTime - currentTime));
 	updateCountdown();
 }
+
+/* STANDARD FUNCTIONS */
 
 //Truncates ETH value to 3 decimals
 function formatEthValue(ethstr){
@@ -100,6 +104,36 @@ function updateMaxAcorn(){
 		maxacorndoc.textContent = a_maxAcorn;
 	});
 }
+
+//Player input on Acorn buy
+function updateFieldTree2(){
+	f_tree = document.getElementById('fieldTree').value;
+	var fieldtree2doc = document.getElementById('fieldTree2');
+	fieldtree2doc.textContent = f_tree;
+}
+
+/* WEB3 TRANSACTIONS */
+ 
+//Fund tree
+function webFundTree(){
+    var weitospend = web3.toWei(f_tree,'ether');
+    FundTree(weitospend, function(){
+    });
+}
+
+//Claim share
+function webClaimShare(){
+	ClaimAcornShare(function(){
+	});
+}
+
+//Withdraw balance
+function webWithdrawBalance(){
+	WithdrawBalance(function(){
+	});
+}
+
+/* COUNTDOWN UPDATE */
 		
 //Update game timer
 function updateCountdown(){
@@ -132,6 +166,7 @@ function updateCountdown(){
 	updatePlayerAcorn();
 	updateContractBalance();
 	updateSnailPot();
+	updateFieldTree2();
 	updateFundVariables();
 	setTimeout(updateCountdown, 1000);
 }
