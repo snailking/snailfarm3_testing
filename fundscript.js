@@ -50,6 +50,11 @@ function initCountdown(){
 	updateCountdown();
 }
 
+//Truncates ETH value to 3 decimals
+function formatEthValue(ethstr){
+    return parseFloat(parseFloat(ethstr).toFixed(3));
+}
+
 //Current ETH address in use
 function updateEthAccount(){
 	m_account = web3.eth.accounts[0];
