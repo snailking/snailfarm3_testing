@@ -45,8 +45,8 @@ window.onclick = function(event) {
 
 /* PAST EVENT LOG */
 
-var timeLaunch = 1546099245;
-var launchBlock = 6974738;
+var timeLaunch = 1544376018;
+var launchBlock = 6855909;
 
 var twoDaysBlock = 0;
 var ranLog = false;
@@ -3065,7 +3065,7 @@ function runLog(){
 							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " becomes the TadpolePrince!";
 							
 						} else if(result[i].event == "WonRound"){
-							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " WINS ROUND " + result[i].args.round + " AND EARNS " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH!";
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.roundwinner) + " WINS ROUND " + result[i].args.round + " AND EARNS " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH!";
 							
 						} else if(result[i].event == "BeganRound"){
 							eventlogdoc.innerHTML += "<br>[~" + datetext + "] Round " + result[i].args.round + " has started!";
@@ -3275,7 +3275,7 @@ wonroundEvent.watch(function(error, result){
 		////////console.log(result);
 		//if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " WINS ROUND " + result.args.round + " AND EARNS " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH!";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.roundwinner) + " WINS ROUND " + result.args.round + " AND EARNS " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH!";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		//}
 	}
