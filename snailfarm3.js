@@ -196,6 +196,7 @@ function controlLoopEgg(){
 
 //Refreshes game data
 function refreshData(){
+	
 	updateEthAccount();
 	updateContractBalance();
 	updateGameActive();
@@ -247,6 +248,7 @@ function refreshData(){
 	updateLettuceReq();
 	
 	updateHatchEstimate();
+	runLog();
 }
 
 //Refreshes some game data faster
@@ -264,7 +266,6 @@ function refreshDataFast(){
 
 //Refreshes leaderboard
 function refreshDataSlow(){
-	runLog();
 	
 	checkLeaderboard0();
 	checkLeaderboard1();
