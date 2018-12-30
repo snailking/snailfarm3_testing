@@ -1,14 +1,6 @@
-//var contractAddress="0x0888E6ec5b053Bc7FA3244ED58af25883f742C70" // ROPSTEN 1
-//var contractAddress="0x0b4f4F98457e6A9431EdDD8f8c4fD731Ef2fA5f6" // ROPSTEN 2
-//var contractAddress="0xFaF0263bDB5556d3013eB67Db2cfe6f9545a1c48" // ROPSTEN 3
-//var contractAddress="0x3Fb1D4075C12611293D583E79CD3A62993ec974E" // ROPSTEN 4
-//var contractAddress="0x8BECf05666D536c82aA72565dD9BaD4bC31F3bec" // ROPSTEN 5
-//var contractAddress="0x486e218E8029eFCc096DbE8a8E4C7f1a20aF8ddF" // ROPSTEN 6
-var contractAddress="0x38aa3B86164A23d34937780B730306eC05Caff91"; // ROPSTEN 7
+var contractAddress="0x2A185c995373a766979E645D0912d30E27aa56f6" // MAINNET
 
 /* WEB3 DETECTION */
-
-//var modal2 = document.getElementById("modal2");
 
 var web3;
 
@@ -17,62 +9,62 @@ window.addEventListener("load", function() {
         web3 = new Web3(web3.currentProvider);
         web3.version.getNetwork(function(error, result) {
             if (!error) {
-                if (result == "3") {
-					console.log("Ropsten Testnet successfully loaded!");
+                if (result == "1") {
+					//console.log("Mainnet successfully loaded!");
                 } else {
-                    console.log("You must be on the Testnet to play SnailFarm 3 Test!");
-					web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
-					//modal2.style.display = "block";
+                    //console.log("You must be on the Mainnet to play SnailFarm 3!");
+					web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
                 }
             }
         });
     } else {
-        console.log("Web3 library not found.");
-		//modal2.style.display = "block";
-        web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
+        //console.log("Web3 library not found.");
+        web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
     }
 });
-/*
-// Get the <span> element that closes the modal
-var span2 = document.getElementById("close2");
-
-// When the user clicks on <span> (x), close the modal
-span2.onclick = function() {
-    modal2.style.display = "none";
-}
 
 /* MODAL */
-/*
+
 // Get the modal
-var modal = document.getElementById("modal");
-
-// Get the button that opens the modal
-var b_helpmodal = document.getElementById("helpmodal");
-
-// Get the <span> element that closes the modal
-var span = document.getElementById("close");
-
-// When the user clicks the button, open the modal 
-b_helpmodal.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+var downtime_modal = document.getElementById("downtimemodal");
+var wrongRound_modal = document.getElementById("wrongroundmodal");
 
 // Close modal on game info
-function closeModal() {
-	modal.style.display = "none";
+function CloseModal() {
+	downtime_modal.style.display = "none";
+	wrongRound_modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal || event.target == modal2) {
-        modal.style.display = "none";
-		modal2.style.display = "none";
+    if (event.target == downtime_modal || event.target == wrongRound_modal) {
+        downtime_modal.style.display = "none";
+		wrongRound_modal.style.display = "none";
     }
+}
+
+/* PAST EVENT LOG */
+
+var timeLaunch = 1546099245;
+var launchBlock = 6974738;
+
+var twoDaysBlock = 0;
+var ranLog = false;
+
+function checkBlock(){
+	web3.eth.getBlockNumber(function (error, result){
+		twoDaysBlock = result - 12000;
+	});
+}
+
+checkBlock();
+
+//Get timestamp for log
+function dateLog(_blockNumber) {
+	d = new Date((timeLaunch + ((_blockNumber - launchBlock) * 14.6)) * 1000);
+	console.log(d);
+	datetext = d.toTimeString();
+	datetext = datetext.split(' ')[0];
 }
 
 /* UTILITIES */
@@ -101,11 +93,14 @@ function date24() {
 	datetext = datetext.split(' ')[0];
 }
 
+
 /* VARIABLES */
 
 var a_gameActive = false;
 var a_downtime = 0;
 var a_round = 0;
+var a_contractBalance = 0;
+var a_nextRound = 0;
 
 var playereggdoc;
 
@@ -137,6 +132,7 @@ var a_playerEgg = 0;
 var a_playerBoost = 0; 
 var a_playerProd = 0;
 var a_playerRed = 0; 
+var a_playerAcorn = 0;
 
 var o_playerEgg = 0;
 var s_playerEgg = 0;
@@ -164,7 +160,7 @@ var d_leaderboard = [
 
 //Initiates loops
 function main(){
-    ////console.log('Main loop started.');
+    //console.log('Main loop started.');
     controlLoop();
 	controlLoopFast();
 	controlLoopSlow();
@@ -186,7 +182,7 @@ function controlLoopFast(){
 //Another loop on 1 minute for a slow, heavy leaderboard update
 function controlLoopSlow(){
 	refreshDataSlow();
-	//console.log("slow loop");
+	//////console.log("slow loop");
 	setTimeout(controlLoopSlow,60000);
 }
 
@@ -229,6 +225,8 @@ function refreshData(){
 	updatePlayerProd();
 	updatePlayerBoost();
 	
+	updatePlayerNextRed();
+	
 	updatePlayerBalance();
 	updatePlayerAcorn();
 	updatePlayerShare();
@@ -266,6 +264,8 @@ function refreshDataFast(){
 
 //Refreshes leaderboard
 function refreshDataSlow(){
+	runLog();
+	
 	checkLeaderboard0();
 	checkLeaderboard1();
 	checkLeaderboard2();
@@ -306,21 +306,24 @@ function refreshDataSlow(){
 	showLeaderboard();
 	
 	slowupdatePlayerEgg();
-	//console.log("refreshed leaderboard fully");
+	//////console.log("refreshed leaderboard fully");
 }
+	
 
 var gameactivedoc = document.getElementById('gameactive');
+var gameactive2doc = document.getElementById('gameactive2');
 
 //Current state of the game
 function updateGameActive(){
 	gameActive(function(result) {
 		if(result == true) {
 			a_gameActive = true;
-			gameactive.innerHTML = "The game is active!";
+			gameactivedoc.innerHTML = "The game is active!";
 		} else {
 			a_gameActive = false;
 			nextRoundStart(function(result2) {
 				var blocktime = Math.round((new Date()).getTime() / 1000); //current blocktime should be Unix timestamp
+				a_nextRound = parseFloat(result2);
 				a_downtime = parseFloat(result2) - parseFloat(blocktime);
 				if(a_downtime < 0) {
 					a_downtime = 0;
@@ -335,14 +338,14 @@ function updatePlayerStatus(){
 	var playerstatusdoc = document.getElementById('playerstatus')
 	if(a_gameActive == true){
 		if(a_playerRound == 0){
-			playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webGetStarter()">Get Starting Snails!</button><br><p class="black-shadow">(will let you play every round, 0.004 ETH cost)</p>';
+			playerstatusdoc.innerHTML = '<button class="btn btn-lg btn-success" onclick="webGetStarter()">Get Starting Snails!</button><br><p class="black-shadow">(will let you play every round, 0.004 ETH cost)</p>';
 		} else if(a_playerRound != a_round){
-			playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webJoinRound()">Join New Round!</button><br><p class="black-shadow">(will give you red eggs for your previous performance)</p>';
+			playerstatusdoc.innerHTML = '<button class="btn btn-lg btn-success" onclick="webJoinRound()">Join New Round!</button><br><p class="black-shadow">(will give you red eggs for your previous performance)</p>';
 		} else {
-			playerstatusdoc.innerHTML = '<img height="64" src="snail.png">';
+			playerstatusdoc.innerHTML = '<img height="64" src="img/snail.png">';
 		}
 	} else {
-		playerstatusdoc.innerHTML = '<button class="btn btn-success" onclick="webBeginRound()">Begin New Round!</button><br><p class="black-shadow">(will only work if countdown timer is at 0)</p>';
+		playerstatusdoc.innerHTML = '<button class="btn btn-lg btn-success" onclick="webBeginRound()">Begin New Round!</button><br><p class="black-shadow">(will only work if countdown timer is at 0)</p>';
 	}
 }
 		
@@ -353,29 +356,32 @@ function updatePlayerRound() {
 		a_playerRound = result;	
 	});
 }
-		
+
+	
 //Fast update for Downtime if round is unactive
 function fastupdateDowntime(){
 	if(a_gameActive != true) {
-		a_downtime = a_downtime - 0.2;
+		var blocktime = Math.round((new Date()).getTime() / 1000); //current blocktime should be Unix timestamp
+		a_downtime = parseFloat(a_nextRound) - parseFloat(blocktime);
 		
 		downtime_hours = Math.floor(a_downtime / 3600);
 		if(downtime_hours < 10) { downtime_hours = "0" + downtime_hours }
 		downtime_minutes = Math.floor((a_downtime % 3600) / 60);
-		if(downtime_minutes < 10) { downtime_hours = "0" + downtime_minutes }
+		if(downtime_minutes < 10) { downtime_minutes = "0" + downtime_minutes }
 		downtime_seconds = parseFloat((a_downtime % 3600) % 60).toFixed(0);
 		if(downtime_seconds < 10) { downtime_seconds = "0" + downtime_seconds }
 		
 		if(a_downtime > 0) {
-			gameactive.innerHTML = "ROUND " + a_round + " IS OVER! <br>Next round starts in " + downtime_hours + ":" + downtime_minutes + ":" + downtime_seconds;
+			gameactivedoc.innerHTML = "Next round starts in " + downtime_hours + ":" + downtime_minutes + ":" + downtime_seconds;
+			gameactive2doc.innerHTML = downtime_hours + ":" + downtime_minutes + ":" + downtime_seconds;
 		} else {
-			gameactive.innerHTML = "The next round is ready to start!";
+			gameactivedoc.innerHTML = "The next round is ready to start!";
 		}
 	}	
 }
 
-//Show Leaderboard
 
+//Show Leaderboard
 function showLeaderboard() {
 	var leaderboarddoc = document.getElementById('leaderboard');
 	leaderboarddoc.innerHTML = "";
@@ -383,30 +389,30 @@ function showLeaderboard() {
 		for(j = 0; j < 5; j++) {
 			if(d_leaderboard[j].rank == i) {
 				leaderboarddoc.innerHTML += "#" + d_leaderboard[j].rank + " | " + formatEthAdr(d_leaderboard[j].address) + " | " + d_leaderboard[j].hatchery + " Snails | " + d_leaderboard[j].egg + " Eggs | " + d_leaderboard[j].red + " Reds | ";
-				//console.log("updated rank " + i + " with index " + j);
+				//////console.log("updated rank " + i + " with index " + j);
 				if(d_leaderboard[j].boost1 == true) {
-					leaderboarddoc.innerHTML += "<img src='spider.png' height='32'>";
-					//console.log(d_leaderboard[j] + " has spidersqueen");
+					leaderboarddoc.innerHTML += "<img src='img/spider.png' height='32'>";
+					//////console.log(d_leaderboard[j] + " has spidersqueen");
 				}
 				if(d_leaderboard[j].boost2 == true) {
-					leaderboarddoc.innerHTML += "<img src='squirrel.png' height='32'>";
-					//console.log(d_leaderboard[j] + " has squirrel");
+					leaderboarddoc.innerHTML += "<img src='img/squirrel.png' height='32'>";
+					//////console.log(d_leaderboard[j] + " has squirrel");
 				}
 				if(d_leaderboard[j].boost3 == true) {
-					leaderboarddoc.innerHTML += "<img src='tadpole.png' height='32'>";
-					//console.log(d_leaderboard[j] + " has tadpole");
+					leaderboarddoc.innerHTML += "<img src='img/tadpole.png' height='32'>";
+					//////console.log(d_leaderboard[j] + " has tadpole");
 				}
 				if(d_leaderboard[j].boost4 == true) {
-					leaderboarddoc.innerHTML += "<img src='lettuce.png' height='32'>";
-					console.log(d_leaderboard[j] + " has lettuce");
+					leaderboarddoc.innerHTML += "<img src='img/lettuce.png' height='32'>";
+					////console.log(d_leaderboard[j] + " has lettuce");
 				}
 				if(d_leaderboard[j].boost5 == true) {
-					leaderboarddoc.innerHTML += "<img src='carrot.png' height='32'>";
-					//console.log(d_leaderboard[j] + " has carrot");
+					leaderboarddoc.innerHTML += "<img src='img/carrot.png' height='32'>";
+					//////console.log(d_leaderboard[j] + " has carrot");
 				}
 				if(d_leaderboard[j].boost6 == true) {
-					leaderboarddoc.innerHTML += "<img src='slug.png' height='32'>";
-					//console.log(d_leaderboard[j] + " has slug");
+					leaderboarddoc.innerHTML += "<img src='img/slug.png' height='32'>";
+					//////console.log(d_leaderboard[j] + " has slug");
 				}
 				leaderboarddoc.innerHTML += "<br>";
 			}
@@ -418,7 +424,7 @@ function showLeaderboard() {
 function slowupdateLeaderboard() {
 	for(i = 0; i < 5; i++) {
 		var lead = d_leaderboard[i];
-		//console.log(lead);
+		//////console.log(lead);
 		var _boost4 = false;
 		var _boost5 = false;
 		var _boost6 = false;
@@ -428,19 +434,40 @@ function slowupdateLeaderboard() {
 		} else {
 			d_leaderboard[i].boost1 = false;
 		}
-		//console.log("checked spiderowner for " + i);
+		//////console.log("checked spiderowner for " + i);
 		if(lead.address == c_squirrelowner) {
 			d_leaderboard[i].boost2 = true;
 		}  else {
 			d_leaderboard[i].boost2 = false;
 		}
-		//console.log("checked squirrelowner for " + i);
+		//////console.log("checked squirrelowner for " + i);
 		if(lead.address == c_tadpoleowner) {
 			d_leaderboard[i].boost3 = true;
 		}  else {
 			d_leaderboard[i].boost3 = false;
 		}
 	}
+	
+	//Loop through hatcheries and store top ones to assign ranks
+	var avoidNext = [0, 0, 0, 0, 0];
+	for(k = 1; k < 6; k++) {
+		var topHatch = -1;
+		var topGuy = 0;
+		for(j = 0; j < 5; j++) {
+			if(avoidNext[j] != 1){
+				//console.log("avoidNext[" + j + "] evaluated to != 1");
+				if(d_leaderboard[j].hatchery > topHatch){
+					topHatch = d_leaderboard[j].hatchery;
+					topGuy = j;
+				}
+			}
+		}
+		d_leaderboard[topGuy].rank = k;
+		//console.log("New rank " + k + " : " + d_leaderboard[topGuy].address);
+		avoidNext[topGuy] = 1;
+		//console.log("Next time, avoid indice " + topGuy);
+	}
+	
 	showLeaderboard();
 }
 
@@ -448,8 +475,8 @@ function slowupdateLeaderboard() {
 function checkLeaderboard0(){
 	GetSnail(d_leaderboard[0].address, function(result) {
 		d_leaderboard[0].hatchery = result;
-		console.log(result);
-		console.log("hatchery of " + d_leaderboard[0].address + " = " + d_leaderboard[0].hatchery);
+		////console.log(result);
+		////console.log("hatchery of " + d_leaderboard[0].address + " = " + d_leaderboard[0].hatchery);
 	});
 }
 
@@ -539,13 +566,13 @@ function checkLeaderRed4(){
 
 function checkLeaderLettuce0(){
 	GetLettuce(d_leaderboard[0].address, function(result) {
-		console.log(d_leaderboard[0].address + " lettuce result is " + result);
+		////console.log(d_leaderboard[0].address + " lettuce result is " + result);
 		if(result > 0) {
 			d_leaderboard[0].boost4 = true;
-			console.log("We have a lettuce!");
+			////console.log("We have a lettuce!");
 		} else {
 			d_leaderboard[0].boost4 = false;
-			console.log("No lettuce here.");
+			////console.log("No lettuce here.");
 		}
 	});
 }
@@ -889,10 +916,12 @@ function updateEthAccount(){
 //Current leader
 function updateLeader(){
 	var leaderdoc = document.getElementById('leader');
+	var leader2doc = document.getElementById('leader2');
 	currentLeader(function(result) {
 		l_account = "0x" + result.substring(26,66);
 		if(l_account != m_account) {
 			leaderdoc.textContent = formatEthAdr(l_account) + " is ";
+			leader2doc.textContent = formatEthAdr(l_account);
 		}
 		else {
 			leaderdoc.textContent = "YOU are ";
@@ -923,10 +952,11 @@ function updateContractBalance(){
 	var contractbalancedoc = document.getElementById('contractbalance');
 	web3.eth.getBalance(contractAddress, function(error, result) {
 		if(!error) {
-			//////console.log(result);
-			contractbalancedoc.textContent = formatEthValue(web3.fromWei(result, 'ether')); 
+			//////////console.log(result);
+			a_contractBalance = formatEthValue(web3.fromWei(result, 'ether'))
+			contractbalancedoc.textContent = a_contractBalance; 
 		} else {
-			////console.log("didn't work");
+			////////console.log("didn't work");
 		}
 	});
 }
@@ -934,9 +964,11 @@ function updateContractBalance(){
 //Current round
 function updateRound(){
 	var rounddoc = document.getElementById('round');
+	var round2doc = document.getElementById('round2');
 	round(function(req) {
 		a_round = req;
 		rounddoc.textContent = a_round;
+		round2doc.textContent = a_round;
 	});
 }
 
@@ -1014,41 +1046,54 @@ var playereggdoc = document.getElementById('playeregg');
 
 //Check if player eggs are above player snails, and stop local timer if needed
 function slowupdatePlayerEgg(){
-	if(a_playerEgg >= a_playerSnail) {
-		ComputeMyEgg(m_account, function(result) {
-			if(result == s_playerEgg) {
-				z_playerEgg += 1;
-			} else {
-				z_playerEgg = 0;
-			}
-			s_playerEgg = formatEthValue(result);
-			a_playerEgg = s_playerEgg;
-			playereggdoc.textContent = a_playerEgg + ".000";
-		});
-	}
-	else {
-		z_playerEgg = 0;
+	if(a_gameActive == true){
+		if(a_playerEgg >= a_playerSnail) {
+			ComputeMyEgg(m_account, function(result) {
+				if(result == s_playerEgg) {
+					z_playerEgg += 1;
+				} else {
+					z_playerEgg = 0;
+				}
+				s_playerEgg = formatEthValue(result);
+				a_playerEgg = s_playerEgg;
+				playereggdoc.textContent = a_playerEgg + ".000";
+			});
+		}
+		else {
+			z_playerEgg = 0;
+		}
+	} else {
+		playereggdoc.textContent = "Round is over!"
 	}
 }
 
 //Current player eggs
 function updatePlayerEgg(){
-	ComputeMyEgg(m_account, function(result) {
-		_result = formatEthValue(result);
-		if(_result != o_playerEgg) {
-			a_playerEgg = _result;
-			o_playerEgg = _result;
-			playereggdoc.textContent = a_playerEgg + ".000";
-		}
-	});
+	if(a_gameActive == true){
+		ComputeMyEgg(m_account, function(result) {
+			_result = formatEthValue(result);
+			if(_result != o_playerEgg) {
+				a_playerEgg = _result;
+				o_playerEgg = _result;
+				playereggdoc.textContent = a_playerEgg + ".000";
+			}
+		});
+	} else {
+		playereggdoc.textContent = "Round is over!"
+	}
 }
 
 //Fast player egg update
 function fastPlayerEgg(){
-	if(z_playerEgg < 2) {
-		_prod = parseFloat(a_playerProd / 36000).toFixed(3); //hour prod divided to 100ms intervals
-		a_playerEgg = (parseFloat(a_playerEgg) + parseFloat(_prod)).toFixed(3);
-		playereggdoc.textContent = a_playerEgg;
+	if(a_gameActive == true){
+		if(z_playerEgg < 2) {
+			_prod = parseFloat(a_playerProd / 36000).toFixed(6); //hour prod divided to 100ms intervals
+			a_playerEgg = (parseFloat(a_playerEgg) + parseFloat(_prod)).toFixed(4);
+			_egg = parseFloat(a_playerEgg).toFixed(3);
+			playereggdoc.textContent = _egg;
+		}
+	} else {
+		playereggdoc.textContent = "Round is over!"
 	}
 }
 
@@ -1059,6 +1104,12 @@ function updatePlayerRed(){
 		a_playerRed = req;
 		playerreddoc.textContent = a_playerRed;
 	});
+}
+
+//Planned red eggs next round
+function updatePlayerNextRed(){
+	var nextreddoc = document.getElementById('nextred');
+	nextreddoc.innerHTML = Math.floor(a_playerSnail / 100);
 }
 
 //Current player hatch size
@@ -1088,8 +1139,9 @@ function updatePlayerBalance(){
 //Current acorns for player
 function updatePlayerAcorn(){
 	var playeracorndoc = document.getElementById('playeracorn');
-	GetAcorn(m_account, function(req) {
-		playeracorndoc.textContent = req;
+	GetAcorn(m_account, function(result) {
+		a_playerAcorn = result;
+		playeracorndoc.textContent = a_playerAcorn;
 	});
 }
 
@@ -1206,6 +1258,29 @@ function webGetStarter(){
 	});
 }
 
+//Withdraw balance
+function webWithdrawBalance(){
+	WithdrawBalance(function(){
+	});
+}
+
+//Pay Thronepot to SnailThrone
+function webPayThrone(){
+	PayThrone(function(){
+	});
+}
+
+//Generic check for game/player state
+function webCheck(_func){
+	if(a_gameActive == false){
+		downtime_modal.style.display = "block";
+	} else if(a_playerRound != a_round){
+		wrongRound_modal.style.display = "block";
+	} else {
+		_func();
+	}
+}
+
 //Hatch eggs
 function webHatchEgg(){
 	var weitospend = web3.toWei(0.0008,'ether');
@@ -1215,26 +1290,14 @@ function webHatchEgg(){
 
 //Buy eggs
 function webBuyEgg(){
-    var weitospend = web3.toWei(f_buy,'ether');
-    BuyEgg(weitospend, function(){
-    });
+	var weitospend = web3.toWei(f_buy,'ether');
+	BuyEgg(weitospend, function(){
+	});
 }	
 
 //Sell eggs
 function webSellEgg(){
 	SellEgg(function(){
-	});
-}
-
-//Withdraw balance
-function webWithdrawBalance(){
-	WithdrawBalance(function(){
-	});
-}
-
-//Become Snailmaster
-function webBecomeSnailmaster(){
-	BecomeSnailmaster(function(){
 	});
 }
 
@@ -1247,7 +1310,7 @@ function webBecomeSnailmaster(){
 //Become SpiderQueen
 function webBecomeSpiderQueen(){
 	BecomeSpiderQueen(function(){
-	});
+	});	
 }
 
 //Become SquirrelDuke
@@ -1278,8 +1341,8 @@ function webHatchRed(){
 	
 //Find Lettuce
 function webFindLettuce(){
-	FindLettuce(function(){
-	});
+		FindLettuce(function(){
+		});
 }
 
 //Find Carrot
@@ -1292,40 +1355,6 @@ function webFindCarrot(){
 //Find Slug
 function webFindSlug(){
 	FindSlug(function(){
-	});
-}
-
-//Pay Thronepot to SnailThrone
-function webPayThrone(){
-	PayThrone(function(){
-	});
-}
-/*
-
-
-//Sacrifice snail tokens
-function webSacrificeSnail(){
-	BecomePharaoh(f_sacrifice, function(){
-	});
-}
-
-
-
-
-
-
-
-//Claim divs
-function webClaimDiv(){
-	ClaimDivs(function(){
-	});
-}
-
-
-
-//Start a new round
-function webAscendGod(){
-	AscendGod(function(){
 	});
 }
 
@@ -1342,11 +1371,11 @@ function ACORN_PRICE(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ACORN_PRICE ',web3.toDecimal(result));
+            //////console.log('ACORN_PRICE ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1359,11 +1388,11 @@ function GetMyBalance(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetMyBalance ',web3.toDecimal(result));
+            //////console.log('GetMyBalance ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1376,11 +1405,11 @@ function LETTUCE_BASE_REQ(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('LETTUCE_BASE_REQ ',web3.toDecimal(result));
+            //////console.log('LETTUCE_BASE_REQ ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1393,11 +1422,11 @@ function SPIDER_BASE_REQ(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('SPIDER_BASE_REQ ',web3.toDecimal(result));
+            //////console.log('SPIDER_BASE_REQ ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1410,11 +1439,11 @@ function GetAcorn(adr,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetAcorn ',web3.toDecimal(result));
+            //////console.log('GetAcorn ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1427,11 +1456,11 @@ function gotCarrot(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('gotCarrot ',web3.toDecimal(result));
+            //////console.log('gotCarrot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1444,11 +1473,11 @@ function ComputeHarvest(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeHarvest ',web3.toDecimal(result));
+            //////console.log('ComputeHarvest ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1461,11 +1490,11 @@ function playerRound(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('playerRound ',web3.toDecimal(result));
+            //////console.log('playerRound ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1478,11 +1507,11 @@ function round(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('round ',web3.toDecimal(result));
+            //////console.log('round ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1495,11 +1524,11 @@ function GetRed(adr,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetRed ',web3.toDecimal(result));
+            //////console.log('GetRed ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1512,11 +1541,11 @@ function ClaimAcornShare(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ClaimAcornShare ',result);
+            //////console.log('ClaimAcornShare ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1529,11 +1558,11 @@ function JoinRound(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('JoinRound ',result);
+            //////console.log('JoinRound ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1546,11 +1575,11 @@ function BuyStartingSnail(eth,callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            //console.log('BuyStartingSnail ',result);
+            //////console.log('BuyStartingSnail ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1563,11 +1592,11 @@ function hatcherySnail(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('hatcherySnail ',web3.toDecimal(result));
+            //////console.log('hatcherySnail ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1580,11 +1609,11 @@ function hasSlug(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('hasSlug ',result);
+            //////console.log('hasSlug ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1597,11 +1626,11 @@ function divPerAcorn(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('divPerAcorn ',web3.toDecimal(result));
+            //////console.log('divPerAcorn ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1614,11 +1643,11 @@ function UseRedEgg(_redAmount,callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('UseRedEgg ',result);
+            //////console.log('UseRedEgg ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1631,11 +1660,11 @@ function HARVEST_MIN_COST(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('HARVEST_MIN_COST ',web3.toDecimal(result));
+            //////console.log('HARVEST_MIN_COST ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1648,11 +1677,11 @@ function hasStartingSnail(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('hasStartingSnail ',result);
+            //////console.log('hasStartingSnail ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1665,11 +1694,11 @@ function ComputeSquare(base,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeSquare ',web3.toDecimal(result));
+            //////console.log('ComputeSquare ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1682,11 +1711,11 @@ function FundTree(eth,callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            //console.log('FundTree ',result);
+            //////console.log('FundTree ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1699,11 +1728,11 @@ function ComputeAcornBuy(_ether,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeAcornBuy ',web3.toDecimal(result));
+            //////console.log('ComputeAcornBuy ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1716,11 +1745,11 @@ function redEgg(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('redEgg ',web3.toDecimal(result));
+            //////console.log('redEgg ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1733,11 +1762,11 @@ function ComputeAcornCost(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeAcornCost ',web3.toDecimal(result));
+            //////console.log('ComputeAcornCost ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1750,11 +1779,11 @@ function TADPOLE_BASE_REQ(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('TADPOLE_BASE_REQ ',web3.toDecimal(result));
+            //////console.log('TADPOLE_BASE_REQ ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1767,11 +1796,11 @@ function roundPot(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('roundPot ',web3.toDecimal(result));
+            //////console.log('roundPot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1784,11 +1813,11 @@ function ComputeSell(eggspent,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeSell ',web3.toDecimal(result));
+            //////console.log('ComputeSell ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1801,11 +1830,11 @@ function GetSnail(adr,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetSnail ',web3.toDecimal(result));
+            //////console.log('GetSnail ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1818,11 +1847,11 @@ function lastHatch(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('lastHatch ',web3.toDecimal(result));
+            //////console.log('lastHatch ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1835,11 +1864,11 @@ function SNAILTHRONE(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('SNAILTHRONE ',result);
+            //////console.log('SNAILTHRONE ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1852,11 +1881,11 @@ function PayThrone(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('PayThrone ',result);
+            //////console.log('PayThrone ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1869,11 +1898,11 @@ function playerBalance(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('playerBalance ',web3.toDecimal(result));
+            //////console.log('playerBalance ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1886,11 +1915,11 @@ function ACORN_MULT(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ACORN_MULT ',web3.toDecimal(result));
+            //////console.log('ACORN_MULT ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1903,11 +1932,11 @@ function ComputeMyEgg(adr,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeMyEgg ',web3.toDecimal(result));
+            //////console.log('ComputeMyEgg ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1920,11 +1949,11 @@ function acorn(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('acorn ',web3.toDecimal(result));
+            //////console.log('acorn ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1937,11 +1966,11 @@ function FindLettuce(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('FindLettuce ',result);
+            //////console.log('FindLettuce ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1954,11 +1983,11 @@ function SellEgg(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('SellEgg ',result);
+            //////console.log('SellEgg ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1971,11 +2000,11 @@ function GetLettuce(adr,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetLettuce ',result);
+            //////console.log('GetLettuce ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -1988,11 +2017,11 @@ function BecomeSpiderQueen(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('BecomeSpiderQueen ',result);
+            //////console.log('BecomeSpiderQueen ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2005,11 +2034,11 @@ function snailPot(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('snailPot ',web3.toDecimal(result));
+            //////console.log('snailPot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2022,11 +2051,11 @@ function BuyEgg(eth,callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            //console.log('BuyEgg ',result);
+            //////console.log('BuyEgg ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2039,11 +2068,11 @@ function GetProd(adr,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetProd ',web3.toDecimal(result));
+            //////console.log('GetProd ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2056,11 +2085,11 @@ function SQUIRREL_BASE_REQ(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('SQUIRREL_BASE_REQ ',web3.toDecimal(result));
+            //////console.log('SQUIRREL_BASE_REQ ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2073,11 +2102,11 @@ function GetMyEgg(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetMyEgg ',web3.toDecimal(result));
+            //////console.log('GetMyEgg ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2090,11 +2119,11 @@ function ROUND_DOWNTIME(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ROUND_DOWNTIME ',web3.toDecimal(result));
+            //////console.log('ROUND_DOWNTIME ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2107,11 +2136,11 @@ function GrabRedHarvest(eth,callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            //console.log('GrabRedHarvest ',result);
+            //////console.log('GrabRedHarvest ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2124,11 +2153,11 @@ function HATCHING_COST(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('HATCHING_COST ',web3.toDecimal(result));
+            //////console.log('HATCHING_COST ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2141,11 +2170,11 @@ function GetSlug(adr,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetSlug ',result);
+            //////console.log('GetSlug ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2158,11 +2187,11 @@ function snailmasterReq(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('snailmasterReq ',web3.toDecimal(result));
+            //////console.log('snailmasterReq ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2175,11 +2204,11 @@ function STARTING_SNAIL_COST(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('STARTING_SNAIL_COST ',web3.toDecimal(result));
+            //////console.log('STARTING_SNAIL_COST ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2192,11 +2221,11 @@ function harvestStartTime(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('harvestStartTime ',web3.toDecimal(result));
+            //////console.log('harvestStartTime ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2209,11 +2238,11 @@ function currentSpiderOwner(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('currentSpiderOwner ',result);
+            //////console.log('currentSpiderOwner ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2226,11 +2255,11 @@ function SLUG_MIN_REQ(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('SLUG_MIN_REQ ',web3.toDecimal(result));
+            //////console.log('SLUG_MIN_REQ ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2243,11 +2272,11 @@ function eggPot(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('eggPot ',web3.toDecimal(result));
+            //////console.log('eggPot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2260,11 +2289,11 @@ function HatchEgg(eth,callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            //console.log('HatchEgg ',result);
+            //////console.log('HatchEgg ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2277,11 +2306,11 @@ function FROGKING_REQ(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('FROGKING_REQ ',web3.toDecimal(result));
+            //////console.log('FROGKING_REQ ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2294,11 +2323,11 @@ function BeginRound(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('BeginRound ',result);
+            //////console.log('BeginRound ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2311,11 +2340,11 @@ function marketEgg(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('marketEgg ',web3.toDecimal(result));
+            //////console.log('marketEgg ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2328,11 +2357,11 @@ function BecomeTadpolePrince(eth,callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            //console.log('BecomeTadpolePrince ',result);
+            //////console.log('BecomeTadpolePrince ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2345,11 +2374,11 @@ function SNAILMASTER_REQ(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('SNAILMASTER_REQ ',web3.toDecimal(result));
+            //////console.log('SNAILMASTER_REQ ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2362,11 +2391,11 @@ function dev(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('dev ',result);
+            //////console.log('dev ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2379,11 +2408,11 @@ function prodBoost(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('prodBoost ',web3.toDecimal(result));
+            //////console.log('prodBoost ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2396,11 +2425,11 @@ function FindCarrot(eth,callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData,value: eth},
     function(error,result){
         if(!error){
-            //console.log('FindCarrot ',result);
+            //////console.log('FindCarrot ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2413,11 +2442,11 @@ function harvestStartCost(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('harvestStartCost ',web3.toDecimal(result));
+            //////console.log('harvestStartCost ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2430,11 +2459,11 @@ function WithdrawBalance(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('WithdrawBalance ',result);
+            //////console.log('WithdrawBalance ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2447,11 +2476,11 @@ function STARTING_SNAIL(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('STARTING_SNAIL ',web3.toDecimal(result));
+            //////console.log('STARTING_SNAIL ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2464,11 +2493,11 @@ function ComputeMyShare(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeMyShare ',web3.toDecimal(result));
+            //////console.log('ComputeMyShare ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2481,11 +2510,11 @@ function currentLeader(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('currentLeader ',result);
+            //////console.log('currentLeader ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2498,11 +2527,11 @@ function currentSnailmaster(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('currentSnailmaster ',result);
+            //////console.log('currentSnailmaster ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2515,11 +2544,11 @@ function HARVEST_COUNT(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('HARVEST_COUNT ',web3.toDecimal(result));
+            //////console.log('HARVEST_COUNT ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2532,11 +2561,11 @@ function tadpoleReq(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('tadpoleReq ',web3.toDecimal(result));
+            //////console.log('tadpoleReq ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2549,11 +2578,11 @@ function claimedShare(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('claimedShare ',web3.toDecimal(result));
+            //////console.log('claimedShare ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2566,11 +2595,11 @@ function thronePot(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('thronePot ',web3.toDecimal(result));
+            //////console.log('thronePot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2583,11 +2612,11 @@ function ComputeBuy(ethspent,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('ComputeBuy ',web3.toDecimal(result));
+            //////console.log('ComputeBuy ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2600,11 +2629,11 @@ function maxAcorn(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('maxAcorn ',web3.toDecimal(result));
+            //////console.log('maxAcorn ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2617,11 +2646,11 @@ function spiderReq(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('spiderReq ',web3.toDecimal(result));
+            //////console.log('spiderReq ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2634,11 +2663,11 @@ function TIME_TO_HATCH_1SNAIL(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('TIME_TO_HATCH_1SNAIL ',web3.toDecimal(result));
+            //////console.log('TIME_TO_HATCH_1SNAIL ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2651,11 +2680,11 @@ function CARROT_COST(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('CARROT_COST ',web3.toDecimal(result));
+            //////console.log('CARROT_COST ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2668,11 +2697,11 @@ function BecomeSquirrelDuke(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('BecomeSquirrelDuke ',result);
+            //////console.log('BecomeSquirrelDuke ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2685,11 +2714,11 @@ function GetCarrot(adr,callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetCarrot ',web3.toDecimal(result));
+            //////console.log('GetCarrot ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2702,11 +2731,11 @@ function hasLettuce(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('hasLettuce ',result);
+            //////console.log('hasLettuce ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2719,11 +2748,11 @@ function nextRoundStart(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('nextRoundStart ',web3.toDecimal(result));
+            //////console.log('nextRoundStart ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2736,11 +2765,11 @@ function HARVEST_DURATION(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('HARVEST_DURATION ',web3.toDecimal(result));
+            //////console.log('HARVEST_DURATION ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2753,11 +2782,11 @@ function BecomeSnailmaster(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('BecomeSnailmaster ',result);
+            //////console.log('BecomeSnailmaster ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2770,11 +2799,11 @@ function GetMyRound(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('GetMyRound ',web3.toDecimal(result));
+            //////console.log('GetMyRound ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2787,11 +2816,11 @@ function claimedEgg(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('claimedEgg ',web3.toDecimal(result));
+            //////console.log('claimedEgg ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2804,11 +2833,11 @@ function HARVEST_DUR_ROOT(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('HARVEST_DUR_ROOT ',web3.toDecimal(result));
+            //////console.log('HARVEST_DUR_ROOT ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2821,11 +2850,11 @@ function lettuceReq(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('lettuceReq ',web3.toDecimal(result));
+            //////console.log('lettuceReq ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2838,11 +2867,11 @@ function FindSlug(callback){
     var endstr=web3.eth.sendTransaction({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('FindSlug ',result);
+            //////console.log('FindSlug ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2855,11 +2884,11 @@ function squirrelReq(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('squirrelReq ',web3.toDecimal(result));
+            //////console.log('squirrelReq ',web3.toDecimal(result));
             callback(web3.toDecimal(result))
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2872,11 +2901,11 @@ function gameActive(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('gameActive ',result);
+            //////console.log('gameActive ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2889,11 +2918,11 @@ function currentSquirrelOwner(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('currentSquirrelOwner ',result);
+            //////console.log('currentSquirrelOwner ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2906,11 +2935,11 @@ function currentTadpoleOwner(callback){
     var endstr=web3.eth.call({to:contractAddress, from:null, data: outputData},
     function(error,result){
         if(!error){
-            //console.log('currentTadpoleOwner ',result);
+            //////console.log('currentTadpoleOwner ',result);
             callback(result)
         }
         else{
-            //console.log('transaction failed with ',error.message)
+            //////console.log('transaction failed with ',error.message)
         }
     });
 }
@@ -2918,10 +2947,7 @@ function currentTadpoleOwner(callback){
 
 
 /* EVENT WATCH */
-/*
-var logboxscroll = document.getElementById('logboxscroll');
-var eventdoc = document.getElementById("event");
-*/
+
 //Store transaction hash for each event, and check before executing result, as web3 events fire twice
 var storetxhash = [];
 
@@ -2948,19 +2974,14 @@ function checkHash(txarray, txhash) {
 
 function computeLeaderboard() {
 	var lowest = d_leaderboard[0].hatchery;
-	////console.log("lowest: " + lowest);
 	var position = 0; 
-	////console.log("position: " + position);
 	
 	//Check lowest leader
 	var i = 0;
 	for(i = 0; i < 5; i++) {
-		////console.log("loop i " + i);
 		if(d_leaderboard[i].hatchery < lowest) {
 			lowest = d_leaderboard[i].hatchery;
-			////console.log("lowest: " + lowest);
 			position = i;
-			////console.log("position: " + position);
 		}
 	}
 	
@@ -2970,45 +2991,16 @@ function computeLeaderboard() {
 		if(e_hatched.address == d_leaderboard[k].address) {
 			d_leaderboard[k].address = e_hatched.address;
 			d_leaderboard[k].hatchery = e_hatched.hatchery;
-			////console.log("e_hatched already on leaderboard, replace previous entry");
 			notLeader = false;
 		}
 	}
 
 	var newEntry = false;
 	if(notLeader == true && e_hatched.hatchery > lowest) {
-		////console.log("e_hatched is above lowest");
 		d_leaderboard[position].address = e_hatched.address;
 		d_leaderboard[position].hatchery = e_hatched.hatchery;
-		////console.log("d_leaderboard[" + position + "].hatchery = " + d_leaderboard[position].hatchery);
-		////console.log("d_leaderboard[" + position + "].rank = " + d_leaderboard[position].rank);
 		newEntry = true;
 	}
-	
-	//Go through remaining positions to see hatcher rank and adjust other ranks
-	var j = 0;
-	var previousRank = d_leaderboard[position].rank
-	for(j = 0; j < 5; j++) {
-		////console.log("loop j " + j);
-		if(d_leaderboard[position].hatchery > d_leaderboard[j].hatchery) {
-			////console.log("d_leaderboard hatchery is greater than d_leaderboard[" + j + "]hatchery");		
-			if(previousRank > d_leaderboard[j].rank) {
-				////console.log("d_l rank is under d_l[" + j + "]rank");
-				d_leaderboard[position].rank = d_leaderboard[j].rank;
-				////console.log("new d_l rank: " + d_leaderboard[position].rank);
-				d_leaderboard[j].rank += 1;
-				////console.log("new d_l[" + j + "]rank: " + d_leaderboard[j].rank);
-			}
-		}
-	}
-	/*
-	//Update boosts if needed
-	if(newEntry == true) {
-		slowupdateLeaderboard();
-	}
-	*/
-	//Update leaderboard
-	////console.log("time to update leaderboard");
 	showLeaderboard();
 }
 
@@ -3018,17 +3010,109 @@ var logboxscroll = document.getElementById('logboxscroll');
 var eventlogdoc = document.getElementById("eventlog");
 
 var e_hatched = { address: "", hatchery: 0 };
+
+
+function runLog(){
+	if(ranLog == false && twoDaysBlock > 0){
+		ranLog = true;
+		myContract.allEvents({ fromBlock: twoDaysBlock, toBlock: 'latest' }).get(function(error, result){
+			if(!error){
+				console.log(result);
+				var i = 0;
+				for(i = 0; i < result.length; i++){
+					if(checkHash(storetxhash, result[i].transactionHash) != 0) {
+						dateLog(result[i].blockNumber);
+						if(result[i].event == "Hatched"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " hatched " + result[i].args.eggs + " Eggs into " + result[i].args.snails + " Snails, and has " + result[i].args.hatchery + " Snails in total.";
+							e_hatched.address = result[i].args.player;
+							e_hatched.hatchery = parseInt(result[i].args.hatchery); //seems to return an array/object
+							computeLeaderboard();
+							
+						} else if(result[i].event == "UsedRed"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " hatched " + result[i].args.eggs + " Reds into " + result[i].args.snails + " Snails, and has a total of " + result[i].args.hatchery + " Snails.";
+							e_hatched.address = result[i].args.player;
+							e_hatched.hatchery = result[i].args.hatchery; //seems to return an array/object
+							computeLeaderboard();
+							
+						} else if(result[i].event == "FundedTree"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " funded the EtherTree with " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH and receives " + result[i].args.acorns + " Acorns.";
+
+						} else if(result[i].event == "ClaimedShare"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " claimed " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH thanks to their " + result[i].args.acorns + " Acorns.";
+	
+						} else if(result[i].event == "BecameMaster"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] Bow down to " + formatEthAdr(result[i].args.player) + ", your new Snailmaster!";
+
+						} else if(result[i].event == "WithdrewBalance"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " withdrew " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH from their balance.";
+
+						} else if(result[i].event == "SoldEgg"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " sold " + result[i].args.eggs + " Eggs for " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH.";
+
+						} else if(result[i].event == "BoughtEgg"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " bought " + result[i].args.eggs + " Eggs for " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH."; //inverted eggs and ETH in contract event
+
+						} else if(result[i].event == "StartedSnailing"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] Welcome to our newest SnailFarmer, " + formatEthAdr(result[i].args.player) + "!";
+
+						} else if(result[i].event == "BecameQueen"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " becomes the SpiderQueen!";
+							
+						} else if(result[i].event == "BecameDuke"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " becomes the SquirrelDuke!";
+							
+						} else if(result[i].event == "BecamePrince"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " becomes the TadpolePrince!";
+							
+						} else if(result[i].event == "WonRound"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " WINS ROUND " + result[i].args.round + " AND EARNS " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH!";
+							
+						} else if(result[i].event == "BeganRound"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] Round " + result[i].args.round + " has started!";
+							
+						} else if(result[i].event == "JoinedRound"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " joins the fray, with " + result[i].args.playerreds + " Red Eggs.";
+							
+						} else if(result[i].event == "GrabbedHarvest"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " grabbed the Red Harvest by spending " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH.";
+							
+						} else if(result[i].event == "FoundSlug"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " sacrifices a colossal " + result[i].args.snails + " Snails and finds the Slug.";
+							
+						} else if(result[i].event == "FoundLettuce"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " spent " + result[i].args.lettucereq + " Red Eggs to find a Lettuce.";
+							
+						} else if(result[i].event == "FoundCarrot"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " found a Carrot for 0.02 ETH.";
+							
+						} else if(result[i].event == "PaidThrone"){
+							eventlogdoc.innerHTML += "<br>[~" + datetext + "] " + formatEthAdr(result[i].args.player) + " paid tribute to the SnailThrone! " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH have been sent.";
+	
+						} else if(result[i].event == "BoostedPot"){
+							eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result[i].args.player) + " makes a generous " + formatEthValue2(web3.fromWei(result[i].args.eth,'ether')) + " ETH donation to the SnailPot. Next round is going to be sweet!";
+	
+						}
+						logboxscroll.scrollTop = logboxscroll.scrollHeight;
+					}
+				}
+			}
+			else{
+				console.log("problem!");
+			}
+		});
+	}
+}
+
 var hatchEvent = myContract.Hatched();
 
 hatchEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " hatched " + result.args.eggs + " Eggs into " + result.args.snails + " Snails, and has " + result.args.hatchery + " Snails in total.";
 			e_hatched.address = result.args.player;
 			e_hatched.hatchery = parseInt(result.args.hatchery); //seems to return an array/object
-			//console.log("e_hatch is " + e_hatched.hatchery);
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 			computeLeaderboard();
 		}
@@ -3039,7 +3123,7 @@ var usedredEvent = myContract.UsedRed();
 
 usedredEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " hatched " + result.args.eggs + " Reds into " + result.args.snails + " Snails, and has a total of " + result.args.hatchery + " Snails.";
@@ -3055,7 +3139,7 @@ var fundedtreeEvent = myContract.FundedTree();
 
 fundedtreeEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " funded the EtherTree with " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH and receives " + result.args.acorns + " Acorns.";
@@ -3069,10 +3153,10 @@ var claimedshareEvent = myContract.ClaimedShare();
 
 claimedshareEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " claimed " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH thanks to his " + result.args.acorns + " Acorns.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " claimed " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH thanks to their " + result.args.acorns + " Acorns.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
@@ -3083,7 +3167,7 @@ var becamemasterEvent = myContract.BecameMaster();
 
 becamemasterEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] Bow down to " + formatEthAdr(result.args.player) + ", your new Snailmaster!";
@@ -3096,10 +3180,10 @@ var withdrewbalanceEvent = myContract.WithdrewBalance();
 
 withdrewbalanceEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " withdrew " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH from his balance.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " withdrew " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH from their balance.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
@@ -3110,7 +3194,7 @@ var soldeggEvent = myContract.SoldEgg();
 
 soldeggEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " sold " + result.args.eggs + " Eggs for " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH.";
@@ -3123,7 +3207,7 @@ var boughteggEvent = myContract.BoughtEgg();
 
 boughteggEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " bought " + result.args.eggs + " Eggs for " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH."; //inverted eggs and ETH in contract event
@@ -3136,7 +3220,7 @@ var startedsnailingEvent = myContract.StartedSnailing();
 
 startedsnailingEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] Welcome to our newest SnailFarmer, " + formatEthAdr(result.args.player) + "!";
@@ -3149,7 +3233,7 @@ var becamequeenEvent = myContract.BecameQueen();
 
 becamequeenEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " becomes the SpiderQueen!";
@@ -3162,7 +3246,7 @@ var becamedukeEvent = myContract.BecameDuke();
 
 becamequeenEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " becomes the SquirrelDuke!";
@@ -3175,7 +3259,7 @@ var becameprinceEvent = myContract.BecamePrince();
 
 becameprinceEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " becomes the TadpolePrince!";
@@ -3188,7 +3272,7 @@ var wonroundEvent = myContract.WonRound();
 
 wonroundEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		//if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " WINS ROUND " + result.args.round + " AND EARNS " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH!";
@@ -3201,7 +3285,7 @@ var beganroundEvent = myContract.BeganRound();
 
 beganroundEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] Round " + result.args.round + " has started!";
@@ -3214,7 +3298,7 @@ var joinedroundEvent = myContract.JoinedRound();
 
 joinedroundEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " joins the fray, with " + result.args.playerreds + " Red Eggs.";
@@ -3227,7 +3311,7 @@ var grabbedharvestEvent = myContract.GrabbedHarvest();
 
 grabbedharvestEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " grabbed the Red Harvest by spending " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH.";
@@ -3240,7 +3324,7 @@ var foundslugEvent = myContract.FoundSlug();
 
 foundslugEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " sacrifices a colossal " + result.args.snails + " Snails and finds the Slug.";
@@ -3253,10 +3337,10 @@ var foundlettuceEvent = myContract.FoundLettuce();
 
 foundlettuceEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
-			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " spent " + a_lettuceReq + " Red Eggs to find a Lettuce.";
+			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " spent " + result[i].args.lettucereq + " Red Eggs to find a Lettuce.";
 			logboxscroll.scrollTop = logboxscroll.scrollHeight;
 		}
 	}
@@ -3266,7 +3350,7 @@ var foundcarrotEvent = myContract.FoundCarrot();
 
 foundcarrotEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " found a Carrot for 0.02 ETH.";
@@ -3279,7 +3363,7 @@ var paidthroneEvent = myContract.PaidThrone();
 
 paidthroneEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " paid tribute to the SnailThrone! " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH have been sent.";
@@ -3292,7 +3376,7 @@ var boostedpotEvent = myContract.BoostedPot();
 
 boostedpotEvent.watch(function(error, result){
     if(!error){
-		////console.log(result);
+		////////console.log(result);
 		if(checkHash(storetxhash, result.transactionHash) != 0) {
 			date24();
 			eventlogdoc.innerHTML += "<br>[" + datetext + "] " + formatEthAdr(result.args.player) + " makes a generous " + formatEthValue2(web3.fromWei(result.args.eth,'ether')) + " ETH donation to the SnailPot. Next round is going to be sweet!";
