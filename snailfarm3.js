@@ -81,7 +81,9 @@ function formatEthValue2(ethstr){
 
 //Truncates ETH address to first 8 numbers
 function formatEthAdr(adr){
-	return adr.substring(0, 10);
+	var _smallAdr = adr.substring(0, 10);
+	var _stringLink = '<a href="https://etherscan.io/address/' + adr + '" target="_blank" style="text-decoration:none; color:inherit;">' + _smallAdr + '</a>';
+	return _stringLink;
 }
 
 //Conversion of Date to hh:mm:ss
@@ -248,7 +250,7 @@ function refreshData(){
 	updateLettuceReq();
 	
 	updateHatchEstimate();
-	runLog();
+	//runLog();
 }
 
 //Refreshes some game data faster
@@ -724,9 +726,9 @@ function checkSnailmaster(){
 	currentSnailmaster(function(req) {
 		c_snailmaster = "0x" + req.substring(26, 66);
 		if(c_snailmaster == m_account) {
-			snailmasterdoc.textContent = "YOU!";
+			snailmasterdoc.innerHTML = "YOU!";
 		} else {
-		snailmasterdoc.textContent = formatEthAdr(c_snailmaster);
+		snailmasterdoc.innerHTML = formatEthAdr(c_snailmaster);
 		}
 	});
 }
@@ -735,7 +737,7 @@ function checkSnailmaster(){
 function updateSnailmasterReq(){
 	var snailmasterreqdoc = document.getElementById('snailmasterreq');
 	snailmasterReq(function(req) {
-		snailmasterreqdoc.textContent = req;
+		snailmasterreqdoc.innerHTML = req;
 	});
 }
 	
@@ -745,9 +747,9 @@ function checkSpiderOwner(){
 	currentSpiderOwner(function(req) {
 		c_spiderowner = "0x" + req.substring(26, 66);
 		if(c_spiderowner == m_account) {
-			spiderownerdoc.textContent = "YOU!";
+			spiderownerdoc.innerHTML = "YOU!";
 		} else {
-		spiderownerdoc.textContent = formatEthAdr(c_spiderowner);
+		spiderownerdoc.innerHTML = formatEthAdr(c_spiderowner);
 		}
 	});
 }
@@ -756,7 +758,7 @@ function checkSpiderOwner(){
 function updateSpiderReq(){
 	var spiderreqdoc = document.getElementById('spiderreq');
 	spiderReq(function(req) {
-		spiderreqdoc.textContent = req;
+		spiderreqdoc.innerHTML = req;
 	});
 }
 
@@ -766,9 +768,9 @@ function checkSquirrelOwner(){
 	currentSquirrelOwner(function(req) {
 		c_squirrelowner = "0x" + req.substring(26, 66);
 		if(c_squirrelowner == m_account) {
-			squirrelownerdoc.textContent = "YOU!";
+			squirrelownerdoc.innerHTML = "YOU!";
 		} else {
-		squirrelownerdoc.textContent = formatEthAdr(c_squirrelowner);
+		squirrelownerdoc.innerHTML = formatEthAdr(c_squirrelowner);
 		}
 	});
 }
@@ -777,7 +779,7 @@ function checkSquirrelOwner(){
 function updateSquirrelReq(){
 	var squirrelreqdoc = document.getElementById('squirrelreq');
 	squirrelReq(function(req) {
-		squirrelreqdoc.textContent = req;
+		squirrelreqdoc.innerHTML = req;
 	});
 }
 
@@ -787,9 +789,9 @@ function checkTadpoleOwner(){
 	currentTadpoleOwner(function(req) {
 		c_tadpoleowner = "0x" + req.substring(26, 66);
 		if(c_tadpoleowner == m_account) {
-			tadpoleownerdoc.textContent = "YOU!";
+			tadpoleownerdoc.innerHTML = "YOU!";
 		} else {
-			tadpoleownerdoc.textContent = formatEthAdr(c_tadpoleowner);
+			tadpoleownerdoc.innerHTML = formatEthAdr(c_tadpoleowner);
 		}
 	});
 }
@@ -800,7 +802,7 @@ function updateTadpoleReq(){
 	tadpoleReq(function(req) {
 		a_tadpoleReq = formatEthValue2(web3.fromWei(req, 'ether'));
 		a_tadpoleReq = (parseFloat(a_tadpoleReq) + parseFloat(0.0001)).toFixed(6);
-		tadpolereqdoc.textContent = a_tadpoleReq;
+		tadpolereqdoc.innerHTML = a_tadpoleReq;
 	});
 }
 
@@ -835,7 +837,7 @@ function updateHarvestCost(){
 	ComputeHarvest(function(req) {
 		a_harvestCost = formatEthValue2(web3.fromWei(req,'ether'));
 		a_harvestCost = (parseFloat(a_harvestCost) + parseFloat(0.0001)).toFixed(6);
-		harvestcostdoc.textContent = a_harvestCost;
+		harvestcostdoc.innerHTML = a_harvestCost;
 	});
 }
 
@@ -844,7 +846,7 @@ function updateLettuceReq(){
 	var lettucereqdoc = document.getElementById('lettucereq');
 	lettuceReq(function(result) {
 		a_lettuceReq = result;
-		lettucereqdoc.textContent = a_lettuceReq;
+		lettucereqdoc.innerHTML = a_lettuceReq;
 	});
 }
 
@@ -921,11 +923,11 @@ function updateLeader(){
 	currentLeader(function(result) {
 		l_account = "0x" + result.substring(26,66);
 		if(l_account != m_account) {
-			leaderdoc.textContent = formatEthAdr(l_account) + " is ";
-			leader2doc.textContent = formatEthAdr(l_account);
+			leaderdoc.innerHTML = formatEthAdr(l_account) + " is ";
+			leader2doc.innerHTML = formatEthAdr(l_account);
 		}
 		else {
-			leaderdoc.textContent = "YOU are ";
+			leaderdoc.innerHTML = "YOU are ";
 		}
 	});
 }
@@ -935,7 +937,7 @@ function updateLeaderSnail(){
 	var leadersnaildoc = document.getElementById('leadersnail');
 	GetSnail(l_account, function(result) {
 		a_leaderSnail = result;
-		leadersnaildoc.textContent = a_leaderSnail;		
+		leadersnaildoc.innerHTML = a_leaderSnail;		
 	});
 }
 
@@ -944,7 +946,7 @@ function updatePlayerSnail(){
 	var playersnaildoc = document.getElementById('playersnail');
 	GetSnail(m_account, function(req) {
 		a_playerSnail = req;
-		playersnaildoc.textContent = a_playerSnail;
+		playersnaildoc.innerHTML = a_playerSnail;
 	});
 }
 
@@ -955,7 +957,7 @@ function updateContractBalance(){
 		if(!error) {
 			//////////console.log(result);
 			a_contractBalance = formatEthValue(web3.fromWei(result, 'ether'))
-			contractbalancedoc.textContent = a_contractBalance; 
+			contractbalancedoc.innerHTML = a_contractBalance; 
 		} else {
 			////////console.log("didn't work");
 		}
@@ -968,8 +970,8 @@ function updateRound(){
 	var round2doc = document.getElementById('round2');
 	round(function(req) {
 		a_round = req;
-		rounddoc.textContent = a_round;
-		round2doc.textContent = a_round;
+		rounddoc.innerHTML = a_round;
+		round2doc.innerHTML = a_round;
 	});
 }
 
@@ -978,7 +980,7 @@ function updateSnailPot(){
 	var snailpotdoc = document.getElementById('snailpot');
 	snailPot(function(req) {
 		a_snailPot = formatEthValue(web3.fromWei(req,'ether'));
-		snailpotdoc.textContent = a_snailPot;
+		snailpotdoc.innerHTML = a_snailPot;
 	});
 }
 
@@ -987,7 +989,7 @@ function updateRoundPot(){
 	var roundpotdoc = document.getElementById('roundpot');
 	roundPot(function(req) {
 		a_roundPot = formatEthValue(web3.fromWei(req,'ether'));
-		roundpotdoc.textContent = a_roundPot;
+		roundpotdoc.innerHTML = a_roundPot;
 	});
 }
 
@@ -996,7 +998,7 @@ function updateEggPot(){
 	var eggpotdoc = document.getElementById('eggpot');
 	eggPot(function(req) {
 		a_eggPot = formatEthValue(web3.fromWei(req,'ether'));
-		eggpotdoc.textContent = a_eggPot;
+		eggpotdoc.innerHTML = a_eggPot;
 	});
 }
 
@@ -1005,7 +1007,7 @@ function updateThronePot(){
 	var thronepotdoc = document.getElementById('thronepot');
 	thronePot(function(req) {
 		a_thronePot = formatEthValue(web3.fromWei(req,'ether'));
-		thronepotdoc.textContent = a_thronePot;
+		thronepotdoc.innerHTML = a_thronePot;
 	});
 }
 
@@ -1014,7 +1016,7 @@ function updateMarketEgg(){
 	var marketeggdoc = document.getElementById('marketegg');
 	marketEgg(function(req) {
 		a_marketEgg = req;
-		marketeggdoc.textContent = a_marketEgg;
+		marketeggdoc.innerHTML = a_marketEgg;
 	});
 }
 
@@ -1029,7 +1031,7 @@ function updateMaxAcorn(){
 	var maxacorndoc = document.getElementById('maxacorn');
 	maxAcorn(function(req) {
 		a_maxAcorn = req;
-		maxacorndoc.textContent = a_maxAcorn;
+		maxacorndoc.innerHTML = a_maxAcorn;
 	});
 }
 
@@ -1038,7 +1040,7 @@ function updateAcornCost(){
 	var acorncostdoc = document.getElementById('acorncost');
 	ComputeAcornCost(function(req) {
 		a_acornCost = formatEthValue2(web3.fromWei(req,'ether'));
-		acorncostdoc.textContent = a_acornCost;
+		acorncostdoc.innerHTML = a_acornCost;
 	});
 }
 
@@ -1057,14 +1059,14 @@ function slowupdatePlayerEgg(){
 				}
 				s_playerEgg = formatEthValue(result);
 				a_playerEgg = s_playerEgg;
-				playereggdoc.textContent = a_playerEgg + ".000";
+				playereggdoc.innerHTML = a_playerEgg + ".000";
 			});
 		}
 		else {
 			z_playerEgg = 0;
 		}
 	} else {
-		playereggdoc.textContent = "Round is over!"
+		playereggdoc.innerHTML = "Round is over!"
 	}
 }
 
@@ -1076,11 +1078,11 @@ function updatePlayerEgg(){
 			if(_result != o_playerEgg) {
 				a_playerEgg = _result;
 				o_playerEgg = _result;
-				playereggdoc.textContent = a_playerEgg + ".000";
+				playereggdoc.innerHTML = a_playerEgg + ".000";
 			}
 		});
 	} else {
-		playereggdoc.textContent = "Round is over!"
+		playereggdoc.innerHTML = "Round is over!"
 	}
 }
 
@@ -1091,10 +1093,10 @@ function fastPlayerEgg(){
 			_prod = parseFloat(a_playerProd / 36000).toFixed(6); //hour prod divided to 100ms intervals
 			a_playerEgg = (parseFloat(a_playerEgg) + parseFloat(_prod)).toFixed(4);
 			_egg = parseFloat(a_playerEgg).toFixed(3);
-			playereggdoc.textContent = _egg;
+			playereggdoc.innerHTML = _egg;
 		}
 	} else {
-		playereggdoc.textContent = "Round is over!"
+		playereggdoc.innerHTML = "Round is over!"
 	}
 }
 
@@ -1103,7 +1105,7 @@ function updatePlayerRed(){
 	var playerreddoc = document.getElementById('playerred');
 	GetRed(m_account, function(req) {
 		a_playerRed = req;
-		playerreddoc.textContent = a_playerRed;
+		playerreddoc.innerHTML = a_playerRed;
 	});
 }
 
@@ -1118,7 +1120,7 @@ function updatePlayerBoost(){
 	var hatchboostdoc = document.getElementById('hatchboost');
 	GetProd(m_account, function(req) {
 		a_playerBoost = req;
-		hatchboostdoc.textContent = a_playerBoost;
+		hatchboostdoc.innerHTML = a_playerBoost;
 	});
 }
 
@@ -1126,14 +1128,14 @@ function updatePlayerBoost(){
 function updatePlayerProd(){
 	var playerproddoc = document.getElementById('playerprod');
 	a_playerProd = parseFloat(a_playerSnail / 24).toFixed(3); //100% per day, divided by 24 hours
-	playerproddoc.textContent = a_playerProd;
+	playerproddoc.innerHTML = a_playerProd;
 }
 
 //Current balance for player
 function updatePlayerBalance(){
 	var playerbalancedoc = document.getElementById('playerbalance');
 	GetMyBalance(function(req) {
-		playerbalancedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
+		playerbalancedoc.innerHTML = formatEthValue2(web3.fromWei(req,'ether'));
 	});
 }	
 
@@ -1142,7 +1144,7 @@ function updatePlayerAcorn(){
 	var playeracorndoc = document.getElementById('playeracorn');
 	GetAcorn(m_account, function(result) {
 		a_playerAcorn = result;
-		playeracorndoc.textContent = a_playerAcorn;
+		playeracorndoc.innerHTML = a_playerAcorn;
 	});
 }
 
@@ -1150,7 +1152,7 @@ function updatePlayerAcorn(){
 function updatePlayerShare(){
 	var playersharedoc = document.getElementById('playershare');
 	ComputeMyShare(function(req) {
-		playersharedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
+		playersharedoc.innerHTML = formatEthValue2(web3.fromWei(req,'ether'));
 	});
 }
 
@@ -1160,7 +1162,7 @@ function updatePlayerShare(){
 function updateFieldBuy2(){
 	f_buy = document.getElementById('fieldBuy').value;
 	var fieldbuy2doc = document.getElementById('fieldBuy2');
-	fieldbuy2doc.textContent = f_buy;
+	fieldbuy2doc.innerHTML = f_buy;
 }
 
 //Player input on TadpolePrince
@@ -1177,7 +1179,7 @@ function updateFieldPrince2(){
 function updateFieldTree2(){
 	f_tree = document.getElementById('fieldTree').value;
 	var fieldtree2doc = document.getElementById('fieldTree2');
-	fieldtree2doc.textContent = f_tree;
+	fieldtree2doc.innerHTML = f_tree;
 }
 
 //Player input on Red Egg Hatch
@@ -1187,7 +1189,7 @@ function updateRedHatch2(){
 		f_redhatch = a_playerRed;
 	}
 	var fieldred2doc = document.getElementById('fieldRed2');
-	fieldred2doc.textContent = f_redhatch;
+	fieldred2doc.innerHTML = f_redhatch;
 }
 
 //Buy estimate
@@ -1195,7 +1197,7 @@ function updateBuyEstimate(){
 	var buyEstimatedoc = document.getElementById('buyestimate');
 	var weitospend = web3.toWei(f_buy,'ether');
 	ComputeBuy(weitospend, function(req) {
-		buyEstimatedoc.textContent = req;
+		buyEstimatedoc.innerHTML = req;
 	});	
 }
 
@@ -1203,7 +1205,7 @@ function updateBuyEstimate(){
 function updateSellEstimate(){
 	var sellEstimatedoc = document.getElementById('sellestimate');
 	ComputeSell(a_playerEgg, function(req) {
-		sellEstimatedoc.textContent = formatEthValue2(web3.fromWei(req,'ether'));
+		sellEstimatedoc.innerHTML = formatEthValue2(web3.fromWei(req,'ether'));
 	});
 }
 
