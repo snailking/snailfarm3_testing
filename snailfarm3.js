@@ -4,6 +4,7 @@ var contractAddress="0x2A185c995373a766979E645D0912d30E27aa56f6" // MAINNET
 
 var web3;
 
+/* OLD
 window.addEventListener("load", function() {
 	if (typeof web3 !== "undefined") {
         web3 = new Web3(web3.currentProvider);
@@ -22,6 +23,35 @@ window.addEventListener("load", function() {
         web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/f423492af8504d94979d522c3fbf3794"));
     }
 });
+*/
+
+/* NEW */
+
+window.addEventListener('load', async () => {
+    // Modern dapp browsers...
+    if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+            // Request account access if needed
+            await ethereum.enable();
+            // Acccounts now exposed
+            web3.eth.sendTransaction({/* ... */});
+        } catch (error) {
+            // User denied account access...
+        }
+    }
+    // Legacy dapp browsers...
+    else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider);
+        // Acccounts always exposed
+        web3.eth.sendTransaction({/* ... */});
+    }
+    // Non-dapp browsers...
+    else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+});
+
 
 /* MODAL */
 
